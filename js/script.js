@@ -379,6 +379,12 @@ function scrollToWeather() {
 // STORY NAVIGATION
 // ==========================================
 function openStory(storyType) {
+    // Redirecionar para página de redes elétricas
+    if (storyType === 'power') {
+        window.location.href = './pages/redes-eletricas/redes-eletricas.html';
+        return;
+    }
+    
     const stories = {
         flare: {
             title: 'A Jornada de Flarinha',
