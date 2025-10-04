@@ -341,10 +341,10 @@ html {
 .hero {
     min-height: 100vh;
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
     padding: 8rem 2rem 4rem;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     gap: 4rem;
 }
@@ -354,7 +354,7 @@ html {
     animation: fadeInUp 1s ease-out;
     position: relative;
     z-index: 1;
-    margin-top: 4rem;
+    max-width: 700px;
 }
 
 @keyframes fadeInUp {
@@ -400,7 +400,7 @@ html {
     font-size: 1.1rem;
     color: var(--text-gray);
     margin-bottom: 2rem;
-    max-width: 600px;
+    max-width: 700px;
     line-height: 1.8;
 }
 
@@ -410,7 +410,80 @@ html {
     flex-wrap: wrap;
 }
 
-/* Estatísticas Compactas */
+/* Seção de Estatísticas */
+.stats-section {
+    padding: 4rem 2rem;
+    background: var(--bg-dark);
+}
+
+/* Estatísticas em Cards */
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 4rem 3.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    max-width: 420px;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+    border-color: var(--primary-color);
+}
+
+.stat-icon-big {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.stat-card:nth-child(2) .stat-icon-big {
+    animation-delay: 0.5s;
+}
+
+.stat-card:nth-child(3) .stat-icon-big {
+    animation-delay: 1s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-family: 'Space Mono', monospace;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    line-height: 1.3;
+}
+
+/* Estatísticas Compactas - Mantido para compatibilidade */
 .stats-compact {
     display: flex;
     gap: 4rem;
@@ -516,11 +589,9 @@ html {
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     min-height: 350px;
-    padding-right: 2rem;
-    padding-top: 0;
-    margin-top: 4rem;
+    padding-right: 0;
 }
 
 .earth {
@@ -958,6 +1029,10 @@ html {
     font-family: 'Poppins', sans-serif;
 }
 
+.story-btn i {
+    margin-left: 0.5rem;
+}
+
 .story-btn:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5);
@@ -1028,6 +1103,7 @@ html {
 .diagram-sun {
     font-size: 6rem;
     animation: pulse-sun 3s ease-in-out infinite;
+    position: relative;
 }
 
 @keyframes pulse-sun {
@@ -1038,6 +1114,8 @@ html {
 .diagram-earth {
     font-size: 4rem;
     animation: float 4s ease-in-out infinite;
+    position: relative;
+    top: 10px;
 }
 
 .solar-wind-line {
@@ -1244,6 +1322,24 @@ html {
     .earth {
         width: 200px;
         height: 200px;
+    }
+    
+    .stats-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .stat-card {
+        min-height: 160px;
+        padding: 1.5rem;
+    }
+    
+    .stat-icon-big {
+        font-size: 2.5rem;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
     }
     
     .nav-links {
