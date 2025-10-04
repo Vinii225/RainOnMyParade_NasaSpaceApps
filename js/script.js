@@ -76,7 +76,7 @@ const aurelitoMessages = {
 const aurelitoImages = {
     normal: './Images/GuideCharacter/Aurelito-2HandsExplanation.png',
     doubt: './Images/GuideCharacter/Aurelito-DoubtFace.png',
-    left: './Images/GuideCharacter/Aurelito-left.png',
+    left: './Images/GuideCharacter/Aurelito-left-png.png',
     right: './Images/GuideCharacter/Aurelito-right.png'
 };
 
