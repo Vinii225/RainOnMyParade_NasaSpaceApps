@@ -48,11 +48,77 @@ window.addEventListener('resize', () => {
 });
 
 // ==========================================
+// WORLD POPULATION API
+// ==========================================
+// Function to format number with dots as thousand separator
+function formatPopulation(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+async function fetchWorldPopulation() {
+    try {
+        const response = await fetch('https://worldpopulationapi.com/api/v1/population');
+        const data = await response.json();
+        
+        if (data && data.population) {
+            const population = data.population;
+            const populationElement = document.getElementById('world-population');
+            
+            if (populationElement) {
+                // Store the raw number for animation
+                populationElement.setAttribute('data-target', population);
+                
+                // Animate counter with formatted display
+                animateCounterFormatted(populationElement, population);
+            }
+        }
+    } catch (error) {
+        console.log('Usando valor estimado de população mundial');
+        // Fallback: Use current estimated world population
+        const populationElement = document.getElementById('world-population');
+        if (populationElement) {
+            const fallbackPopulation = 8120293392;
+            populationElement.setAttribute('data-target', fallbackPopulation);
+            animateCounterFormatted(populationElement, fallbackPopulation);
+        }
+    }
+}
+
+// Animate counter with formatted display
+function animateCounterFormatted(element, target, duration = 2000) {
+    const start = 0;
+    const increment = target / (duration / 16);
+    let current = start;
+    
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = formatPopulation(Math.floor(target));
+            clearInterval(timer);
+        } else {
+            element.textContent = formatPopulation(Math.floor(current));
+        }
+    }, 16);
+}
+
+// Call the function when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    fetchWorldPopulation();
+    
+    // Format sun distance with dots
+    const sunDistanceElement = document.getElementById('sun-distance');
+    if (sunDistanceElement) {
+        const distance = parseInt(sunDistanceElement.getAttribute('data-target'));
+        animateCounterFormatted(sunDistanceElement, distance);
+    }
+});
+
+// ==========================================
 // AURELITO GUIDE SYSTEM
 // ==========================================
 const aurelitoMessages = {
     home: [
-        "Bem-vindo ao Stellar Stories! 🌟 Vamos explorar o clima espacial juntos!",
+        "Bem-vindo ao Cosmic Tales! 🌟 Vamos explorar o clima espacial juntos!",
         "Você sabia? O Sol está a 150 milhões de km de distância! 🌞",
         "Pronto para começar sua aventura? Clique em 'Começar Aventura'! 🚀"
     ],
@@ -180,16 +246,25 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==========================================
 function animateCounter(element, target, duration = 2000) {
     const start = 0;
+    const isDecimal = target % 1 !== 0;
     const increment = target / (duration / 16);
     let current = start;
     
     const timer = setInterval(() => {
         current += increment;
         if (current >= target) {
-            element.textContent = target;
+            if (isDecimal) {
+                element.textContent = target.toFixed(2);
+            } else {
+                element.textContent = Math.floor(target);
+            }
             clearInterval(timer);
         } else {
-            element.textContent = Math.floor(current);
+            if (isDecimal) {
+                element.textContent = current.toFixed(2);
+            } else {
+                element.textContent = Math.floor(current);
+            }
         }
     }, 16);
 }
@@ -198,10 +273,17 @@ function animateCounter(element, target, duration = 2000) {
 const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            const statNumbers = entry.target.querySelectorAll('.stat-number');
+            const statNumbers = entry.target.querySelectorAll('.stat-number, .stat-number-small');
             statNumbers.forEach(stat => {
                 const target = parseInt(stat.getAttribute('data-target'));
-                animateCounter(stat, target);
+                const statId = stat.getAttribute('id');
+                
+                // Use formatted counter for sun-distance and world-population
+                if (statId === 'sun-distance' || statId === 'world-population') {
+                    animateCounterFormatted(stat, target);
+                } else {
+                    animateCounter(stat, target);
+                }
             });
             statsObserver.unobserve(entry.target);
         }
@@ -211,6 +293,12 @@ const statsObserver = new IntersectionObserver((entries) => {
 const statsSection = document.querySelector('.stats-section');
 if (statsSection) {
     statsObserver.observe(statsSection);
+}
+
+// Observer for compact stats in hero section
+const statsCompact = document.querySelector('.stats-compact');
+if (statsCompact) {
+    statsObserver.observe(statsCompact);
 }
 
 // ==========================================
@@ -414,7 +502,7 @@ window.addEventListener('scroll', () => {
 // INITIALIZE
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🚀 Stellar Stories: Space Weather initialized!');
+    console.log('🚀 Cosmic Tales: Space Weather initialized!');
     console.log('✨ Fetching real-time space weather data from NASA...');
     
     // Fetch space weather data
