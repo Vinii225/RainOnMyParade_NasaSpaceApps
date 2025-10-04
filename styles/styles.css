@@ -19,51 +19,49 @@
     --stars-bg: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
 }
 
-/* Tema Claro - ativado pela preferência do sistema */
-@media (prefers-color-scheme: light) {
-    :root {
-        --primary-color: #4f46e5;
-        --secondary-color: #7c3aed;
-        --accent-color: #db2777;
-        --bg-dark: #f8fafc;
-        --bg-darker: #ffffff;
-        --text-light: #0f172a;
-        --text-gray: #475569;
-        --card-bg: rgba(255, 255, 255, 0.9);
-        --border-color: rgba(15, 23, 42, 0.1);
-        --shadow-color: rgba(0, 0, 0, 0.1);
-        --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        --stars-bg: radial-gradient(ellipse at bottom, #dbeafe 0%, #bfdbfe 100%);
-    }
-    
-    /* Ajustes específicos para tema claro */
-    .navbar {
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    }
-    
-    .story-card,
-    .weather-card,
-    .about-section {
-        box-shadow: 0 4px 6px var(--shadow-color);
-    }
-    
-    .about-section {
-        background: rgba(226, 232, 240, 0.3);
-    }
-    
-    .footer {
-        background: var(--bg-dark);
-        border-top: 1px solid var(--border-color);
-    }
-    
-    /* Ajuste para melhor contraste em textos */
-    .hero-description,
-    .section-subtitle {
-        color: var(--text-gray);
-    }
+/* Tema Claro - ativado manualmente com classe .light-theme */
+body.light-theme {
+    --primary-color: #4f46e5;
+    --secondary-color: #7c3aed;
+    --accent-color: #db2777;
+    --bg-dark: #f8fafc;
+    --bg-darker: #ffffff;
+    --text-light: #0f172a;
+    --text-gray: #475569;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --border-color: rgba(15, 23, 42, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --stars-bg: radial-gradient(ellipse at bottom, #dbeafe 0%, #bfdbfe 100%);
+}
+
+/* Ajustes específicos para tema claro */
+body.light-theme .navbar {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .story-card,
+body.light-theme .weather-card,
+body.light-theme .about-section {
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+body.light-theme .about-section {
+    background: rgba(226, 232, 240, 0.3);
+}
+
+body.light-theme .footer {
+    background: var(--bg-dark);
+    border-top: 1px solid var(--border-color);
+}
+
+/* Ajuste para melhor contraste em textos */
+body.light-theme .hero-description,
+body.light-theme .section-subtitle {
+    color: var(--text-gray);
 }
 
 * {
@@ -269,6 +267,7 @@ html {
     display: flex;
     list-style: none;
     gap: 2rem;
+    align-items: center;
 }
 
 .nav-links a {
@@ -280,6 +279,32 @@ html {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.theme-toggle {
+    background: none;
+    border: 2px solid var(--border-color);
+    color: var(--text-light);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.theme-toggle:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    transform: rotate(20deg) scale(1.1);
+}
+
+.theme-toggle i {
+    transition: transform 0.3s ease;
 }
 
 .nav-links a i {

@@ -1,4 +1,56 @@
 // ==========================================
+// THEME TOGGLE
+// ==========================================
+function toggleTheme() {
+    const body = document.body;
+    const themeIcon = document.querySelector('#theme-toggle i');
+    const logo = document.getElementById('space-apps-logo');
+    
+    body.classList.toggle('light-theme');
+    
+    // Atualizar ícone e logo
+    if (body.classList.contains('light-theme')) {
+        themeIcon.className = 'fa-solid fa-moon';
+        if (logo) logo.src = './Images/EventLogo/11.png';
+        localStorage.setItem('theme', 'light');
+    } else {
+        themeIcon.className = 'fa-solid fa-sun';
+        if (logo) logo.src = './Images/EventLogo/44.png';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Carregar tema salvo ao iniciar
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    const themeIcon = document.querySelector('#theme-toggle i');
+    const logo = document.getElementById('space-apps-logo');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Se não há tema salvo, usar preferência do sistema
+    if (!savedTheme) {
+        if (!prefersDark) {
+            document.body.classList.add('light-theme');
+            if (themeIcon) themeIcon.className = 'fa-solid fa-moon';
+            if (logo) logo.src = './Images/EventLogo/11.png';
+        } else {
+            if (themeIcon) themeIcon.className = 'fa-solid fa-sun';
+            if (logo) logo.src = './Images/EventLogo/44.png';
+        }
+    } else {
+        // Usar tema salvo
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-theme');
+            if (themeIcon) themeIcon.className = 'fa-solid fa-moon';
+            if (logo) logo.src = './Images/EventLogo/11.png';
+        } else {
+            if (themeIcon) themeIcon.className = 'fa-solid fa-sun';
+            if (logo) logo.src = './Images/EventLogo/44.png';
+        }
+    }
+});
+
+// ==========================================
 // STARS ANIMATION
 // ==========================================
 const canvas = document.getElementById('stars-canvas');
@@ -10,9 +62,9 @@ canvas.height = window.innerHeight;
 const stars = [];
 const numStars = 200;
 
-// Detectar tema do sistema
-const isDarkTheme = () => {
-    return !window.matchMedia || window.matchMedia('(prefers-color-scheme: dark)').matches;
+// Detectar tema atual
+const isLightTheme = () => {
+    return document.body.classList.contains('light-theme');
 };
 
 // Create stars
@@ -31,7 +83,7 @@ function animateStars() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     // Cor das estrelas baseada no tema
-    const starColor = isDarkTheme() ? '255, 255, 255' : '30, 58, 138';
+    const starColor = isLightTheme() ? '30, 58, 138' : '255, 255, 255';
     
     stars.forEach(star => {
         ctx.beginPath();
@@ -48,13 +100,6 @@ function animateStars() {
 }
 
 animateStars();
-
-// Atualizar estrelas quando o tema mudar
-if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-        // As estrelas serão redesenhadas automaticamente na próxima animação
-    });
-}
 
 // Resize canvas
 window.addEventListener('resize', () => {
