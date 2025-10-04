@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Crise de Espirros do Sol: Desvendando as Tempestades Solares com Aurelito</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================
+           VARIABLES & RESET
+           ========================================== */
+        :root {
+            --primary-color: #6366f1; /* Roxo/Azul (Aurelito) */
+            --secondary-color: #8b5cf6;
+            --accent-color: #ec4899; /* Rosa (Luna/Terra) */
+            --solar-yellow: #fbbf24;
+            --solar-orange: #f97316;
+            --solar-red: #ef4444;
+            --bg-dark: #0f172a;
+            --bg-darker: #020617;
+            --text-light: #f1f5f9;
+            --text-gray: #94a3b8;
+            --card-bg: rgba(30, 41, 59, 0.8);
+            --gradient-solar: linear-gradient(135deg, #fbbf24 0%, #f97316 50%, #ef4444 100%);
+            --gradient-space: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-mystical: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-darker);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ==========================================
+           PROGRESS BAR
+           ========================================== */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-solar);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* ==========================================
+           CANVAS BACKGROUND (STARS & PARTICLES)
+           ========================================== */
+        #stars-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+        }
+
+        /* ==========================================
+           CHAPTER BACKGROUNDS (AURORA COLORS)
+           ========================================== */
+        .chapter {
+            min-height: 100vh;
+            padding: 80px 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chapter-1 { 
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 87, 34, 0.15) 100%); 
+        } /* Amarelo/Laranja Solar */
+        .chapter-2 { 
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.15) 0%, rgba(103, 58, 183, 0.15) 100%); 
+        } /* Roxo/Azul do Espaço */
+        .chapter-3 { 
+            background: linear-gradient(135deg, rgba(244, 67, 54, 0.15) 0%, rgba(156, 39, 176, 0.15) 100%); 
+        } /* Roxo/Magenta (Escudo) */
+        .chapter-4 { 
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.15) 0%, rgba(0, 150, 136, 0.15) 100%); 
+        } /* Verde/Ciano (Polo) */
+        .chapter-5 { 
+            background: linear-gradient(135deg, rgba(63, 81, 181, 0.15) 0%, rgba(3, 169, 244, 0.15) 100%); 
+        } /* Azul Marinho/Azul Claro (Conclusão) */
+
+        /* ==========================================
+           DIALOGUE SYSTEM
+           ========================================== */
+        .dialogue-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .dialogue {
+            display: flex;
+            align-items: flex-end;
+            margin: 40px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            /* Transição Elástica: 0.7s com cubic-bezier elástico */
+            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .dialogue.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dialogue.left {
+            justify-content: flex-start;
+        }
+
+        .dialogue.right {
+            justify-content: flex-end;
+        }
+
+        .dialogue.center {
+            justify-content: center;
+        }
+
+        .character-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 20px;
+            flex-shrink: 0;
+        }
+
+        .character-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .speech-bubble {
+            max-width: 70%; /* 70% de largura */
+            padding: 25px 30px;
+            border-radius: 25px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Aurelito (Esquerda) */
+        .dialogue.left .speech-bubble {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(139, 92, 246, 0.9));
+            margin-left: 0;
+        }
+
+        /* Luna/Narrador (Direita) */
+        .dialogue.right .speech-bubble {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.9), rgba(139, 92, 246, 0.9));
+            margin-right: 0;
+        }
+
+        .dialogue.center .speech-bubble {
+            background: var(--gradient-solar);
+            text-align: center;
+            margin: 0 auto;
+        }
+        
+        .speech-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: white;
+            margin: 0;
+        }
+
+        .speech-text strong {
+            color: #fbbf24;
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+        }
+
+        .speech-text em {
+            color: #a3e635;
+            font-style: normal;
+            text-shadow: 0 0 10px rgba(163, 230, 53, 0.5);
+        }
+ 
+        /* ==========================================
+           CHAPTER TITLES
+           ========================================== */
+        .chapter-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            background: var(--gradient-solar);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+        }
+
+        .chapter-title.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================
+           HOLOGRAM EFFECT (Terra e Sol)
+           ========================================== */
+        .hologram-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            margin: 50px auto;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .hologram-container.appear {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hologram {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--gradient-solar);
+            position: relative;
+            box-shadow: 
+                0 0 60px rgba(251, 191, 36, 0.7),
+                inset 0 0 60px rgba(239, 68, 68, 0.4);
+            animation: hologramPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes hologramPulse {
+            0%, 100% {
+                box-shadow: 
+                    0 0 60px rgba(251, 191, 36, 0.7),
+                    inset 0 0 60px rgba(239, 68, 68, 0.4);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 
+                    0 0 100px rgba(251, 191, 36, 0.9),
+                    inset 0 0 100px rgba(239, 68, 68, 0.6);
+                transform: scale(1.05);
+            }
+        }
+
+        .hologram::before {
+            content: '☀️';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5rem;
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .sunspots {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            animation: spotMove 10s ease-in-out infinite;
+        }
+
+        .sunspot-1 { 
+            width: 25px; 
+            height: 25px; 
+            top: 25%; 
+            left: 20%; 
+            animation-delay: 0s; 
+        }
+        .sunspot-2 { 
+            width: 18px; 
+            height: 18px; 
+            top: 65%; 
+            right: 25%; 
+            animation-delay: 3s; 
+        }
+        .sunspot-3 { 
+            width: 22px; 
+            height: 22px; 
+            bottom: 30%; 
+            left: 45%; 
+            animation-delay: 6s; 
+        }
+
+        @keyframes spotMove {
+            0%, 100% { 
+                opacity: 0.7; 
+                transform: scale(1); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.3); 
+            }
+        }
+
+        /* ==========================================
+           QUIZ SYSTEM
+           ========================================== */
+        .quiz-container {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 50px;
+            background: var(--card-bg);
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .quiz-container.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .quiz-title {
+            font-size: 3rem;
+            background: var(--gradient-solar);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .quiz-score {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+        }
+
+        .question {
+            margin-bottom: 50px;
+            display: none;
+        }
+
+        .question.active {
+            display: block;
+            animation: questionAppear 0.5s ease forwards;
+        }
+
+        @keyframes questionAppear {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .question-text {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .options {
+            display: grid;
+            gap: 20px;
+        }
+
+        .option {
+            padding: 20px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(15px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .option.selected {
+            border-color: var(--primary-color);
+            background: rgba(99, 102, 241, 0.2);
+        }
+
+        .option.correct {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .option.incorrect {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .explanation {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid var(--solar-orange);
+        }
+
+        .quiz-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--gradient-solar);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ==========================================
+           CONFETTI ANIMATION
+           ========================================== */
+        .confetti {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--solar-yellow);
+            animation: confettiFall 4s linear infinite;
+            z-index: 1000;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* ==========================================
+           NAVIGATION
+           ========================================== */
+        .fixed-nav {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 50px;
+            padding: 20px 35px;
+            display: flex;
+            gap: 25px;
+            z-index: 999;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        /* ==========================================
+           RESPONSIVE DESIGN
+           ========================================== */
+        @media (max-width: 768px) {
+            .chapter {
+                padding: 60px 15px;
+            }
+
+            .chapter-title {
+                font-size: 2.5rem;
+                margin-bottom: 40px;
+            }
+
+            .dialogue {
+                flex-direction: column;
+                align-items: center;
+                margin: 30px 0;
+            }
+
+            .dialogue.left, .dialogue.right {
+                flex-direction: column;
+            }
+
+            .character-avatar {
+                margin: 0 0 20px 0;
+                width: 100px;
+                height: 100px;
+            }
+
+            .speech-bubble {
+                max-width: 90%;
+                margin: 0;
+                padding: 20px 25px;
+            }
+
+            .speech-bubble::before {
+                display: none;
+            }
+
+            .speech-text {
+                font-size: 1.1rem;
+            }
+
+            .hologram-container {
+                width: 280px;
+                height: 280px;
+                margin: 40px auto;
+            }
+
+            .hologram::before {
+                font-size: 4rem;
+            }
+
+            .quiz-container {
+                margin: 60px 15px;
+                padding: 35px 25px;
+            }
+
+            .quiz-title {
+                font-size: 2.2rem;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+            }
+
+            .fixed-nav {
+                flex-wrap: wrap;
+                bottom: 15px;
+                padding: 15px 25px;
+                gap: 15px;
+            }
+
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .quiz-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chapter {
+                padding: 50px 10px;
+            }
+
+            .chapter-title {
+                font-size: 2rem;
+            }
+
+            .speech-text {
+                font-size: 1rem;
+            }
+
+            .hologram-container {
+                width: 220px;
+                height: 220px;
+            }
+
+            .hologram::before {
+                font-size: 3.5rem;
+            }
+
+            .quiz-title {
+                font-size: 1.8rem;
+            }
+
+            .question-text {
+                font-size: 1.1rem;
+            }
+
+            .option {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <canvas id="stars-canvas"></canvas>
+
+    <section class="chapter chapter-1" id="chapter-1">
+        <div class="dialogue-container">
+            <h1 class="chapter-title">💥 O Sol Maluco e a Crise de Espirros</h1>
+            
+            <div class="dialogue left">
+                <div class="character-avatar">
+                    <img src="./Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Aurelito: "Olá, pessoal! Eu sou o Aurelito, e hoje a gente vai falar sobre o fenômeno mais poderoso do Universo: as <strong>Tempestades Solares</strong>!"</p>
+                </div>
+            </div>
+
+            <div class="dialogue right">
+                <div class="character-avatar">
+                    <img src="./Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Narrador: O Sol é uma estrela superativa, e quando a energia lá dentro explode, PUM! Acontece uma Tempestade Solar! ☄️</p>
+                </div>
+            </div>
+
+            <div class="dialogue left">
+                <div class="character-avatar">
+                    <img src="./Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito explicando">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Aurelito: "É como se o Sol estivesse com uma <strong>crise de espirros</strong> superpoderosos, jogando material e luz para todos os lados!"</p>
+                </div>
+            </div>
+
+            <div class="dialogue center">
+                <div class="speech-bubble">
+                    <p class="speech-text">Os "espirros" são dois tipos de explosões: Flares Solares e Ejeções de Massa Coronal (EMCs). </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter chapter-2" id="chapter-2">
+        <div class="dialogue-container">
+            <h2 class="chapter-title">⚡ O Super Flash e o Tiro de Canhão Solar</h2>
+            
+            <div class="dialogue left">
+                <div class="character-avatar">
+                    <img src="./Images/GuideCharacter/Aurelito-left-png.png" alt="Aurelito observando">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Aurelito: "Vejam só! As <strong>Flares Solares</strong> são explosões de luz e raios invisíveis! É um super flash que acende e apaga, liberando energia na velocidade da luz!" 📸</p>
+                </div>
+            </div>
+
+            <div class="dialogue right">
+                <div class="character-avatar">
+                    <img src="./Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Narrador: Já as <strong>Ejeções de Massa Coronal (EMCs)</strong> são as mais turbulentas! Nuvens gigantescas de gás elétrico arremessadas ao espaço, a milhões de quilômetros por hora! </p>
+                </div>
+            </div>
+            
+            <div class="hologram-container">
+                <div class="hologram">
+                    <div class="sunspots sunspot-1"></div>
+                    <div class="sunspots sunspot-2"></div>
+                    <div class="sunspots sunspot-3"></div>
+                </div>
+            </div>
+
+            <div class="dialogue center">
+                <div class="speech-bubble">
+                    <p class="speech-text">O material das EMCs leva de **um a quatro dias** para viajar do Sol até a Terra! ⏳</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter chapter-3" id="chapter-3">
+        <div class="dialogue-container">
+            <h2 class="chapter-title">🛡️ O Escudo Secreto da Terra (Dica da NASA!)</h2>
+            
+            <div class="dialogue center">
+                <div class="speech-bubble">
+                    <p class="speech-text">A Terra tem uma defesa incrível contra as nuvens elétricas do Sol! 🚨</p>
+                </div>
+            </div>
+
+            <div class="dialogue right">
+                <div class="character-avatar">
+                    <img src="./Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol explicando">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Narrador: O nosso planeta tem um campo de força invisível, o <strong>Campo Magnético</strong>! É a nossa bolha mágica de proteção! 🛡️</p>
+                </div>
+            </div>
+
+            <div class="dialogue left">
+                <div class="character-avatar">
+                    <img src="./Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito maravilhado">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Aurelito: "Ele desvia e repele a maior parte dessa energia perigosa para os lados! O escudo nos protege, mas também cria arte!"</p>
+                </div>
+            </div>
+            
+            <div class="dialogue center">
+                <div class="speech-bubble">
+                    <p class="speech-text">Quando a energia solar esbarra no escudo, ela cria o lindo show de luzes das **Auroras**! 🌈</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter chapter-4" id="chapter-4">
+        <div class="dialogue-container">
+            <h2 class="chapter-title">📡 Por Que Ficar de Olho no Sol?</h2>
+            
+            <div class="dialogue center">
+                <div class="speech-bubble">
+                    <p class="speech-text">Mesmo com o escudo, tempestades muito fortes podem causar problemas técnicos. </p>
+                </div>
+            </div>
+
+            <div class="dialogue right">
+                <div class="character-avatar">
+                    <img src="./Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol avisando">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Narrador: A energia solar forte pode dar um 'choque' nos <strong>satélites</strong> de GPS e Internet e causar <strong>apagões</strong> em casos raríssimos de tempestades gigantes! 💥</p>
+                </div>
+            </div>
+
+            <div class="dialogue left">
+                <div class="character-avatar">
+                    <img src="./Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito orgulhoso">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Aurelito: "É por isso que cientistas são os <strong>Vigias Solares</strong>! Eles nos dão tempo para proteger os satélites e as redes elétricas! A Ciência é nossa amiga!"</p>
+                </div>
+            </div>
+
+            <div class="dialogue center">
+                <div class="speech-bubble">
+                    <p class="speech-text">Monitorar o Sol 24 horas por dia garante nossa internet, luz e segurança. 💻💡</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter chapter-5" id="chapter-5">
+        <div class="dialogue-container">
+            <h2 class="chapter-title">🗓️ Curiosidade do Aurelito: O Calendário do Sol</h2>
+            
+            <div class="dialogue center">
+                <div class="speech-bubble">
+                    <p class="speech-text">"MISSÃO CUMPRIDA:" Tempestades Solares Desvendadas ✅</p>
+                </div>
+            </div>
+
+            <div class="dialogue right">
+                <div class="character-avatar">
+                    <img src="./Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol sábio">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Narrador: O Sol tem um ciclo de atividade que dura cerca de <strong>11 anos</strong>, quando ele fica superagitado e depois mais calmo! 👏</p>
+                </div>
+            </div>
+
+            <div class="dialogue left">
+                <div class="character-avatar">
+                    <img src="./Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito reflexivo">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Aurelito: "É o 'calendário de mau humor' dele! Os cientistas usam esse ciclo para prever o próximo período de maior atividade. Legal, né?"</p>
+                </div>
+            </div>
+
+            <div class="dialogue center">
+                <div class="speech-bubble">
+                    <p class="speech-text">Agora, descubra se você dominou o poder do Sol! **Quiz Cósmico** à frente! 🧠</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter" id="quiz-section">
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <h2 class="quiz-title">🧠 Quiz Cósmico: O Poder do Sol</h2>
+                <p class="quiz-score">Nível de Guia Espacial: <span id="score">0</span>/5 ⭐</p>
+            </div>
+
+            <div class="question active" id="question-1">
+                <h3 class="question-text">1. De acordo com o Aurelito, o que são as Tempestades Solares comparadas de forma simples no artigo?</h3>
+                <div class="options">
+                    <div class="option" data-answer="false">A) Aberturas no Sol que formam buracos negros.</div>
+                    <div class="option" data-answer="false">B) Grandes erupções vulcânicas na superfície solar.</div>
+                    <div class="option" data-answer="true">C) Enormes espirros de energia do Sol.</div>
+                    <div class="option" data-answer="false">D) O brilho normal e constante do Sol.</div>
+                </div>
+                <div class="explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> Aurelito descreve as Tempestades Solares como **enormes espirros de energia** do Sol.
+                </div>
+            </div>
+
+            <div class="question" id="question-2">
+                <h3 class="question-text">2. Qual dos seguintes eventos é descrito como um "super flash" no Sol, liberando principalmente luz e raios-X?</h3>
+                <div class="options">
+                    <div class="option" data-answer="false">A) Ejeção de Massa Coronal (EMC).</div>
+                    <div class="option" data-answer="false">B) Aurora Boreal.</div>
+                    <div class="option" data-answer="false">C) Ciclo Solar.</div>
+                    <div class="option" data-answer="true">D) Flare Solar.</div>
+                </div>
+                <div class="explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> A **Flare Solar** é a explosão de luz e raios invisíveis, agindo como um "super flash".
+                </div>
+            </div>
+
+            <div class="question" id="question-3">
+                <h3 class="question-text">3. Segundo dados da NASA mencionados no artigo, quanto tempo pode levar para uma Ejeção de Massa Coronal (EMC) percorrer a distância do Sol até a Terra?</h3>
+                <div class="options">
+                    <div class="option" data-answer="false">A) Alguns minutos (menos de uma hora).</div>
+                    <div class="option" data-answer="false">B) Cerca de seis meses.</div>
+                    <div class="option" data-answer="true">C) De um a quatro dias.</div>
+                    <div class="option" data-answer="false">D) Aproximadamente 11 anos.</div>
+                </div>
+                <div class="explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> O material das EMCs leva mais ou menos **de um a quatro dias** para chegar na Terra.
+                </div>
+            </div>
+
+            <div class="question" id="question-4">
+                <h3 class="question-text">4. Qual é a função principal do Campo Magnético Terrestre durante uma Tempestade Solar, de acordo com o texto?</h3>
+                <div class="options">
+                    <div class="option" data-answer="false">A) Absorver a energia solar e transformá-la em calor.</div>
+                    <div class="option" data-answer="true">B) Desviar e repelir a maior parte da energia perigosa para longe do nosso planeta.</div>
+                    <div class="option" data-answer="false">C) Acelerar o material da tempestade para fora do Sistema Solar.</div>
+                    <div class="option" data-answer="false">D) Gerar a eletricidade que usamos em nossas casas.</div>
+                </div>
+                <div class="explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> O Campo Magnético age como um super-escudo para **desviar e repelir** a maior parte da energia perigosa.
+                </div>
+            </div>
+            
+            <div class="question" id="question-5">
+                <h3 class="question-text">5. Qual fenômeno natural é o "espetáculo de luzes" criado quando o material elétrico do Sol interage com o Campo Magnético da Terra?</h3>
+                <div class="options">
+                    <div class="option" data-answer="false">A) Efeito Estufa.</div>
+                    <div class="option" data-answer="false">B) Eclipse Solar.</div>
+                    <div class="option" data-answer="true">C) Aurora Boreal ou Austral.</div>
+                    <div class="option" data-answer="false">D) Arco-Íris.</div>
+                </div>
+                <div class="explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> O show de luzes coloridas criado pela interação da energia solar com o campo magnético é a **Aurora Boreal ou Austral**.
+                </div>
+            </div>
+            
+            <div class="quiz-buttons">
+                <button class="btn btn-secondary" id="skipQuiz" onclick="goToChapter(5)">Pular Quiz 🚀</button>
+                <button class="btn btn-primary" id="nextQuestion" disabled>Próxima Pergunta ➡️</button>
+                <button class="btn btn-primary" id="finishQuiz" style="display: none;">Finalizar Aventura 🏆</button>
+            </div>
+        </div>
+    </section>
+
+    <nav class="fixed-nav">
+        <button class="nav-btn active" onclick="goToChapter(1)">🌟 Início</button>
+        <button class="nav-btn" onclick="goToChapter(2)">⚡ Flares e EMCs</button>
+        <button class="nav-btn" onclick="goToChapter(3)">🛡️ Escudo</button>
+        <button class="nav-btn" onclick="goToChapter(4)">📡 Vigia Solar</button>
+        <button class="nav-btn" onclick="goToChapter(5)">🗓️ Ciclo Solar</button>
+        <button class="nav-btn" onclick="goToQuiz()">🧠 Quiz</button>
+    </nav>
+
+    <script>
+        // ==========================================
+        // STARS ANIMATION SYSTEM
+        // ==========================================
+        const canvas = document.getElementById('stars-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = document.body.scrollHeight;
+
+        const stars = [];
+        const meteors = [];
+        const numStars = 300;
+
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2.5,
+                velocity: Math.random() * 0.8,
+                opacity: Math.random(),
+                twinkleSpeed: Math.random() * 0.03 + 0.01
+            });
+        }
+
+        function createMeteor() {
+            meteors.push({
+                x: Math.random() * canvas.width,
+                y: -10,
+                speed: Math.random() * 3 + 2,
+                length: Math.random() * 80 + 20,
+                opacity: 1
+            });
+        }
+
+        setInterval(createMeteor, 3000);
+
+        function animateStars() {
+            if (canvas.height !== document.body.scrollHeight) {
+                canvas.height = document.body.scrollHeight;
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+                
+                star.opacity += (Math.random() - 0.5) * star.twinkleSpeed;
+                star.opacity = Math.max(0.1, Math.min(1, star.opacity));
+            });
+
+            meteors.forEach((meteor, index) => {
+                ctx.beginPath();
+                ctx.moveTo(meteor.x, meteor.y);
+                ctx.lineTo(meteor.x - meteor.length, meteor.y - meteor.length);
+                ctx.strokeStyle = `rgba(255, 215, 0, ${meteor.opacity})`;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                meteor.y += meteor.speed;
+                meteor.x += meteor.speed * 0.5;
+                meteor.opacity -= 0.01;
+
+                if (meteor.opacity <= 0 || meteor.y > canvas.height) {
+                    meteors.splice(index, 1);
+                }
+            });
+            
+            requestAnimationFrame(animateStars);
+        }
+
+        animateStars();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = document.body.scrollHeight;
+        });
+
+        // ==========================================
+        // SCROLL-TRIGGERED ANIMATIONS SYSTEM
+        // ==========================================
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const elements = entry.target.querySelectorAll('.dialogue, .chapter-title, .hologram-container, .quiz-container');
+                    elements.forEach((element, index) => {
+                        setTimeout(() => {
+                            element.classList.add('appear');
+                        }, index * 350);
+                    });
+                } else {
+                     const elements = entry.target.querySelectorAll('.dialogue, .chapter-title, .hologram-container, .quiz-container');
+                     elements.forEach(element => {
+                         element.classList.remove('appear');
+                     });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.chapter').forEach(chapter => {
+            observer.observe(chapter);
+        });
+
+        // ==========================================
+        // PROGRESS BAR SYSTEM
+        // ==========================================
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateProgressBar);
+
+        // ==========================================
+        // NAVIGATION SYSTEM (Funções Globais)
+        // ==========================================
+        function goToChapter(chapter) {
+            document.getElementById(`chapter-${chapter}`).scrollIntoView({
+                behavior: 'smooth'
+            });
+            updateActiveNav(chapter - 1);
+        }
+
+        function goToQuiz() {
+            document.getElementById('quiz-section').scrollIntoView({
+                behavior: 'smooth'
+            });
+            updateActiveNav(5);
+        }
+
+        function updateActiveNav(activeIndex) {
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach((btn, index) => {
+                btn.classList.toggle('active', index === activeIndex);
+            });
+        }
+
+        // Auto-update navigation based on scroll position
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.id;
+                    if (sectionId.startsWith('chapter-')) {
+                        const chapterNum = parseInt(sectionId.split('-')[1]) - 1;
+                        updateActiveNav(chapterNum);
+                    } else if (sectionId === 'quiz-section') {
+                        updateActiveNav(5);
+                    }
+                }
+            });
+        }, { threshold: 0.6 });
+
+        document.querySelectorAll('.chapter').forEach(chapter => {
+            navObserver.observe(chapter);
+        });
+
+        // ==========================================
+        // INTERACTIVE QUIZ SYSTEM
+        // ==========================================
+        let currentQuestion = 1;
+        let score = 0;
+        let selectedAnswers = {};
+
+        const questions = document.querySelectorAll('.question');
+        const nextBtn = document.getElementById('nextQuestion');
+        const finishBtn = document.getElementById('finishQuiz');
+        const skipBtn = document.getElementById('skipQuiz');
+        const scoreElement = document.getElementById('score');
+
+        // Add click handlers to all quiz options
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const questionElement = this.closest('.question');
+                const questionId = questionElement.id;
+                
+                questionElement.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                this.classList.add('selected');
+                selectedAnswers[questionId] = this.dataset.answer === 'true';
+                
+                nextBtn.disabled = false;
+            });
+        });
+
+        // Next question button handler
+        nextBtn.addEventListener('click', () => {
+            const currentQuestionElement = document.getElementById(`question-${currentQuestion}`);
+            const options = currentQuestionElement.querySelectorAll('.option');
+            const explanation = currentQuestionElement.querySelector('.explanation');
+            
+            options.forEach(option => {
+                if (option.dataset.answer === 'true') {
+                    option.classList.add('correct');
+                } else if (option.classList.contains('selected')) {
+                    option.classList.add('incorrect');
+                }
+                option.style.pointerEvents = 'none';
+            });
+            
+            explanation.style.display = 'block';
+            
+            if (selectedAnswers[`question-${currentQuestion}`]) {
+                score++;
+                scoreElement.textContent = score;
+                scoreElement.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    scoreElement.style.transform = 'scale(1)';
+                }, 300);
+            }
+            
+            setTimeout(() => {
+                currentQuestion++;
+                
+                if (currentQuestion <= 5) {
+                    questions.forEach(q => q.classList.remove('active'));
+                    document.getElementById(`question-${currentQuestion}`).classList.add('active');
+                    nextBtn.disabled = true;
+                    document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    nextBtn.style.display = 'none';
+                    finishBtn.style.display = 'inline-block';
+                    finishBtn.click();
+                }
+            }, 2500);
+        });
+
+        // Finish quiz button handler
+        finishBtn.addEventListener('click', () => {
+            if (score === 5) {
+                createSpectacularConfetti();
+                setTimeout(() => {
+                    alert('🎉🌟 PERFEITO! INCRÍVEL! 🌟🎉\n\nVocê acertou todas as 5 perguntas!\nAurelito está super orgulhoso de você!\nVocê é um verdadeiro especialista em clima espacial! 🚀✨');
+                }, 500);
+            } else if (score >= 3) {
+                createConfetti();
+                setTimeout(() => {
+                    alert(`🌟 PARABÉNS! 🌟\n\nVocê acertou ${score} de 5 perguntas!\nUm excelente resultado!\nContinue explorando o universo com Aurelito! 🚀`);
+                }, 500);
+            } else {
+                setTimeout(() => {
+                    alert(`🌟 BOM TRABALHO! 🌟\n\nVocê acertou ${score} de 5 perguntas!\nCada pergunta é uma nova descoberta!\nQue tal tentar novamente? Aurelito acredita em você! 🚀💪`);
+                }, 500);
+            }
+            finishBtn.disabled = true;
+            skipBtn.disabled = true;
+        });
+
+        // Skip quiz button handler
+        skipBtn.addEventListener('click', () => {
+            if (confirm('🤔 Tem certeza que deseja pular o quiz?\n\nVocê pode aprender muito sobre o clima espacial com essas perguntas divertidas!')) {
+                goToChapter(5);
+                alert('🚀 Tudo bem! Você pode voltar ao quiz quando quiser.\n\nContinue explorando as aventuras cósmicas do Aurelito! ✨');
+            }
+        });
+
+        // ==========================================
+        // CONFETTI ANIMATION SYSTEM
+        // ==========================================
+        function createConfetti() {
+            const colors = ['#fbbf24', '#f97316', '#ef4444', '#8b5cf6', '#06d6a0', '#ec4899'];
+            
+            for (let i = 0; i < 80; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 4000);
+                }, i * 40);
+            }
+        }
+
+        function createSpectacularConfetti() {
+            const colors = ['#fbbf24', '#f97316', '#ef4444', '#8b5cf6', '#06d6a0', '#ec4899', '#22c55e', '#3b82f6'];
+            
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 3 + 's';
+                    confetti.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                    confetti.style.width = (Math.random() * 8 + 8) + 'px';
+                    confetti.style.height = (Math.random() * 8 + 8) + 'px';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 6000);
+                }, i * 25);
+            }
+        }
+
+        // ==========================================
+        // AUTO-START ANIMATIONS
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Start first chapter animations after a brief delay
+            setTimeout(() => {
+                const firstChapter = document.getElementById('chapter-1');
+                const elements = firstChapter.querySelectorAll('.dialogue, .chapter-title');
+                elements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('appear');
+                    }, index * 350); // Sequential animation with 350ms delay
+                });
+            }, 800);
+        });
+
+        // ==========================================
+        // KEYBOARD NAVIGATION
+        // ==========================================
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === ' ') {
+                e.preventDefault();
+                window.scrollBy(0, window.innerHeight * 0.8);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                window.scrollBy(0, -window.innerHeight * 0.8);
+            }
+        });
+    </script>
+</body>
+</html>
