@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>☀️ O Sopro Quente do Gigante Dourado (Vento Solar) 💨</title>
+    <title>A Jornada Cósmica de Aurelito: O Escudo Mágico da Terra</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
@@ -12,9 +12,9 @@
            VARIABLES & RESET
            ========================================== */
         :root {
-            --primary-color: #6366f1;
+            --primary-color: #6366f1; /* Roxo/Azul (Aurelito) */
             --secondary-color: #8b5cf6;
-            --accent-color: #ec4899;
+            --accent-color: #ec4899; /* Rosa (Luna/Terra) */
             --solar-yellow: #fbbf24;
             --solar-orange: #f97316;
             --solar-red: #ef4444;
@@ -26,12 +26,6 @@
             --gradient-solar: linear-gradient(135deg, #fbbf24 0%, #f97316 50%, #ef4444 100%);
             --gradient-space: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-mystical: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            /* New Chapter Colors based on story */
-            --chapter-1-bg: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 235, 59, 0.15) 100%); /* Amarelo-Ouro */
-            --chapter-2-bg: linear-gradient(135deg, rgba(255, 87, 34, 0.15) 0%, rgba(244, 67, 54, 0.15) 100%); /* Laranja-Fogo */
-            --chapter-3-bg: linear-gradient(135deg, rgba(33, 150, 243, 0.15) 0%, rgba(63, 81, 181, 0.15) 100%); /* Azul-Aço */
-            --chapter-4-bg: linear-gradient(135deg, rgba(76, 175, 80, 0.15) 0%, rgba(236, 64, 122, 0.15) 100%); /* Verde-Esmeralda e Rosa-Choque */
-            --chapter-5-bg: linear-gradient(135deg, rgba(103, 58, 183, 0.15) 0%, rgba(156, 39, 176, 0.15) 100%); /* Roxo-Estrela */
         }
 
         * {
@@ -86,7 +80,7 @@
         }
 
         /* ==========================================
-           CHAPTER BACKGROUNDS
+           CHAPTER BACKGROUNDS (AURORA COLORS)
            ========================================== */
         .chapter {
             min-height: 100vh;
@@ -98,11 +92,21 @@
             align-items: center;
         }
 
-        .chapter-1 { background: var(--chapter-1-bg); }
-        .chapter-2 { background: var(--chapter-2-bg); }
-        .chapter-3 { background: var(--chapter-3-bg); }
-        .chapter-4 { background: var(--chapter-4-bg); }
-        .chapter-5 { background: var(--chapter-5-bg); }
+        .chapter-1 { 
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 87, 34, 0.15) 100%); 
+        } /* Amarelo/Laranja Solar */
+        .chapter-2 { 
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.15) 0%, rgba(103, 58, 183, 0.15) 100%); 
+        } /* Roxo/Azul do Espaço */
+        .chapter-3 { 
+            background: linear-gradient(135deg, rgba(244, 67, 54, 0.15) 0%, rgba(156, 39, 176, 0.15) 100%); 
+        } /* Roxo/Magenta (Escudo) */
+        .chapter-4 { 
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.15) 0%, rgba(0, 150, 136, 0.15) 100%); 
+        } /* Verde/Ciano (Polo) */
+        .chapter-5 { 
+            background: linear-gradient(135deg, rgba(63, 81, 181, 0.15) 0%, rgba(3, 169, 244, 0.15) 100%); 
+        } /* Azul Marinho/Azul Claro (Conclusão) */
 
         /* ==========================================
            DIALOGUE SYSTEM
@@ -120,6 +124,7 @@
             margin: 40px 0;
             opacity: 0;
             transform: translateY(30px);
+            /* Transição Elástica: 0.7s com cubic-bezier elástico */
             transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -161,7 +166,7 @@
         }
 
         .speech-bubble {
-            max-width: 70%;
+            max-width: 70%; /* 70% de largura */
             padding: 25px 30px;
             border-radius: 25px;
             position: relative;
@@ -169,11 +174,13 @@
             backdrop-filter: blur(10px);
         }
 
+        /* Aurelito (Esquerda) */
         .dialogue.left .speech-bubble {
             background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(139, 92, 246, 0.9));
             margin-left: 0;
         }
 
+        /* Luna/Narrador (Direita) */
         .dialogue.right .speech-bubble {
             background: linear-gradient(135deg, rgba(236, 72, 153, 0.9), rgba(139, 92, 246, 0.9));
             margin-right: 0;
@@ -184,8 +191,9 @@
             text-align: center;
             margin: 0 auto;
         }
-
-        .speech-bubble::before {
+        
+        /* Setas */
+/*         .speech-bubble::before {
             content: '';
             position: absolute;
             width: 0;
@@ -224,7 +232,7 @@
             font-style: normal;
             text-shadow: 0 0 10px rgba(163, 230, 53, 0.5);
         }
-
+ */
         /* ==========================================
            CHAPTER TITLES
            ========================================== */
@@ -249,7 +257,7 @@
         }
 
         /* ==========================================
-           HOLOGRAM EFFECT (Reused from original)
+           HOLOGRAM EFFECT (Terra e Sol)
            ========================================== */
         .hologram-container {
             position: relative;
@@ -294,7 +302,7 @@
         }
 
         .hologram::before {
-            content: '💨'; /* Changed icon for Vento Solar */
+            content: '☀️';
             position: absolute;
             top: 50%;
             left: 50%;
@@ -349,7 +357,7 @@
         }
 
         /* ==========================================
-           QUIZ SYSTEM (Reused from original)
+           QUIZ SYSTEM
            ========================================== */
         .quiz-container {
             max-width: 900px;
@@ -501,7 +509,7 @@
         }
 
         /* ==========================================
-           CONFETTI ANIMATION (Reused from original)
+           CONFETTI ANIMATION
            ========================================== */
         .confetti {
             position: fixed;
@@ -524,7 +532,7 @@
         }
 
         /* ==========================================
-           NAVIGATION (Reused from original)
+           NAVIGATION
            ========================================== */
         .fixed-nav {
             position: fixed;
@@ -561,7 +569,7 @@
         }
 
         /* ==========================================
-           RESPONSIVE DESIGN (Reused from original)
+           RESPONSIVE DESIGN
            ========================================== */
         @media (max-width: 768px) {
             .chapter {
@@ -695,35 +703,35 @@
 
     <section class="chapter chapter-1" id="chapter-1">
         <div class="dialogue-container">
-            <h1 class="chapter-title">☀️ O Sopro Quente do Gigante Dourado (Vento Solar) 💨</h1>
+            <h1 class="chapter-title">💥 O Grande Espirro Solar</h1>
             
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">"Que aventura incrível vamos ter! Preparem-se para embarcar comigo, o Aurelito!" ⭐</p>
+                    <p class="speech-text">O Senhor Sol estava muito animado e soltou um "grande espirro" de luz! ✨</p>
                 </div>
             </div>
 
             <div class="dialogue left">
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito animado">
+                    <img src="./Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito recém-nascido">
                 </div>
                 <div class="speech-bubble">
-                    <p class="speech-text">- Aurelito: "Hoje, vamos desvendar os segredos do **Vento Solar**! Um fenômeno superlegal que acontece lá no nosso querido Sol!" 🌞</p>
+                    <p class="speech-text">- Aurelito: "Puf! Eu nasci! Eu sou uma nuvem de partículas de energia super carregadas! Que viagem!"</p>
                 </div>
             </div>
 
             <div class="dialogue right">
-                <div class="speech-bubble">
-                    <p class="speech-text">"Sabiam que o Sol não para de 'soprar'? Não é um sopro de ar, é muito, muito mais poderoso!" 💨</p>
-                </div>
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-right.png" alt="Aurelito explicando">
+                    <img src="./Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Senhor Sol: "Seu destino é épico, Aurelito! O Planeta Azul, a Terra, a 150 milhões de quilômetros de distância!" 🌎</p>
                 </div>
             </div>
 
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">O Vento Solar é como um **chuveiro de minúsculas bolinhas e raios de luz** que viajam em uma velocidade incrível! 🚀</p>
+                    <p class="speech-text">Missão: Conhecer o lindo Planeta Azul! 🚀</p>
                 </div>
             </div>
         </div>
@@ -731,14 +739,29 @@
 
     <section class="chapter chapter-2" id="chapter-2">
         <div class="dialogue-container">
-            <h2 class="chapter-title">💥 Espirros e Arrotos Solares: As Tempestades</h2>
+            <h2 class="chapter-title">💨 A Longa Viagem no Vento Solar</h2>
             
+            <div class="dialogue center">
+                <div class="speech-bubble">
+                    <p class="speech-text">150 milhões de quilômetros! Aurelito viaja mais rápido que qualquer foguete! 🔭</p>
+                </div>
+            </div>
+
             <div class="dialogue left">
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito perguntando">
+                    <img src="./Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito curioso">
                 </div>
                 <div class="speech-bubble">
-                    <p class="speech-text">"O Vento Solar é constante, mas às vezes, o Sol fica um pouquinho 'nervoso' e dá uns... espirros!" ☄️</p>
+                    <p class="speech-text">- Aurelito: "O espaço é escuro, mas estou voando muito rápido! O que me empurra?"</p>
+                </div>
+            </div>
+
+            <div class="dialogue right">
+                <div class="character-avatar">
+                    <img src="./Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol explicando">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Senhor Sol: "É o <strong>Vento Solar</strong>, Aurelito! Aquele sopro constante do Sol que te leva cada vez mais rápido em direção à Terra!" 🌬️</p>
                 </div>
             </div>
 
@@ -750,18 +773,9 @@
                 </div>
             </div>
 
-            <div class="dialogue right">
-                <div class="speech-bubble">
-                    <p class="speech-text">"Chamamos isso de **Variações do Vento Solar** ou, nos casos mais fortes, de **Tempestades Solares**!" ⚡</p>
-                </div>
-                <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-left-png.png" alt="Aurelito sério">
-                </div>
-            </div>
-
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">O Sol solta um grande arroto de energia em forma de **Chamas Solares** (erupções de luz) ou **Ejeções de Massa Coronal (EMC)** (gigantescas bolhas de gás)! 🎈</p>
+                    <p class="speech-text">O planeta Terra surge no horizonte como uma joia preciosa. 💎</p>
                 </div>
             </div>
         </div>
@@ -769,47 +783,44 @@
 
     <section class="chapter chapter-3" id="chapter-3">
         <div class="dialogue-container">
-            <h2 class="chapter-title">🛡️ O Escudo Mágico da Terra: A Magnetosfera</h2>
+            <h2 class="chapter-title">🛡️ O Encontro com o Escudo Mágico</h2>
             
-            <div class="dialogue left">
-                <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito ensinando">
-                </div>
-                <div class="speech-bubble">
-                    <p class="speech-text">"Chegou a parte mais legal! A Terra tem uma armadura invisível e superpoderosa chamada **Magnetosfera**!" 🛡️🌍</p>
-                </div>
-            </div>
-
-            <div class="dialogue right">
-                <div class="speech-bubble">
-                    <p class="speech-text">"Ela é como se a Terra fosse um ímã gigante, e a Magnetosfera é o seu **campo de força protetor**!" ✨</p>
-                </div>
-                <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-right.png" alt="Aurelito explicativo">
-                </div>
-            </div>
-
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">PROTEÇÃO CÓSMICA: Desvio de Partículas Perigosas! ✅</p>
+                    <p class="speech-text">A Terra tem uma defesa especial contra partículas carregadas! 🚨</p>
                 </div>
             </div>
 
             <div class="dialogue left">
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-left-png.png" alt="Aurelito demonstrando">
+                    <img src="./Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito confuso">
                 </div>
                 <div class="speech-bubble">
-                    <p class="speech-text">"Quando as partículas do Vento Solar chegam, a Magnetosfera age como um super-herói: ela **desvia as bolinhas e os raios perigosos**!" 🧤</p>
+                    <p class="speech-text">- Aurelito: "Ei! Uma força invisível está me desviando! Estou sendo puxado para os lados! Onde você vai?!" 😵‍💫</p>
                 </div>
             </div>
 
             <div class="dialogue right">
-                <div class="speech-bubble">
-                    <p class="speech-text">"A maioria das partículas fica presa nas bordas ou é obrigada a dar a volta. Que sorte a nossa ter essa proteção natural!" 💚</p>
-                </div>
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito orgulhoso">
+                    <img src="./Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol explicando">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Senhor Sol: "Essa é a proteção da Terra, Aurelito! O <strong>Escudo Magnético</strong>! Ele desvia a maioria das partículas de alta energia como você!" ✋</p>
+                </div>
+            </div>
+
+            <div class="dialogue left">
+                <div class="character-avatar">
+                    <img src="./Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito determinado">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Aurelito: "Eu não vou desistir! Minhas bolinhas de energia vão dar um 'oi' para a Terra!"</p>
+                </div>
+            </div>
+            
+            <div class="dialogue center">
+                <div class="speech-bubble">
+                    <p class="speech-text">Existe uma "porta" de entrada lá no topo do planeta! 🤫</p>
                 </div>
             </div>
         </div>
@@ -817,53 +828,44 @@
 
     <section class="chapter chapter-4" id="chapter-4">
         <div class="dialogue-container">
-            <h2 class="chapter-title">✨ A Dança das Cores no Céu: As Auroras</h2>
+            <h2 class="chapter-title">🌈 A Surpresa no Polo: Aurora Boreal</h2>
             
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">"UM PRESENTE DA TERRA:" Transformação de Energia! 🎁</p>
+                    <p class="speech-text">Aurelito descobre o segredo do Escudo Magnético... Os Polos! 🌍</p>
                 </div>
             </div>
 
             <div class="dialogue left">
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito sério">
+                    <img src="./Images/GuideCharacter/Aurelito-left-png.png" alt="Aurelito entrando">
                 </div>
                 <div class="speech-bubble">
-                    <p class="speech-text">"O escudo é tão incrível que, ao desviar o Vento Solar, ele nos dá um presente maravilhoso!" 🌌</p>
+                    <p class="speech-text">- Aurelito: "Plim! Consegui! Algumas das minhas bolinhas de energia entraram pela porta no Polo Norte!" 🥳</p>
                 </div>
             </div>
 
             <div class="dialogue right">
-                <div class="speech-bubble">
-                    <p class="speech-text">"Algumas partículas conseguem entrar só pelos 'cantinhos', perto dos polos da Terra (Norte e Sul)!" 🧭</p>
-                </div>
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito contando">
+                    <img src="./Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol maravilhado">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Senhor Sol: "Quando suas bolinhas de energia batem no ar da Terra, o ar fica tão animado que começa a BRILHAR!" 💚💖💙</p>
+                </div>
+            </div>
+
+            <div class="dialogue left">
+                <div class="character-avatar">
+                    <img src="./Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito orgulhoso">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Aurelito: "Que lindo! Deixei um presente maravilhoso de luz e cor para o planeta!"</p>
                 </div>
             </div>
 
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">A Dança de Luzes: **Aurora Boreal** (no Norte) e **Aurora Austral** (no Sul)! 💚💜</p>
-                </div>
-            </div>
-
-            <div class="dialogue left">
-                <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-left-png.png" alt="Aurelito impressionado">
-                </div>
-                <div class="speech-bubble">
-                    <p class="speech-text">"Quando essas partículas superenergéticas batem nos gases da nossa atmosfera, elas fazem o ar brilhar, como um letreiro luminoso gigante!" 💡</p>
-                </div>
-            </div>
-
-            <div class="dialogue right">
-                <div class="speech-bubble">
-                    <p class="speech-text">"As auroras são a prova de que o nosso escudo está funcionando. Ele transforma a energia do Sol em **beleza pura**!" 🤩</p>
-                </div>
-                <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-right.png" alt="Aurelito sério">
+                    <p class="speech-text">O espetáculo de luzes é chamado de **Aurora Boreal**! 🎆</p>
                 </div>
             </div>
         </div>
@@ -871,35 +873,35 @@
 
     <section class="chapter chapter-5" id="chapter-5">
         <div class="dialogue-container">
-            <h2 class="chapter-title">🫂 O Abraço de Luz do Sol: Conclusão</h2>
+            <h2 class="chapter-title">🎓 O Presente Inesquecível</h2>
             
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">"FIM DA MISSÃO:" Compreensão Total do Vento Solar! ✅</p>
+                    <p class="speech-text">"MISSÃO CUMPRIDA:" Aurora Boreal Criada ✅</p>
                 </div>
             </div>
 
             <div class="dialogue left">
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito sorrindo">
+                    <img src="./Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito reflexivo">
                 </div>
                 <div class="speech-bubble">
-                    <p class="speech-text">"Aprendemos que o Sol nos manda energia através do **Vento Solar** e que, mesmo nos 'espirros' (Tempestades Solares), a Terra é forte!" 💪</p>
+                    <p class="speech-text">- Aurelito: "Então a Terra me desviou para se proteger, mas me deu um cantinho para criar um show de luzes!"</p>
                 </div>
             </div>
 
             <div class="dialogue right">
-                <div class="speech-bubble">
-                    <p class="speech-text">"Graças ao nosso superprotetor, a **Magnetosfera**, estamos seguros e ainda ganhamos o show de luzes das **Auroras**!" 🌈</p>
-                </div>
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-right.png" alt="Aurelito orgulhoso">
+                    <img src="./Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol sábio">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Senhor Sol: "Exatamente! O super <strong>Escudo Magnético</strong> nos protege e transforma a sua visita energética em um espetáculo inesquecível para todos. Fim da jornada!" 👏</p>
                 </div>
             </div>
 
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">"Continuem explorando e sejam curiosos! Até a próxima aventura espacial com o Aurelito! Tchau!" 👋</p>
+                    <p class="speech-text">Agora, descubra se você dominou a jornada de Aurelito! **Quiz Cósmico** à frente! 🧠</p>
                 </div>
             </div>
         </div>
@@ -908,77 +910,64 @@
     <section class="chapter" id="quiz-section">
         <div class="quiz-container">
             <div class="quiz-header">
-                <h2 class="quiz-title">🧠 Quiz Cósmico: Teste seus Conhecimentos!</h2>
-                <p class="quiz-score">Nível de Guia Espacial: <span id="score">0</span>/5 ⭐</p>
+                <h2 class="quiz-title">🧠 Quiz Cósmico: A Jornada de Aurelito</h2>
+                <p class="quiz-score">Nível de Guia Espacial: <span id="score">0</span>/4 ⭐</p>
             </div>
 
             <div class="question active" id="question-1">
-                <h3 class="question-text">1. O que o Aurelito chama de "sopro constante" do Sol que viaja pelo espaço?</h3>
+                <h3 class="question-text">1. O que Aurelito representava na história, ao nascer do "grande espirro" do Senhor Sol?</h3>
                 <div class="options">
-                    <div class="option" data-answer="false">A) A Magnetosfera</div>
-                    <div class="option" data-answer="false">B) A Aurora Boreal</div>
-                    <div class="option" data-answer="true">C) O Vento Solar</div>
-                    <div class="option" data-answer="false">D) As Nuvens Cósmicas</div>
+                    <div class="option" data-answer="false">A) Um meteorito de gelo.</div>
+                    <div class="option" data-answer="true">B) Uma erupção solar (nuvem de partículas de energia).</div>
+                    <div class="option" data-answer="false">C) O Vento Solar em si.</div>
+                    <div class="option" data-answer="false">D) Um novo planeta em miniatura.</div>
                 </div>
                 <div class="explanation" style="display: none;">
-                    <strong>🎯 Resposta correta:</strong> O **Vento Solar** é um fluxo constante de partículas e radiação que o Sol joga para o espaço.
+                    <strong>🎯 Resposta correta:</strong> Aurelito é a representação de uma **erupção solar** (ou Ejeção de Massa Coronal), feita de partículas super carregadas.
                 </div>
             </div>
 
             <div class="question" id="question-2">
-                <h3 class="question-text">2. O que acontece quando o Sol tem um "grande arroto de energia" e joga muito mais partículas do que o normal?</h3>
+                <h3 class="question-text">2. O que empurrava Aurelito em sua longa viagem de 150 milhões de quilômetros até a Terra?</h3>
                 <div class="options">
-                    <div class="option" data-answer="false">A) A Terra fica sem luz.</div>
-                    <div class="option" data-answer="true">B) Ocorre uma Tempestade Solar.</div>
-                    <div class="option" data-answer="false">C) O Vento Solar para de soprar.</div>
-                    <div class="option" data-answer="false">D) A Magnetosfera desaparece.</div>
+                    <div class="option" data-answer="false">A) A atração gravitacional da Terra.</div>
+                    <div class="option" data-answer="true">B) O Vento Solar.</div>
+                    <div class="option" data-answer="false">C) As turbinas de um foguete espacial.</div>
+                    <div class="option" data-answer="false">D) Asteroides.</div>
                 </div>
                 <div class="explanation" style="display: none;">
-                    <strong>🎯 Resposta correta:</strong> As variações fortes do Vento Solar, como grandes jatos de partículas, são chamadas de **Tempestades Solares**.
+                    <strong>🎯 Resposta correta:</strong> O **Vento Solar** é o fluxo constante de partículas do Sol que empurra as erupções solares pelo espaço.
                 </div>
             </div>
 
             <div class="question" id="question-3">
-                <h3 class="question-text">3. Qual é o nome do "escudo invisível" da Terra que a protege das partículas do Vento Solar?</h3>
+                <h3 class="question-text">3. Qual a defesa invisível da Terra que agiu como uma "mão gigante" para desviar a maioria das partículas de Aurelito?</h3>
                 <div class="options">
-                    <div class="option" data-answer="false">A) A Atmosfera</div>
-                    <div class="option" data-answer="false">B) O Campo Gravitacional</div>
-                    <div class="option" data-answer="false">C) O Manto Protetor</div>
-                    <div class="option" data-answer="true">D) A Magnetosfera</div>
+                    <div class="option" data-answer="false">A) A atmosfera (ar).</div>
+                    <div class="option" data-answer="false">B) A camada de Ozônio.</div>
+                    <div class="option" data-answer="true">C) O Escudo Magnético (Campo Magnético).</div>
+                    <div class="option" data-answer="false">D) A gravidade.</div>
                 </div>
                 <div class="explanation" style="display: none;">
-                    <strong>🎯 Resposta correta:</strong> A **Magnetosfera** é o campo magnético da Terra que age como um escudo protetor contra a maior parte das partículas e radiação solar.
+                    <strong>🎯 Resposta correta:</strong> O **Escudo Magnético** (ou Magnetosfera) desvia a maior parte das partículas carregadas, protegendo o planeta.
                 </div>
             </div>
 
             <div class="question" id="question-4">
-                <h3 class="question-text">4. O que a Terra cria quando as partículas do Vento Solar conseguem entrar nos "cantinhos" do escudo, perto dos polos?</h3>
+                <h3 class="question-text">4. Qual é o nome do espetáculo de luzes criado quando as partículas de Aurelito conseguiram entrar pelas "portas" no Polo Norte?</h3>
                 <div class="options">
-                    <div class="option" data-answer="false">A) Um Eclipse Solar</div>
-                    <div class="option" data-answer="true">B) As Auroras (Boreal e Austral)</div>
-                    <div class="option" data-answer="false">C) Chuva de Meteoros</div>
-                    <div class="option" data-answer="false">D) O Cinturão de Asteroides</div>
+                    <div class="option" data-answer="true">A) Aurora Boreal.</div>
+                    <div class="option" data-answer="false">B) Eclipse Solar.</div>
+                    <div class="option" data-answer="false">C) Chuva de Meteoros.</div>
+                    <div class="option" data-answer="false">D) Refração de Luz.</div>
                 </div>
                 <div class="explanation" style="display: none;">
-                    <strong>🎯 Resposta correta:</strong> As partículas solares, ao interagirem com os gases da atmosfera perto dos polos, criam as luzes coloridas conhecidas como **Auroras**.
+                    <strong>🎯 Resposta correta:</strong> O show de luzes coloridas é conhecido como **Aurora Boreal** (ou Aurora Austral no Polo Sul).
                 </div>
             </div>
-
-            <div class="question" id="question-5">
-                <h3 class="question-text">5. Qual metáfora o Aurelito usou para descrever o Vento Solar?</h3>
-                <div class="options">
-                    <div class="option" data-answer="false">A) Um trem de carga muito rápido.</div>
-                    <div class="option" data-answer="false">B) Um rio caudaloso no espaço.</div>
-                    <div class="option" data-answer="true">C) Um chuveiro de minúsculas bolinhas e raios de luz.</div>
-                    <div class="option" data-answer="false">D) Uma pipa gigante voando.</div>
-                </div>
-                <div class="explanation" style="display: none;">
-                    <strong>🎯 Resposta correta:</strong> O Aurelito usou a metáfora de um **"chuveiro de minúsculas bolinhas e raios de luz"** para explicar o fluxo de partículas e radiação do Vento Solar.
-                </div>
-            </div>
-
+            
             <div class="quiz-buttons">
-                <button class="btn btn-secondary" id="skipQuiz">Pular Quiz 🚀</button>
+                <button class="btn btn-secondary" id="skipQuiz" onclick="goToChapter(5)">Pular Quiz 🚀</button>
                 <button class="btn btn-primary" id="nextQuestion" disabled>Próxima Pergunta ➡️</button>
                 <button class="btn btn-primary" id="finishQuiz" style="display: none;">Finalizar Aventura 🏆</button>
             </div>
@@ -987,28 +976,27 @@
 
     <nav class="fixed-nav">
         <button class="nav-btn active" onclick="goToChapter(1)">🌟 Início</button>
-        <button class="nav-btn" onclick="goToChapter(2)">🔥 Espirros</button>
+        <button class="nav-btn" onclick="goToChapter(2)">💨 Viagem</button>
         <button class="nav-btn" onclick="goToChapter(3)">🛡️ Escudo</button>
-        <button class="nav-btn" onclick="goToChapter(4)">🌈 Auroras</button>
-        <button class="nav-btn" onclick="goToChapter(5)">🫂 Conclusão</button>
+        <button class="nav-btn" onclick="goToChapter(4)">🌈 Polo</button>
+        <button class="nav-btn" onclick="goToChapter(5)">🎓 Final</button>
         <button class="nav-btn" onclick="goToQuiz()">🧠 Quiz</button>
     </nav>
 
     <script>
         // ==========================================
-        // STARS ANIMATION SYSTEM (Reused from original)
+        // STARS ANIMATION SYSTEM
         // ==========================================
         const canvas = document.getElementById('stars-canvas');
         const ctx = canvas.getContext('2d');
 
         canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        canvas.height = document.body.scrollHeight;
 
         const stars = [];
         const meteors = [];
         const numStars = 300;
 
-        // Create beautiful stars
         for (let i = 0; i < numStars; i++) {
             stars.push({
                 x: Math.random() * canvas.width,
@@ -1020,7 +1008,6 @@
             });
         }
 
-        // Create occasional meteors
         function createMeteor() {
             meteors.push({
                 x: Math.random() * canvas.width,
@@ -1031,26 +1018,25 @@
             });
         }
 
-        // Create meteors occasionally
         setInterval(createMeteor, 3000);
 
-        // Animate celestial objects
         function animateStars() {
+            if (canvas.height !== document.body.scrollHeight) {
+                canvas.height = document.body.scrollHeight;
+            }
+
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Draw and animate stars
             stars.forEach(star => {
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
                 ctx.fill();
                 
-                // Enhanced twinkle effect
                 star.opacity += (Math.random() - 0.5) * star.twinkleSpeed;
                 star.opacity = Math.max(0.1, Math.min(1, star.opacity));
             });
 
-            // Draw and animate meteors
             meteors.forEach((meteor, index) => {
                 ctx.beginPath();
                 ctx.moveTo(meteor.x, meteor.y);
@@ -1073,14 +1059,13 @@
 
         animateStars();
 
-        // Resize canvas responsively
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            canvas.height = document.body.scrollHeight;
         });
 
         // ==========================================
-        // SCROLL-TRIGGERED ANIMATIONS SYSTEM (Reused from original)
+        // SCROLL-TRIGGERED ANIMATIONS SYSTEM
         // ==========================================
         const observerOptions = {
             threshold: 0.15,
@@ -1094,19 +1079,23 @@
                     elements.forEach((element, index) => {
                         setTimeout(() => {
                             element.classList.add('appear');
-                        }, index * 350); // 350ms delay between elements as specified
+                        }, index * 350);
                     });
+                } else {
+                     const elements = entry.target.querySelectorAll('.dialogue, .chapter-title, .hologram-container, .quiz-container');
+                     elements.forEach(element => {
+                         element.classList.remove('appear');
+                     });
                 }
             });
         }, observerOptions);
 
-        // Observe all chapters for animations
         document.querySelectorAll('.chapter').forEach(chapter => {
             observer.observe(chapter);
         });
 
         // ==========================================
-        // PROGRESS BAR SYSTEM (Reused from original)
+        // PROGRESS BAR SYSTEM
         // ==========================================
         function updateProgressBar() {
             const scrollTop = window.pageYOffset;
@@ -1118,7 +1107,7 @@
         window.addEventListener('scroll', updateProgressBar);
 
         // ==========================================
-        // NAVIGATION SYSTEM (Reused from original)
+        // NAVIGATION SYSTEM (Funções Globais)
         // ==========================================
         function goToChapter(chapter) {
             document.getElementById(`chapter-${chapter}`).scrollIntoView({
@@ -1161,20 +1150,17 @@
         });
 
         // ==========================================
-        // INTERACTIVE QUIZ SYSTEM (Updated for 5 questions)
+        // INTERACTIVE QUIZ SYSTEM
         // ==========================================
         let currentQuestion = 1;
         let score = 0;
         let selectedAnswers = {};
-        const totalQuestions = 5; // Updated to 5 questions
 
         const questions = document.querySelectorAll('.question');
         const nextBtn = document.getElementById('nextQuestion');
         const finishBtn = document.getElementById('finishQuiz');
         const skipBtn = document.getElementById('skipQuiz');
         const scoreElement = document.getElementById('score');
-        scoreElement.textContent = `0/${totalQuestions}`;
-
 
         // Add click handlers to all quiz options
         document.querySelectorAll('.option').forEach(option => {
@@ -1182,28 +1168,23 @@
                 const questionElement = this.closest('.question');
                 const questionId = questionElement.id;
                 
-                // Remove previous selection highlights
                 questionElement.querySelectorAll('.option').forEach(opt => {
                     opt.classList.remove('selected');
                 });
                 
-                // Mark current selection
                 this.classList.add('selected');
                 selectedAnswers[questionId] = this.dataset.answer === 'true';
                 
-                // Enable next button
                 nextBtn.disabled = false;
             });
         });
 
         // Next question button handler
         nextBtn.addEventListener('click', () => {
-            // Show correct answer with visual feedback
             const currentQuestionElement = document.getElementById(`question-${currentQuestion}`);
             const options = currentQuestionElement.querySelectorAll('.option');
             const explanation = currentQuestionElement.querySelector('.explanation');
             
-            // Disable all options for the current question
             options.forEach(option => {
                 if (option.dataset.answer === 'true') {
                     option.classList.add('correct');
@@ -1215,11 +1196,9 @@
             
             explanation.style.display = 'block';
             
-            // Update score with animation
             if (selectedAnswers[`question-${currentQuestion}`]) {
                 score++;
-                scoreElement.textContent = `${score}/${totalQuestions}`;
-                // Add a little celebration animation
+                scoreElement.textContent = score;
                 scoreElement.style.transform = 'scale(1.2)';
                 setTimeout(() => {
                     scoreElement.style.transform = 'scale(1)';
@@ -1229,53 +1208,50 @@
             setTimeout(() => {
                 currentQuestion++;
                 
-                if (currentQuestion <= totalQuestions) {
-                    // Show next question
+                if (currentQuestion <= 4) {
                     questions.forEach(q => q.classList.remove('active'));
                     document.getElementById(`question-${currentQuestion}`).classList.add('active');
                     nextBtn.disabled = true;
+                    document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
                 } else {
-                    // Show finish button and evaluate final score
                     nextBtn.style.display = 'none';
                     finishBtn.style.display = 'inline-block';
-                    // Trigger finish action immediately after the last question is evaluated
-                    finishQuizAction();
+                    finishBtn.click();
                 }
             }, 2500);
         });
 
-        // Function to handle the final quiz actions
-        function finishQuizAction() {
-            if (score === totalQuestions) {
+        // Finish quiz button handler
+        finishBtn.addEventListener('click', () => {
+            if (score === 4) {
                 createSpectacularConfetti();
                 setTimeout(() => {
-                    alert('🎉🌟 PERFEITO! INCRÍVEL! 🌟🎉\n\nVocê acertou todas as 5 perguntas!\nAurelito está super orgulhoso de você!\nVocê é um verdadeiro especialista em Vento Solar! 🚀✨');
+                    alert('🎉🌟 PERFEITO! INCRÍVEL! 🌟🎉\n\nVocê acertou todas as 4 perguntas!\nAurelito está super orgulhoso de você!\nVocê é um verdadeiro especialista em clima espacial! 🚀✨');
                 }, 500);
-            } else if (score >= 3) { // 3 or 4 out of 5
+            } else if (score >= 2) {
                 createConfetti();
                 setTimeout(() => {
-                    alert(`🌟 PARABÉNS! 🌟\n\nVocê acertou ${score} de 5 perguntas!\nUm excelente resultado!\nContinue explorando o universo com Aurelito! 🚀`);
+                    alert(`🌟 PARABÉNS! 🌟\n\nVocê acertou ${score} de 4 perguntas!\nUm excelente resultado!\nContinue explorando o universo com Aurelito! 🚀`);
                 }, 500);
             } else {
                 setTimeout(() => {
-                    alert(`🌟 BOM TRABALHO! 🌟\n\nVocê acertou ${score} de 5 perguntas!\nCada pergunta é uma nova descoberta!\nQue tal tentar novamente? Aurelito acredita em você! 🚀💪`);
+                    alert(`🌟 BOM TRABALHO! 🌟\n\nVocê acertou ${score} de 4 perguntas!\nCada pergunta é uma nova descoberta!\nQue tal tentar novamente? Aurelito acredita em você! 🚀💪`);
                 }, 500);
             }
-        }
-
-        // Finish quiz button handler (Only visible if score evaluation is desired on click, but in this setup, it's triggered automatically)
-        finishBtn.addEventListener('click', finishQuizAction);
-
+            finishBtn.disabled = true;
+            skipBtn.disabled = true;
+        });
 
         // Skip quiz button handler
         skipBtn.addEventListener('click', () => {
             if (confirm('🤔 Tem certeza que deseja pular o quiz?\n\nVocê pode aprender muito sobre o clima espacial com essas perguntas divertidas!')) {
+                goToChapter(5);
                 alert('🚀 Tudo bem! Você pode voltar ao quiz quando quiser.\n\nContinue explorando as aventuras cósmicas do Aurelito! ✨');
             }
         });
 
         // ==========================================
-        // CONFETTI ANIMATION SYSTEM (Reused from original)
+        // CONFETTI ANIMATION SYSTEM
         // ==========================================
         function createConfetti() {
             const colors = ['#fbbf24', '#f97316', '#ef4444', '#8b5cf6', '#06d6a0', '#ec4899'];
@@ -1320,7 +1296,7 @@
         }
 
         // ==========================================
-        // AUTO-START ANIMATIONS (Reused from original)
+        // AUTO-START ANIMATIONS
         // ==========================================
         document.addEventListener('DOMContentLoaded', () => {
             // Start first chapter animations after a brief delay
@@ -1336,7 +1312,7 @@
         });
 
         // ==========================================
-        // KEYBOARD NAVIGATION (Reused from original)
+        // KEYBOARD NAVIGATION
         // ==========================================
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowDown' || e.key === ' ') {
