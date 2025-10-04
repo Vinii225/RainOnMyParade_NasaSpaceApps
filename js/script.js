@@ -122,27 +122,26 @@ const aurelitoMessages = {
         "Você sabia? O Sol está a 150 milhões de km de distância! 🌞",
         "Pronto para começar sua aventura? Clique em 'Começar Aventura'! 🚀"
     ],
+    'space-weather': [
+        "Aqui você pode ver dados reais do clima espacial! 📡",
+        "Os cientistas monitoram o Sol 24 horas por dia! 🔭",
+        "Essas informações ajudam a proteger nossa tecnologia! 🛰️"
+    ],
     stories: [
         "Uau! Escolha uma história para descobrir como o clima espacial afeta nossas vidas! 📚",
         "Cada personagem tem uma perspectiva única sobre o clima espacial! 👨‍🚀",
         "Qual aventura você quer viver primeiro? 🎭"
     ],
     about: [
+        "Sabia que este projeto foi criado para o NASA Space Apps Challenge? 🏆",
         "O clima espacial é fascinante! Vamos aprender mais sobre ele! 🔬",
-        "Tempestades solares podem afetar satélites, GPS e até redes elétricas! ⚡",
-        "O Sol é nosso vizinho mais influente no espaço! ☀️"
-    ],
-    weather: [
-        "Aqui você pode ver dados reais do clima espacial! 📡",
-        "Os cientistas monitoram o Sol 24 horas por dia! 🔭",
-        "Essas informações ajudam a proteger nossa tecnologia! 🛰️"
+        "Tempestades solares podem afetar satélites, GPS e até redes elétricas! ⚡"
     ]
 };
 
 const aurelitoImages = {
     normal: './Images/GuideCharacter/Aurelito-2HandsExplanation.png',
     doubt: './Images/GuideCharacter/Aurelito-DoubtFace.png',
-    left: './Images/GuideCharacter/Aurelito-left-png.png',
     right: './Images/GuideCharacter/Aurelito-right.png'
 };
 
@@ -170,10 +169,14 @@ function updateAurelitoMessage(section) {
         textElement.style.opacity = '1';
         
         // Muda a expressão baseado na seção
-        if (section === 'about' || section === 'weather') {
+        if (section === 'about') {
+            imageElement.src = aurelitoImages.doubt;
+        } else if (section === 'space-weather') {
             imageElement.src = aurelitoImages.normal;
         } else if (section === 'stories') {
-            imageElement.src = Math.random() > 0.5 ? aurelitoImages.left : aurelitoImages.right;
+            imageElement.src = aurelitoImages.right;
+        } else {
+            imageElement.src = aurelitoImages.normal;
         }
     }, 300);
 }
