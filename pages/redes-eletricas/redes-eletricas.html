@@ -547,40 +547,6 @@
         /* ==========================================
            NAVIGATION
            ========================================== */
-        .fixed-nav {
-            position: fixed;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--card-bg);
-            backdrop-filter: blur(15px);
-            border-radius: 50px;
-            padding: 20px 35px;
-            display: flex;
-            gap: 25px;
-            z-index: 999;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-light);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        .nav-btn:hover, .nav-btn.active {
-            background: var(--primary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
-        }
-
         /* ==========================================
            RESPONSIVE DESIGN
            ========================================== */
@@ -647,18 +613,6 @@
                 font-size: 1.2rem;
             }
 
-            .fixed-nav {
-                flex-wrap: wrap;
-                bottom: 15px;
-                padding: 15px 25px;
-                gap: 15px;
-            }
-
-            .nav-btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-
             .quiz-buttons {
                 flex-direction: column;
                 align-items: center;
@@ -715,14 +669,17 @@
                 <span class="sun-icon">☀️</span>
                 <span class="logo-text">Cosmic Tales</span>
             </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
             <ul class="nav-links">
-                <li><a href="#chapter-1"><i class="fa-solid fa-star"></i> Início</a></li>
-                <li><a href="#chapter-2"><i class="fa-solid fa-cube"></i> Holograma</a></li>
-                <li><a href="#chapter-3"><i class="fa-solid fa-circle"></i> Manchas</a></li>
-                <li><a href="#chapter-4"><i class="fa-solid fa-bolt"></i> Tempestades</a></li>
-                <li><a href="#chapter-5"><i class="fa-solid fa-graduation-cap"></i> Conclusão</a></li>
-                <li><a href="#quiz-section"><i class="fa-solid fa-brain"></i> Quiz</a></li>
-                <li><a href="../../index.html"><i class="fa-solid fa-house"></i> Voltar</a></li>
+                <li><a href="#chapter-1" onclick="closeMobileMenu()"><i class="fa-solid fa-star"></i> Início</a></li>
+                <li><a href="#chapter-2" onclick="closeMobileMenu()"><i class="fa-solid fa-cube"></i> Holograma</a></li>
+                <li><a href="#chapter-3" onclick="closeMobileMenu()"><i class="fa-solid fa-circle"></i> Manchas</a></li>
+                <li><a href="#chapter-4" onclick="closeMobileMenu()"><i class="fa-solid fa-bolt"></i> Tempestades</a></li>
+                <li><a href="#chapter-5" onclick="closeMobileMenu()"><i class="fa-solid fa-graduation-cap"></i> Conclusão</a></li>
+                <li><a href="#quiz-section" onclick="closeMobileMenu()"><i class="fa-solid fa-brain"></i> Quiz</a></li>
+                <li><a href="../../index.html" onclick="closeMobileMenu()"><i class="fa-solid fa-house"></i> Voltar</a></li>
                 <li>
                     <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
                         <i class="fa-solid fa-moon"></i>
@@ -1051,16 +1008,6 @@
         </div>
     </section>
 
-    <!-- Fixed Navigation -->
-    <nav class="fixed-nav">
-        <button class="nav-btn active" onclick="goToChapter(1)">🌟 Início</button>
-        <button class="nav-btn" onclick="goToChapter(2)">🔮 Holograma</button>
-        <button class="nav-btn" onclick="goToChapter(3)">🌑 Manchas</button>
-        <button class="nav-btn" onclick="goToChapter(4)">⚡ Tempestades</button>
-        <button class="nav-btn" onclick="goToChapter(5)">🎓 Conclusão</button>
-        <button class="nav-btn" onclick="goToQuiz()">🧠 Quiz</button>
-    </nav>
-
     <script>
         // ==========================================
         // STARS ANIMATION SYSTEM
@@ -1172,6 +1119,31 @@
             }
         }
 
+        // ==========================================
+        // MOBILE MENU TOGGLE
+        // ==========================================
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuIcon = document.querySelector('.mobile-menu-toggle i');
+            
+            navLinks.classList.toggle('active');
+            
+            // Trocar ícone entre hambúrguer e X
+            if (navLinks.classList.contains('active')) {
+                menuIcon.className = 'fa-solid fa-xmark';
+            } else {
+                menuIcon.className = 'fa-solid fa-bars';
+            }
+        }
+
+        function closeMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuIcon = document.querySelector('.mobile-menu-toggle i');
+            
+            navLinks.classList.remove('active');
+            menuIcon.className = 'fa-solid fa-bars';
+        }
+
         // Carregar tema salvo ao iniciar
         document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme');
@@ -1240,47 +1212,6 @@
 
         // ==========================================
         // NAVIGATION SYSTEM
-        // ==========================================
-        function goToChapter(chapter) {
-            document.getElementById(`chapter-${chapter}`).scrollIntoView({
-                behavior: 'smooth'
-            });
-            updateActiveNav(chapter - 1);
-        }
-
-        function goToQuiz() {
-            document.getElementById('quiz-section').scrollIntoView({
-                behavior: 'smooth'
-            });
-            updateActiveNav(5);
-        }
-
-        function updateActiveNav(activeIndex) {
-            const navButtons = document.querySelectorAll('.nav-btn');
-            navButtons.forEach((btn, index) => {
-                btn.classList.toggle('active', index === activeIndex);
-            });
-        }
-
-        // Auto-update navigation based on scroll position
-        const navObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const sectionId = entry.target.id;
-                    if (sectionId.startsWith('chapter-')) {
-                        const chapterNum = parseInt(sectionId.split('-')[1]) - 1;
-                        updateActiveNav(chapterNum);
-                    } else if (sectionId === 'quiz-section') {
-                        updateActiveNav(5);
-                    }
-                }
-            });
-        }, { threshold: 0.6 });
-
-        document.querySelectorAll('.chapter').forEach(chapter => {
-            navObserver.observe(chapter);
-        });
-
         // ==========================================
         // INTERACTIVE QUIZ SYSTEM
         // ==========================================
