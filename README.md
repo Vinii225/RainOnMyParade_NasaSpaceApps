@@ -1,20 +1,29 @@
-# 🌧 Will it Rain on My Parade? — NASA Space Apps 🚀
+# ☀️ Stellar Stories: Space Weather Through the Eyes of Earthlings — NASA Space Apps 🚀
 
-Bem-vindo ao repositório do desafio "Will it Rain on My Parade?" para o NASA Space Apps Challenge.
+Bem-vindo ao repositório do desafio "Stellar Stories" para o NASA Space Apps Challenge 2025.
 
-Este projeto tem como objetivo transformar dados científicos reais (satélites NASA/NOAA e produtos derivados) em uma ferramenta prática que ajude pessoas, comunidades e organizadores de eventos a entender quando e como a chuva pode impactar seus planos — indo além das previsões meteorológicas genéricas.
+Este projeto é uma **história digital interativa e ilustrada para crianças** que explica o que é o clima espacial (space weather) e como ele impacta diferentes pessoas na Terra - de astronautas a agricultores, de pilotos a operadores de redes elétricas.
 
-## Descrição resumida
+## 📖 Sobre o Projeto
 
-Em vez de apenas apresentar um valor percentual de chance de chuva como nos apps comerciais, aqui queremos:
+Embora o Sol esteja a 150 milhões de quilômetros da Terra, sua atividade pode impactar significativamente nossas vidas diárias. O "clima espacial" refere-se às variações que ocorrem no ambiente espacial entre o Sol e a Terra, incluindo:
 
-- Usar produtos de satélite (ex.: GPM/IMERG, GOES, MODIS, CHIRPS) para gerar mapas, alertas e insights focados em impactos práticos;
-- Oferecer previsões e nowcasts de precipitação com resolução espacial e temporal adaptada a eventos locais (festas, esportes, agricultura, transporte);
-- Traduzir dados técnicos em recomendações acionáveis e visualizações acessíveis (quando abrir/adiar/alterar locais, risco para lavoura, rotas alternativas para transporte).
+- **Erupções Solares (Solar Flares)** ☄️
+- **Ejeções de Massa Coronal (CME)** 🌊
+- **Vento Solar** 💨
+- **Tempestades Geomagnéticas** ⚡
 
-## Objetivos do projeto
+Esses fenômenos podem causar belas auroras, mas também impactos desafiadores como:
+- Interrupção de sinais GPS 📡
+- Perda de comunicações de rádio 📻
+- Impactos financeiros 💰
+- Problemas em redes elétricas ⚡
 
-- Ingerir dados de satélite e modelos públicos (NASA / NOAA);
-- Processar e combinar observações (chuva estimada) com camadas de vulnerabilidade (solo, uso do solo, infraestrutura) para avaliar impacto;
-- Gerar alertas e recomendações com explicações simples para usuários finais;
-- Disponibilizar uma interface (web/mobile) e endpoints API para integrações.
+## 🎯 Objetivos
+
+Criar uma história digital que:
+- **Explique** o que é clima espacial de forma acessível
+- **Ilustre** os impactos em diferentes comunidades
+- **Eduque** crianças e jovens sobre fenômenos espaciais
+- **Visualize** dados científicos de forma criativa
+- **Conte** histórias da perspectiva de pessoas impactadas OU de uma erupção solar viajando até a Terra

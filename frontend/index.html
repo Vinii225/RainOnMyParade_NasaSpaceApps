@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellar Stories: Space Weather Adventures 🌟</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Partículas de fundo animadas -->
+    <canvas id="stars-canvas"></canvas>
+    
+    <!-- Navegação -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="sun-icon">☀️</span>
+                <span class="logo-text">Stellar Stories</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#stories">Histórias</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#space-weather">Clima Espacial</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="gradient-text">Stellar Stories</span>
+            </h1>
+            <p class="hero-subtitle">Aventuras pelo Clima Espacial através dos Olhos dos Terráqueos</p>
+            <p class="hero-description">
+                Descubra como o Sol, embora a 150 milhões de km de distância, 
+                impacta nossas vidas diárias através de erupções solares, 
+                tempestades geomagnéticas e auroras mágicas! ✨
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToStories()">
+                    🚀 Começar Aventura
+                </button>
+                <button class="btn btn-secondary" onclick="scrollToWeather()">
+                    📡 Ver Clima Espacial
+                </button>
+            </div>
+        </div>
+        
+        <!-- Planeta Terra animado -->
+        <div class="earth-container">
+            <div class="earth">
+                <div class="atmosphere"></div>
+            </div>
+            <div class="solar-flare"></div>
+        </div>
+    </section>
+
+    <!-- Seção de Estatísticas -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">☄️</div>
+                    <div class="stat-number" data-target="150">0</div>
+                    <div class="stat-label">Milhões de km até o Sol</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-number" data-target="8">0</div>
+                    <div class="stat-label">Minutos para luz solar chegar</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🌍</div>
+                    <div class="stat-number" data-target="7">0</div>
+                    <div class="stat-label">Bilhões de pessoas impactadas</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Histórias -->
+    <section id="stories" class="stories-section">
+        <div class="container">
+            <h2 class="section-title">Escolha Sua Aventura</h2>
+            <p class="section-subtitle">Explore o clima espacial através de diferentes perspectivas</p>
+            
+            <div class="stories-grid">
+                <!-- História 1: Erupção Solar -->
+                <div class="story-card flare-card">
+                    <div class="story-icon">☄️</div>
+                    <h3 class="story-title">A Jornada de Flarinha</h3>
+                    <p class="story-description">
+                        Acompanhe uma erupção solar em sua épica viagem de 150 milhões de km até a Terra!
+                    </p>
+                    <div class="story-meta">
+                        <span class="badge">Elementary</span>
+                        <span class="badge">10 min</span>
+                    </div>
+                    <button class="story-btn" onclick="openStory('flare')">
+                        Começar História →
+                    </button>
+                </div>
+
+                <!-- História 2: Astronauta -->
+                <div class="story-card astronaut-card">
+                    <div class="story-icon">👨‍🚀</div>
+                    <h3 class="story-title">Luna: Astronauta Corajosa</h3>
+                    <p class="story-description">
+                        Viva um dia na Estação Espacial durante uma tempestade solar intensa!
+                    </p>
+                    <div class="story-meta">
+                        <span class="badge">Middle School</span>
+                        <span class="badge">15 min</span>
+                    </div>
+                    <button class="story-btn" onclick="openStory('astronaut')">
+                        Começar História →
+                    </button>
+                </div>
+
+                <!-- História 3: Agricultor -->
+                <div class="story-card farmer-card">
+                    <div class="story-icon">🌾</div>
+                    <h3 class="story-title">GPS do Agricultor José</h3>
+                    <p class="story-description">
+                        Descubra como o clima espacial afeta a agricultura moderna e o sistema GPS!
+                    </p>
+                    <div class="story-meta">
+                        <span class="badge">Middle School</span>
+                        <span class="badge">12 min</span>
+                    </div>
+                    <button class="story-btn" onclick="openStory('farmer')">
+                        Começar História →
+                    </button>
+                </div>
+
+                <!-- História 4: Piloto -->
+                <div class="story-card pilot-card">
+                    <div class="story-icon">✈️</div>
+                    <h3 class="story-title">Piloto nas Nuvens</h3>
+                    <p class="story-description">
+                        Voe através de zonas de radiação aumentada e aprenda sobre rotas aéreas seguras!
+                    </p>
+                    <div class="story-meta">
+                        <span class="badge">High School</span>
+                        <span class="badge">18 min</span>
+                    </div>
+                    <button class="story-btn" onclick="openStory('pilot')">
+                        Começar História →
+                    </button>
+                </div>
+
+                <!-- História 5: Fotógrafo de Aurora -->
+                <div class="story-card photographer-card">
+                    <div class="story-icon">📸</div>
+                    <h3 class="story-title">Caçador de Auroras</h3>
+                    <p class="story-description">
+                        Persiga as auroras boreais mais espetaculares causadas por tempestades geomagnéticas!
+                    </p>
+                    <div class="story-meta">
+                        <span class="badge">All Ages</span>
+                        <span class="badge">14 min</span>
+                    </div>
+                    <button class="story-btn" onclick="openStory('photographer')">
+                        Começar História →
+                    </button>
+                </div>
+
+                <!-- História 6: Operador de Energia -->
+                <div class="story-card power-card">
+                    <div class="story-icon">⚡</div>
+                    <h3 class="story-title">Guardiões da Rede Elétrica</h3>
+                    <p class="story-description">
+                        Proteja a rede elétrica de uma cidade durante uma tempestade solar massiva!
+                    </p>
+                    <div class="story-meta">
+                        <span class="badge">High School</span>
+                        <span class="badge">20 min</span>
+                    </div>
+                    <button class="story-btn" onclick="openStory('power')">
+                        Começar História →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">O que é Clima Espacial?</h2>
+                    <p>
+                        O clima espacial refere-se às condições variáveis no espaço entre o Sol e a Terra, 
+                        incluindo fenômenos como:
+                    </p>
+                    <ul class="features-list">
+                        <li>
+                            <span class="feature-icon">☄️</span>
+                            <div>
+                                <strong>Erupções Solares</strong>
+                                <p>Explosões intensas de radiação do Sol</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">🌊</span>
+                            <div>
+                                <strong>Ejeções de Massa Coronal (CME)</strong>
+                                <p>Grandes nuvens de plasma ejetadas do Sol</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">💨</span>
+                            <div>
+                                <strong>Vento Solar</strong>
+                                <p>Fluxo constante de partículas solares</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">⚡</span>
+                            <div>
+                                <strong>Tempestades Geomagnéticas</strong>
+                                <p>Distúrbios no campo magnético terrestre</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="about-visual">
+                    <div class="sun-earth-diagram">
+                        <div class="diagram-sun">☀️</div>
+                        <div class="solar-wind-line"></div>
+                        <div class="diagram-earth">🌍</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Clima Espacial Atual -->
+    <section id="space-weather" class="weather-section">
+        <div class="container">
+            <h2 class="section-title">Clima Espacial Agora</h2>
+            <p class="section-subtitle">Dados em tempo real da NASA e NOAA</p>
+            
+            <div class="weather-dashboard">
+                <div class="weather-card">
+                    <h3>Atividade Solar</h3>
+                    <div class="activity-level" id="solar-activity">
+                        <div class="loading">Carregando...</div>
+                    </div>
+                </div>
+                
+                <div class="weather-card">
+                    <h3>Última Erupção Solar</h3>
+                    <div id="last-flare" class="weather-data">
+                        <div class="loading">Carregando...</div>
+                    </div>
+                </div>
+                
+                <div class="weather-card">
+                    <h3>Risco de Tempestade</h3>
+                    <div id="storm-risk" class="weather-data">
+                        <div class="loading">Carregando...</div>
+                    </div>
+                </div>
+                
+                <div class="weather-card">
+                    <h3>Previsão de Aurora</h3>
+                    <div id="aurora-forecast" class="weather-data">
+                        <div class="loading">Carregando...</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="data-source">
+                <p>Dados fornecidos por: NASA DONKI • NOAA SWPC</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Stellar Stories</h3>
+                    <p>Educando sobre clima espacial através de histórias interativas</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="https://www.nasa.gov/mission_pages/sunearth/spaceweather/" target="_blank">NASA Space Weather</a></li>
+                        <li><a href="https://www.swpc.noaa.gov/" target="_blank">NOAA SWPC</a></li>
+                        <li><a href="https://sdo.gsfc.nasa.gov/" target="_blank">Solar Dynamics Observatory</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>NASA Space Apps 2025</h4>
+                    <p>Desafio: Stellar Stories</p>
+                    <p>🚀 Feito com ❤️ para educação</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Stellar Stories - NASA Space Apps Challenge</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
