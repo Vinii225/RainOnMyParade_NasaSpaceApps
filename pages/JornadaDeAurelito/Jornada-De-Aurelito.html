@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Jornada de Aurelito: O GPS e a Colheita de Seu José</title>
+    <title>A Jornada Cósmica de Aurelito: O Escudo Mágico da Terra</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
@@ -80,7 +80,7 @@
         }
 
         /* ==========================================
-           CHAPTER BACKGROUNDS
+           CHAPTER BACKGROUNDS (AURORA COLORS)
            ========================================== */
         .chapter {
             min-height: 100vh;
@@ -94,19 +94,19 @@
 
         .chapter-1 { 
             background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 87, 34, 0.15) 100%); 
-        } 
+        } /* Amarelo/Laranja Solar */
         .chapter-2 { 
             background: linear-gradient(135deg, rgba(33, 150, 243, 0.15) 0%, rgba(103, 58, 183, 0.15) 100%); 
-        } 
+        } /* Roxo/Azul do Espaço */
         .chapter-3 { 
             background: linear-gradient(135deg, rgba(244, 67, 54, 0.15) 0%, rgba(156, 39, 176, 0.15) 100%); 
-        } 
+        } /* Roxo/Magenta (Escudo) */
         .chapter-4 { 
             background: linear-gradient(135deg, rgba(76, 175, 80, 0.15) 0%, rgba(0, 150, 136, 0.15) 100%); 
-        } 
+        } /* Verde/Ciano (Polo) */
         .chapter-5 { 
             background: linear-gradient(135deg, rgba(63, 81, 181, 0.15) 0%, rgba(3, 169, 244, 0.15) 100%); 
-        } 
+        } /* Azul Marinho/Azul Claro (Conclusão) */
 
         /* ==========================================
            DIALOGUE SYSTEM
@@ -166,7 +166,7 @@
         }
 
         .speech-bubble {
-            max-width: 70%; 
+            max-width: 70%; /* 70% de largura */
             padding: 25px 30px;
             border-radius: 25px;
             position: relative;
@@ -193,7 +193,7 @@
         }
         
         /* Setas */
-    /*     .speech-bubble::before {
+/*         .speech-bubble::before {
             content: '';
             position: absolute;
             width: 0;
@@ -231,8 +231,8 @@
             color: #a3e635;
             font-style: normal;
             text-shadow: 0 0 10px rgba(163, 230, 53, 0.5);
-        } */
-
+        }
+ */
         /* ==========================================
            CHAPTER TITLES
            ========================================== */
@@ -302,7 +302,7 @@
         }
 
         .hologram::before {
-            content: '🛰️';
+            content: '☀️';
             position: absolute;
             top: 50%;
             left: 50%;
@@ -371,10 +371,6 @@
             transform: translateY(30px);
             transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            
-            /* FIX 1: Remove position: relative/absolute hacks - voltando ao fluxo normal */
-            position: relative; 
-            min-height: 500px;
         }
 
         .quiz-container.appear {
@@ -403,16 +399,12 @@
 
         .question {
             margin-bottom: 50px;
-            /* FIX 2: Volta ao display: none simples para esconder perguntas */
-            display: none; 
-            opacity: 0; /* Adicionado para a animação de fade */
+            display: none;
         }
 
         .question.active {
             display: block;
-            /* Garante que a animação de entrada seja suave */
             animation: questionAppear 0.5s ease forwards;
-            opacity: 1;
         }
 
         @keyframes questionAppear {
@@ -470,6 +462,7 @@
             margin-top: 30px;
             padding: 20px;
             background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
             border-left: 4px solid var(--solar-orange);
         }
 
@@ -710,35 +703,35 @@
 
     <section class="chapter chapter-1" id="chapter-1">
         <div class="dialogue-container">
-            <h1 class="chapter-title">🌾 O GPS na Mesa: A Colheita de Seu José</h1>
+            <h1 class="chapter-title">💥 O Grande Espirro Solar</h1>
             
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">No vasto e cintilante Sistema Solar, o **Senhor Sol** está sempre ativo, soprando seu Vento Solar e soltando espirros como o Aurelito! ✨</p>
+                    <p class="speech-text">O Senhor Sol estava muito animado e soltou um "grande espirro" de luz! ✨</p>
                 </div>
             </div>
 
             <div class="dialogue left">
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito como Erupção Solar">
+                    <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito recém-nascido">
                 </div>
                 <div class="speech-bubble">
-                    <p class="speech-text">- Aurelito: "Eu sou um espirro de luz! E meu destino afeta o pãozinho na mesa, mas como?"</p>
+                    <p class="speech-text">- Aurelito: "Puf! Eu nasci! Eu sou uma nuvem de partículas de energia super carregadas! Que viagem!"</p>
                 </div>
             </div>
 
             <div class="dialogue right">
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Luna_A_Voz_Do_Cosmos.png" alt="Luna, a voz do Cosmos">
+                    <img src="../../Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol">
                 </div>
                 <div class="speech-bubble">
-                    <p class="speech-text">- Luna (Voz do Cosmos): "Na Terra, agricultores como **Seu José**, nosso idoso e dedicado fazendeiro, usam um ajudante mágico: o **GPS**!" 🛰️</p>
+                    <p class="speech-text">- Senhor Sol: "Seu destino é épico, Aurelito! O Planeta Azul, a Terra, a 150 milhões de quilômetros de distância!" 🌎</p>
                 </div>
             </div>
 
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">O GPS usa 'carteiros espaciais' (Satélites de GPS) que enviam mensagens rápidas sobre a localização exata! ✉️</p>
+                    <p class="speech-text">Missão: Conhecer o lindo Planeta Azul! 🚀</p>
                 </div>
             </div>
         </div>
@@ -746,29 +739,29 @@
 
     <section class="chapter chapter-2" id="chapter-2">
         <div class="dialogue-container">
-            <h2 class="chapter-title">💥 O Mega Espirro Confuso</h2>
+            <h2 class="chapter-title">💨 A Longa Viagem no Vento Solar</h2>
             
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">Um dia, o Senhor Sol estava MUITO agitado e soltou **vários Aurelitos**! Uma onda forte de energia! ☄️</p>
+                    <p class="speech-text">150 milhões de quilômetros! Aurelito viaja mais rápido que qualquer foguete! 🔭</p>
                 </div>
             </div>
 
             <div class="dialogue left">
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito surpreso">
+                    <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito curioso">
                 </div>
                 <div class="speech-bubble">
-                    <p class="speech-text">- Aurelito: "Nossa, que onda gigante! Ela era tão forte que, mesmo com o Escudo Magnético, ela fez algo de ruim!"</p>
+                    <p class="speech-text">- Aurelito: "O espaço é escuro, mas estou voando muito rápido! O que me empurra?"</p>
                 </div>
             </div>
 
             <div class="dialogue right">
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Luna_A_Voz_Do_Cosmos.png" alt="Luna explicando a atmosfera">
+                    <img src="../../Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol explicando">
                 </div>
                 <div class="speech-bubble">
-                    <p class="speech-text">- Luna: "O escudo protegeu, mas a onda mexeu com a **atmosfera lá no alto**! Pense no ar lá em cima como uma peneira que balançou!" 🌪️</p>
+                    <p class="speech-text">- Senhor Sol: "É o <strong>Vento Solar</strong>, Aurelito! Aquele sopro constante do Sol que te leva cada vez mais rápido em direção à Terra!" 🌬️</p>
                 </div>
             </div>
 
@@ -782,7 +775,7 @@
 
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">O ar treme e balança, e as mensagens dos Satélites de GPS começam a ficar confusas! 🤯</p>
+                    <p class="speech-text">O planeta Terra surge no horizonte como uma joia preciosa. 💎</p>
                 </div>
             </div>
         </div>
@@ -790,44 +783,44 @@
 
     <section class="chapter chapter-3" id="chapter-3">
         <div class="dialogue-container">
-            <h2 class="chapter-title">📡 As Linhas Tortas do Trator</h2>
+            <h2 class="chapter-title">🛡️ O Encontro com o Escudo Mágico</h2>
             
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">O 'espirro' forte do Sol causa pequenos 'erros' nas mensagens de localização! ❌</p>
+                    <p class="speech-text">A Terra tem uma defesa especial contra partículas carregadas! 🚨</p>
                 </div>
             </div>
 
             <div class="dialogue left">
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito confuso">
+                    <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito confuso">
                 </div>
                 <div class="speech-bubble">
-                    <p class="speech-text">- Aurelito: "Então, se a peneira treme, a mensagem do satélite chega com um pequeno erro no campo!"</p>
+                    <p class="speech-text">- Aurelito: "Ei! Uma força invisível está me desviando! Estou sendo puxado para os lados! Onde você vai?!" 😵‍💫</p>
                 </div>
             </div>
 
             <div class="dialogue right">
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Luna_A_Voz_Do_Cosmos.png" alt="Luna explicando o GPS">
+                    <img src="../../Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol explicando">
                 </div>
                 <div class="speech-bubble">
-                    <p class="speech-text">- Luna: "Sim! É como se o GPS do **trator de Seu José** estivesse com sono! As linhas de plantio que deviam ser retinhas ficaram um pouco tortas! 〰️"</p>
+                    <p class="speech-text">- Senhor Sol: "Essa é a proteção da Terra, Aurelito! O <strong>Escudo Magnético</strong>! Ele desvia a maioria das partículas de alta energia como você!" ✋</p>
                 </div>
             </div>
 
             <div class="dialogue left">
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito preocupado">
+                    <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito determinado">
                 </div>
                 <div class="speech-bubble">
-                    <p class="speech-text">- Aurelito: "Isso é um problema! **Seu José** pode desperdiçar sementes ou usar água no lugar errado!" 💧</p>
+                    <p class="speech-text">- Aurelito: "Eu não vou desistir! Minhas bolinhas de energia vão dar um 'oi' para a Terra!"</p>
                 </div>
             </div>
-
+            
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">O trabalho do fazendeiro idoso fica mais difícil e a colheita, em risco! 😰</p>
+                    <p class="speech-text">Existe uma "porta" de entrada lá no topo do planeta! 🤫</p>
                 </div>
             </div>
         </div>
@@ -835,44 +828,44 @@
 
     <section class="chapter chapter-4" id="chapter-4">
         <div class="dialogue-container">
-            <h2 class="chapter-title">💰 O Desperdício e o Alimento</h2>
+            <h2 class="chapter-title">🌈 A Surpresa no Polo: Aurora Boreal</h2>
             
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">Erros de GPS levam a desperdício e menos comida na mesa! 😥</p>
-                </div>
-            </div>
-
-            <div class="dialogue right">
-                <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Luna_A_Voz_Do_Cosmos.png" alt="Luna detalhando os riscos">
-                </div>
-                <div class="speech-bubble">
-                    <p class="speech-text">- Luna: "Sem precisão, o fazendeiro idoso pode **desperdiçar** sementes, fertilizantes e água, aumentando os custos e o trabalho." 💸</p>
+                    <p class="speech-text">Aurelito descobre o segredo do Escudo Magnético... Os Polos! 🌍</p>
                 </div>
             </div>
 
             <div class="dialogue left">
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-left-png.png" alt="Aurelito entendendo a importância">
+                    <img src="../../Images/GuideCharacter/Aurelito-left-png.png" alt="Aurelito entrando">
                 </div>
                 <div class="speech-bubble">
-                    <p class="speech-text">- Aurelito: "E, o pior, pode **não colher** todos os alimentos, deixando parte do nosso pãozinho para trás! O clima espacial afeta a todos nós!" 🍞</p>
-                </div>
-            </div>
-
-            <div class="dialogue center">
-                <div class="speech-bubble">
-                    <p class="speech-text">Mas o problema não dura para sempre. O Senhor Sol se acalma e o ar volta ao normal. 🧘</p>
+                    <p class="speech-text">- Aurelito: "Plim! Consegui! Algumas das minhas bolinhas de energia entraram pela porta no Polo Norte!" 🥳</p>
                 </div>
             </div>
 
             <div class="dialogue right">
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Luna_A_Voz_Do_Cosmos.png" alt="Luna esperançosa">
+                    <img src="../../Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol maravilhado">
                 </div>
                 <div class="speech-bubble">
-                    <p class="speech-text">- Luna: "O GPS volta a ser **claro e preciso**. Mas a chave é **observar** o Senhor Sol para que Seu José possa se preparar!" ✅</p>
+                    <p class="speech-text">- Senhor Sol: "Quando suas bolinhas de energia batem no ar da Terra, o ar fica tão animado que começa a BRILHAR!" 💚💖💙</p>
+                </div>
+            </div>
+
+            <div class="dialogue left">
+                <div class="character-avatar">
+                    <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito orgulhoso">
+                </div>
+                <div class="speech-bubble">
+                    <p class="speech-text">- Aurelito: "Que lindo! Deixei um presente maravilhoso de luz e cor para o planeta!"</p>
+                </div>
+            </div>
+
+            <div class="dialogue center">
+                <div class="speech-bubble">
+                    <p class="speech-text">O espetáculo de luzes é chamado de **Aurora Boreal**! 🎆</p>
                 </div>
             </div>
         </div>
@@ -880,35 +873,35 @@
 
     <section class="chapter chapter-5" id="chapter-5">
         <div class="dialogue-container">
-            <h2 class="chapter-title">🧠 A Força da Ciência</h2>
+            <h2 class="chapter-title">🎓 O Presente Inesquecível</h2>
             
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">"MISSÃO CUMPRIDA:" Prevenir é o segredo para ajudar Seu José! 🤝</p>
+                    <p class="speech-text">"MISSÃO CUMPRIDA:" Aurora Boreal Criada ✅</p>
                 </div>
             </div>
 
             <div class="dialogue left">
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito sorrindo">
+                    <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito reflexivo">
                 </div>
                 <div class="speech-bubble">
-                    <p class="speech-text">- Aurelito: "Os cientistas aprenderam a observar os meus espirros para **prever** quando o GPS vai falhar nos campos!" 🔭</p>
+                    <p class="speech-text">- Aurelito: "Então a Terra me desviou para se proteger, mas me deu um cantinho para criar um show de luzes!"</p>
                 </div>
             </div>
 
             <div class="dialogue right">
                 <div class="character-avatar">
-                    <img src="./Images/GuideCharacter/Luna_A_Voz_Do_Cosmos.png" alt="Luna orgulhosa">
+                    <img src="../../Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol sábio">
                 </div>
                 <div class="speech-bubble">
-                    <p class="speech-text">- Luna: "Com essa previsão, agricultores como **Seu José** podem se preparar e garantir que os campos continuem produzindo para todos! É a **Força da Ciência**!" 💡</p>
+                    <p class="speech-text">- Senhor Sol: "Exatamente! O super <strong>Escudo Magnético</strong> nos protege e transforma a sua visita energética em um espetáculo inesquecível para todos. Fim da jornada!" 👏</p>
                 </div>
             </div>
 
             <div class="dialogue center">
                 <div class="speech-bubble">
-                    <p class="speech-text">O clima espacial afeta até mesmo o pãozinho na nossa mesa. Agora, vamos ver se você aprendeu! **Quiz Cósmico** à frente! 🧠</p>
+                    <p class="speech-text">Agora, descubra se você dominou a jornada de Aurelito! **Quiz Cósmico** à frente! 🧠</p>
                 </div>
             </div>
         </div>
@@ -917,59 +910,59 @@
     <section class="chapter" id="quiz-section">
         <div class="quiz-container">
             <div class="quiz-header">
-                <h2 class="quiz-title">🧠 Quiz Cósmico: GPS e Colheita</h2>
+                <h2 class="quiz-title">🧠 Quiz Cósmico: A Jornada de Aurelito</h2>
                 <p class="quiz-score">Nível de Guia Espacial: <span id="score">0</span>/4 ⭐</p>
             </div>
 
             <div class="question active" id="question-1">
-                <h3 class="question-text">1. Para que **Seu José**, o agricultor, usava o GPS em seus campos, segundo a história?</h3>
+                <h3 class="question-text">1. O que Aurelito representava na história, ao nascer do "grande espirro" do Senhor Sol?</h3>
                 <div class="options">
-                    <div class="option" data-answer="false">A) Para falar com Aurelito no espaço.</div>
-                    <div class="option" data-answer="true">B) Para plantar sementes e colher alimentos com precisão.</div>
-                    <div class="option" data-answer="false">C) Para ouvir música no trator.</div>
-                    <div class="option" data-answer="false">D) Para desviar o Vento Solar.</div>
+                    <div class="option" data-answer="false">A) Um meteorito de gelo.</div>
+                    <div class="option" data-answer="true">B) Uma erupção solar (nuvem de partículas de energia).</div>
+                    <div class="option" data-answer="false">C) O Vento Solar em si.</div>
+                    <div class="option" data-answer="false">D) Um novo planeta em miniatura.</div>
                 </div>
                 <div class="explanation" style="display: none;">
-                    <strong>🎯 Resposta correta:</strong> O GPS é essencial na agricultura moderna para garantir o plantio e a colheita precisos!
+                    <strong>🎯 Resposta correta:</strong> Aurelito é a representação de uma **erupção solar** (ou Ejeção de Massa Coronal), feita de partículas super carregadas.
                 </div>
             </div>
 
             <div class="question" id="question-2">
-                <h3 class="question-text">2. As mensagens dos satélites de GPS ficam confusas por causa da perturbação em qual parte da Terra?</h3>
+                <h3 class="question-text">2. O que empurrava Aurelito em sua longa viagem de 150 milhões de quilômetros até a Terra?</h3>
                 <div class="options">
-                    <div class="option" data-answer="false">A) No Escudo Magnético (Magnetosfera).</div>
-                    <div class="option" data-answer="false">B) Na rede elétrica das cidades.</div>
-                    <div class="option" data-answer="true">C) Na parte de cima da nossa atmosfera (o ar lá no alto).</div>
-                    <div class="option" data-answer="false">D) No metal do trator.</div>
+                    <div class="option" data-answer="false">A) A atração gravitacional da Terra.</div>
+                    <div class="option" data-answer="true">B) O Vento Solar.</div>
+                    <div class="option" data-answer="false">C) As turbinas de um foguete espacial.</div>
+                    <div class="option" data-answer="false">D) Asteroides.</div>
                 </div>
                 <div class="explanation" style="display: none;">
-                    <strong>🎯 Resposta correta:</strong> A energia do Sol perturba o ar no alto da **atmosfera**, fazendo com que as mensagens dos satélites cheguem com erros.
+                    <strong>🎯 Resposta correta:</strong> O **Vento Solar** é o fluxo constante de partículas do Sol que empurra as erupções solares pelo espaço.
                 </div>
             </div>
 
             <div class="question" id="question-3">
-                <h3 class="question-text">3. Qual é o principal risco para **Seu José** quando o GPS fica confuso por causa da tempestade solar?</h3>
+                <h3 class="question-text">3. Qual a defesa invisível da Terra que agiu como uma "mão gigante" para desviar a maioria das partículas de Aurelito?</h3>
                 <div class="options">
-                    <div class="option" data-answer="false">A) O trator para de funcionar e não liga mais.</div>
-                    <div class="option" data-answer="true">B) Desperdício de sementes, água e fertilizantes, ou não colheita total.</div>
-                    <div class="option" data-answer="false">C) O Senhor Sol fica com raiva e manda mais Aurelitos.</div>
-                    <div class="option" data-answer="false">D) As mensagens dos satélites viram Auroras Boreais.</div>
+                    <div class="option" data-answer="false">A) A atmosfera (ar).</div>
+                    <div class="option" data-answer="false">B) A camada de Ozônio.</div>
+                    <div class="option" data-answer="true">C) O Escudo Magnético (Campo Magnético).</div>
+                    <div class="option" data-answer="false">D) A gravidade.</div>
                 </div>
                 <div class="explanation" style="display: none;">
-                    <strong>🎯 Resposta correta:</strong> O erro de localização leva ao uso incorreto de recursos, causando **desperdício** e risco de **perda** de alimentos.
+                    <strong>🎯 Resposta correta:</strong> O **Escudo Magnético** (ou Magnetosfera) desvia a maior parte das partículas carregadas, protegendo o planeta.
                 </div>
             </div>
 
             <div class="question" id="question-4">
-                <h3 class="question-text">4. A principal solução para que **Seu José** possa se preparar é:</h3>
+                <h3 class="question-text">4. Qual é o nome do espetáculo de luzes criado quando as partículas de Aurelito conseguiram entrar pelas "portas" no Polo Norte?</h3>
                 <div class="options">
-                    <div class="option" data-answer="false">A) Mudar Seu José para o Polo Norte.</div>
-                    <div class="option" data-answer="true">B) Observar o Sol para prever as tempestades e se preparar.</div>
-                    <div class="option" data-answer="false">C) Desligar todos os tratores do mundo.</div>
-                    <div class="option" data-answer="false">D) Pintar todos os satélites de GPS de verde.</div>
+                    <div class="option" data-answer="true">A) Aurora Boreal.</div>
+                    <div class="option" data-answer="false">B) Eclipse Solar.</div>
+                    <div class="option" data-answer="false">C) Chuva de Meteoros.</div>
+                    <div class="option" data-answer="false">D) Refração de Luz.</div>
                 </div>
                 <div class="explanation" style="display: none;">
-                    <strong>🎯 Resposta correta:</strong> A **previsão** é a chave! Cientistas observam o Sol para dar alertas aos fazendeiros e engenheiros, que assim podem se preparar.
+                    <strong>🎯 Resposta correta:</strong> O show de luzes coloridas é conhecido como **Aurora Boreal** (ou Aurora Austral no Polo Sul).
                 </div>
             </div>
             
@@ -983,10 +976,10 @@
 
     <nav class="fixed-nav">
         <button class="nav-btn active" onclick="goToChapter(1)">🌟 Início</button>
-        <button class="nav-btn" onclick="goToChapter(2)">💥 Mega Espirro</button>
-        <button class="nav-btn" onclick="goToChapter(3)">🚜 Trator</button>
-        <button class="nav-btn" onclick="goToChapter(4)">💰 Colheita</button>
-        <button class="nav-btn" onclick="goToChapter(5)">🎓 Solução</button>
+        <button class="nav-btn" onclick="goToChapter(2)">💨 Viagem</button>
+        <button class="nav-btn" onclick="goToChapter(3)">🛡️ Escudo</button>
+        <button class="nav-btn" onclick="goToChapter(4)">🌈 Polo</button>
+        <button class="nav-btn" onclick="goToChapter(5)">🎓 Final</button>
         <button class="nav-btn" onclick="goToQuiz()">🧠 Quiz</button>
     </nav>
 
@@ -1086,13 +1079,13 @@
                     elements.forEach((element, index) => {
                         setTimeout(() => {
                             element.classList.add('appear');
-                        }, index * 350); // 350ms delay between elements as specified
+                        }, index * 350);
                     });
                 } else {
-                    const elements = entry.target.querySelectorAll('.dialogue, .chapter-title, .hologram-container, .quiz-container');
-                    elements.forEach(element => {
-                        element.classList.remove('appear');
-                    });
+                     const elements = entry.target.querySelectorAll('.dialogue, .chapter-title, .hologram-container, .quiz-container');
+                     elements.forEach(element => {
+                         element.classList.remove('appear');
+                     });
                 }
             });
         }, observerOptions);
@@ -1137,6 +1130,7 @@
             });
         }
 
+        // Auto-update navigation based on scroll position
         const navObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1168,7 +1162,7 @@
         const skipBtn = document.getElementById('skipQuiz');
         const scoreElement = document.getElementById('score');
 
-        // Adiciona handlers de clique a todas as opções do quiz
+        // Add click handlers to all quiz options
         document.querySelectorAll('.option').forEach(option => {
             option.addEventListener('click', function() {
                 const questionElement = this.closest('.question');
@@ -1185,56 +1179,49 @@
             });
         });
 
-        // Handler para Próxima Pergunta/Revelar Resposta
+        // Next question button handler
         nextBtn.addEventListener('click', () => {
             const currentQuestionElement = document.getElementById(`question-${currentQuestion}`);
             const options = currentQuestionElement.querySelectorAll('.option');
             const explanation = currentQuestionElement.querySelector('.explanation');
             
-            // 1. Revela a resposta e desabilita opções
             options.forEach(option => {
                 if (option.dataset.answer === 'true') {
                     option.classList.add('correct');
                 } else if (option.classList.contains('selected')) {
                     option.classList.add('incorrect');
                 }
-                option.style.pointerEvents = 'none'; // Impede alteração da resposta
+                option.style.pointerEvents = 'none';
             });
             
             explanation.style.display = 'block';
             
-            // 2. Atualiza score
             if (selectedAnswers[`question-${currentQuestion}`]) {
                 score++;
                 scoreElement.textContent = score;
-                // Animação de celebração
                 scoreElement.style.transform = 'scale(1.2)';
                 setTimeout(() => {
                     scoreElement.style.transform = 'scale(1)';
                 }, 300);
             }
-
-            // 3. Prepara a transição para a próxima pergunta após o delay de revisão
+            
             setTimeout(() => {
-                currentQuestionElement.classList.remove('active'); // Esconde a pergunta atual
                 currentQuestion++;
                 
                 if (currentQuestion <= 4) {
-                    // Próxima Pergunta
+                    questions.forEach(q => q.classList.remove('active'));
                     document.getElementById(`question-${currentQuestion}`).classList.add('active');
                     nextBtn.disabled = true;
                     document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
                 } else {
-                    // Fim do Quiz - Troca o botão
                     nextBtn.style.display = 'none';
                     finishBtn.style.display = 'inline-block';
-                    finishBtn.disabled = false; 
-                    document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
+                    finishBtn.click();
                 }
-            }, 2500); // Tempo para o usuário ler a explicação
+            }, 2500);
         });
 
-        // Handler para Finalizar Quiz/Mostrar Resultado
+        // Finish quiz button handler
         finishBtn.addEventListener('click', () => {
             if (score === 4) {
                 createSpectacularConfetti();
@@ -1312,13 +1299,14 @@
         // AUTO-START ANIMATIONS
         // ==========================================
         document.addEventListener('DOMContentLoaded', () => {
+            // Start first chapter animations after a brief delay
             setTimeout(() => {
                 const firstChapter = document.getElementById('chapter-1');
                 const elements = firstChapter.querySelectorAll('.dialogue, .chapter-title');
                 elements.forEach((element, index) => {
                     setTimeout(() => {
                         element.classList.add('appear');
-                    }, index * 350); 
+                    }, index * 350); // Sequential animation with 350ms delay
                 });
             }, 800);
         });
@@ -1337,4 +1325,6 @@
         });
     </script>
 </body>
-</html> 
+</html>
+
+
