@@ -226,10 +226,22 @@ html {
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-links a i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
 }
 
 .nav-links a:hover {
     color: var(--primary-color);
+}
+
+.nav-links a:hover i {
+    transform: scale(1.2);
 }
 
 .nav-links a::after {
@@ -328,6 +340,18 @@ html {
     cursor: pointer;
     transition: all 0.3s ease;
     font-family: 'Poppins', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.btn:hover i {
+    transform: scale(1.2) rotate(5deg);
 }
 
 .btn-primary {
