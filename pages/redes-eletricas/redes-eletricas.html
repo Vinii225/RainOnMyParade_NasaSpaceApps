@@ -7,6 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- CSS externo da página principal -->
+    <link rel="stylesheet" href="../../styles/styles.css">
     <style>
         /* ==========================================
            VARIABLES & RESET
@@ -26,6 +30,19 @@
             --gradient-solar: linear-gradient(135deg, #fbbf24 0%, #f97316 50%, #ef4444 100%);
             --gradient-space: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-mystical: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --border-color: rgba(99, 102, 241, 0.3);
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Light Theme */
+        body.light-theme {
+            --bg-dark: #f1f5f9;
+            --bg-darker: #ffffff;
+            --text-light: #1e293b;
+            --text-gray: #475569;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --border-color: rgba(99, 102, 241, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -76,7 +93,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            background: var(--bg-darker);
         }
 
         /* ==========================================
@@ -691,6 +708,30 @@
     </style>
 </head>
 <body>
+    <!-- Navegação -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="sun-icon">☀️</span>
+                <span class="logo-text">Cosmic Tales</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#chapter-1"><i class="fa-solid fa-star"></i> Início</a></li>
+                <li><a href="#chapter-2"><i class="fa-solid fa-cube"></i> Holograma</a></li>
+                <li><a href="#chapter-3"><i class="fa-solid fa-circle"></i> Manchas</a></li>
+                <li><a href="#chapter-4"><i class="fa-solid fa-bolt"></i> Tempestades</a></li>
+                <li><a href="#chapter-5"><i class="fa-solid fa-graduation-cap"></i> Conclusão</a></li>
+                <li><a href="#quiz-section"><i class="fa-solid fa-brain"></i> Quiz</a></li>
+                <li><a href="../../index.html"><i class="fa-solid fa-house"></i> Voltar</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- Progress Bar -->
     <div class="progress-container">
         <div class="progress-bar" id="progressBar"></div>
@@ -1064,11 +1105,15 @@
         function animateStars() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
+            // Verificar tema atual
+            const isLightTheme = document.body.classList.contains('light-theme');
+            const starColor = isLightTheme ? '100, 100, 150' : '255, 255, 255';
+            
             // Draw and animate stars
             stars.forEach(star => {
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fillStyle = `rgba(${starColor}, ${star.opacity})`;
                 ctx.fill();
                 
                 // Enhanced twinkle effect
@@ -1103,6 +1148,56 @@
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+        });
+
+        // ==========================================
+        // THEME TOGGLE - Sobrescreve a função do script.js
+        // ==========================================
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.querySelector('#theme-toggle i');
+            const logo = document.getElementById('space-apps-logo');
+            
+            body.classList.toggle('light-theme');
+            
+            // Atualizar ícone e logo com caminho correto para subpasta
+            if (body.classList.contains('light-theme')) {
+                themeIcon.className = 'fa-solid fa-moon';
+                if (logo) logo.src = '../../Images/EventLogo/11.png';
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeIcon.className = 'fa-solid fa-sun';
+                if (logo) logo.src = '../../Images/EventLogo/44.png';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Carregar tema salvo ao iniciar
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.querySelector('#theme-toggle i');
+            const logo = document.getElementById('space-apps-logo');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (!savedTheme) {
+                if (!prefersDark) {
+                    document.body.classList.add('light-theme');
+                    if (themeIcon) themeIcon.className = 'fa-solid fa-moon';
+                    if (logo) logo.src = '../../Images/EventLogo/11.png';
+                } else {
+                    if (themeIcon) themeIcon.className = 'fa-solid fa-sun';
+                    if (logo) logo.src = '../../Images/EventLogo/44.png';
+                }
+            } else {
+                if (savedTheme === 'light') {
+                    document.body.classList.add('light-theme');
+                    if (themeIcon) themeIcon.className = 'fa-solid fa-moon';
+                    if (logo) logo.src = '../../Images/EventLogo/11.png';
+                } else {
+                    if (themeIcon) themeIcon.className = 'fa-solid fa-sun';
+                    if (logo) logo.src = '../../Images/EventLogo/44.png';
+                }
+            }
         });
 
         // ==========================================
@@ -1364,5 +1459,39 @@
             }
         });
     </script>
+
+    <!-- Footer -->
+    <footer id="about" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sobre o Projeto</h3>
+                    <p>
+                        Cosmic Tales é um projeto educacional interativo criado para o NASA Space Apps Challenge 2025.
+                        Nossa missão é tornar o clima espacial acessível e compreensível para pessoas de todas as idades,
+                        utilizando histórias interativas e dados em tempo real da NASA e NOAA.
+                    </p>
+                    <br />
+                    <p>Desafio: <a href="https://www.spaceappschallenge.org/2025/challenges/stellar-stories-space-weather-through-the-eyes-of-earthlings" target="_blank">Stellar Stories: Space Weather Through the Eyes of Earthlings</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="https://github.com/Vinii225/StellarStories_NasaSpaceApps/tree/main" target="_blank"><i class="fa-brands fa-github"></i> GitHub do Projeto</a></li>
+                        <li><a href="https://www.nasa.gov/mission_pages/sunearth/spaceweather/" target="_blank">NASA Space Weather</a></li>
+                        <li><a href="https://www.swpc.noaa.gov/" target="_blank">NOAA SWPC</a></li>
+                        <li><a href="https://sdo.gsfc.nasa.gov/" target="_blank">Solar Dynamics Observatory</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <img id="space-apps-logo" src="../../Images/EventLogo/44.png" alt="NASA Space Apps Challenge" class="space-apps-logo-large">
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Cosmic Tales - NASA Space Apps Challenge</p>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>

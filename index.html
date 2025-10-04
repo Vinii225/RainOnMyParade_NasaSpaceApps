@@ -35,11 +35,14 @@
                 <span class="sun-icon">☀️</span>
                 <span class="logo-text">Cosmic Tales</span>
             </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
             <ul class="nav-links">
-                <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
-                <li><a href="#space-weather"><i class="fa-solid fa-cloud-sun"></i> Clima Espacial</a></li>
-                <li><a href="#stories"><i class="fa-solid fa-book"></i> Histórias</a></li>
-                <li><a href="#about"><i class="fa-solid fa-circle-info"></i> Sobre</a></li>
+                <li><a href="#home" onclick="closeMobileMenu()"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="#space-weather" onclick="closeMobileMenu()"><i class="fa-solid fa-cloud-sun"></i> Clima Espacial</a></li>
+                <li><a href="#stories" onclick="closeMobileMenu()"><i class="fa-solid fa-book"></i> Histórias</a></li>
+                <li><a href="#about" onclick="closeMobileMenu()"><i class="fa-solid fa-circle-info"></i> Sobre</a></li>
                 <li>
                     <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
                         <i class="fa-solid fa-moon"></i>
