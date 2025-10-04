@@ -1,6 +1,6 @@
-# ☀️ Stellar Stories: Space Weather Through the Eyes of Earthlings — NASA Space Apps 🚀
+# 🌟 Cosmic Tales: Space Weather Through the Eyes of Earthlings — NASA Space Apps 🚀
 
-Bem-vindo ao repositório do desafio "Stellar Stories" para o NASA Space Apps Challenge 2025.
+Bem-vindo ao repositório do desafio "Cosmic Tales" para o NASA Space Apps Challenge 2025.
 
 Este projeto é uma **história digital interativa e ilustrada para crianças** que explica o que é o clima espacial (space weather) e como ele impacta diferentes pessoas na Terra - de astronautas a agricultores, de pilotos a operadores de redes elétricas.
 

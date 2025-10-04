@@ -52,7 +52,7 @@ window.addEventListener('resize', () => {
 // ==========================================
 const aurelitoMessages = {
     home: [
-        "Bem-vindo ao Stellar Stories! 🌟 Vamos explorar o clima espacial juntos!",
+        "Bem-vindo ao Cosmic Tales! 🌟 Vamos explorar o clima espacial juntos!",
         "Você sabia? O Sol está a 150 milhões de km de distância! 🌞",
         "Pronto para começar sua aventura? Clique em 'Começar Aventura'! 🚀"
     ],
@@ -414,7 +414,7 @@ window.addEventListener('scroll', () => {
 // INITIALIZE
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🚀 Stellar Stories: Space Weather initialized!');
+    console.log('🚀 Cosmic Tales: Space Weather initialized!');
     console.log('✨ Fetching real-time space weather data from NASA...');
     
     // Fetch space weather data
