@@ -10,6 +10,11 @@ canvas.height = window.innerHeight;
 const stars = [];
 const numStars = 200;
 
+// Detectar tema do sistema
+const isDarkTheme = () => {
+    return !window.matchMedia || window.matchMedia('(prefers-color-scheme: dark)').matches;
+};
+
 // Create stars
 for (let i = 0; i < numStars; i++) {
     stars.push({
@@ -25,10 +30,13 @@ for (let i = 0; i < numStars; i++) {
 function animateStars() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
+    // Cor das estrelas baseada no tema
+    const starColor = isDarkTheme() ? '255, 255, 255' : '30, 58, 138';
+    
     stars.forEach(star => {
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+        ctx.fillStyle = `rgba(${starColor}, ${star.opacity})`;
         ctx.fill();
         
         // Twinkle effect
@@ -40,6 +48,13 @@ function animateStars() {
 }
 
 animateStars();
+
+// Atualizar estrelas quando o tema mudar
+if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        // As estrelas serão redesenhadas automaticamente na próxima animação
+    });
+}
 
 // Resize canvas
 window.addEventListener('resize', () => {
