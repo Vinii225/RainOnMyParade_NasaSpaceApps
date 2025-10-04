@@ -48,6 +48,134 @@ window.addEventListener('resize', () => {
 });
 
 // ==========================================
+// AURELITO GUIDE SYSTEM
+// ==========================================
+const aurelitoMessages = {
+    home: [
+        "Bem-vindo ao Stellar Stories! 🌟 Vamos explorar o clima espacial juntos!",
+        "Você sabia? O Sol está a 150 milhões de km de distância! 🌞",
+        "Pronto para começar sua aventura? Clique em 'Começar Aventura'! 🚀"
+    ],
+    stories: [
+        "Uau! Escolha uma história para descobrir como o clima espacial afeta nossas vidas! 📚",
+        "Cada personagem tem uma perspectiva única sobre o clima espacial! 👨‍🚀",
+        "Qual aventura você quer viver primeiro? 🎭"
+    ],
+    about: [
+        "O clima espacial é fascinante! Vamos aprender mais sobre ele! 🔬",
+        "Tempestades solares podem afetar satélites, GPS e até redes elétricas! ⚡",
+        "O Sol é nosso vizinho mais influente no espaço! ☀️"
+    ],
+    weather: [
+        "Aqui você pode ver dados reais do clima espacial! 📡",
+        "Os cientistas monitoram o Sol 24 horas por dia! 🔭",
+        "Essas informações ajudam a proteger nossa tecnologia! 🛰️"
+    ]
+};
+
+const aurelitoImages = {
+    normal: './Images/GuideCharacter/Aurelito-2HandsExplanation.png',
+    doubt: './Images/GuideCharacter/Aurelito-DoubtFace.png',
+    left: './Images/GuideCharacter/Aurelito-left.png',
+    right: './Images/GuideCharacter/Aurelito-right.png'
+};
+
+let currentSection = 'home';
+let isAurelitoMinimized = false;
+let messageIndex = 0;
+
+// Função para mudar a mensagem do Aurelito
+function updateAurelitoMessage(section) {
+    const messages = aurelitoMessages[section] || aurelitoMessages.home;
+    const textElement = document.getElementById('aurelito-text');
+    const imageElement = document.getElementById('aurelito-image');
+    
+    if (!textElement || isAurelitoMinimized) return;
+    
+    // Rotaciona entre as mensagens da seção
+    messageIndex = (messageIndex + 1) % messages.length;
+    const message = messages[messageIndex];
+    
+    // Animação de fade
+    textElement.style.opacity = '0';
+    
+    setTimeout(() => {
+        textElement.textContent = message;
+        textElement.style.opacity = '1';
+        
+        // Muda a expressão baseado na seção
+        if (section === 'about' || section === 'weather') {
+            imageElement.src = aurelitoImages.normal;
+        } else if (section === 'stories') {
+            imageElement.src = Math.random() > 0.5 ? aurelitoImages.left : aurelitoImages.right;
+        }
+    }, 300);
+}
+
+// Função para alternar minimizar/maximizar Aurelito
+function toggleAurelito() {
+    const container = document.getElementById('aurelito-guide');
+    const toggleIcon = document.getElementById('toggle-icon');
+    
+    isAurelitoMinimized = !isAurelitoMinimized;
+    
+    if (isAurelitoMinimized) {
+        container.classList.add('minimized');
+        toggleIcon.textContent = '🌟';
+    } else {
+        container.classList.remove('minimized');
+        toggleIcon.textContent = '💬';
+        updateAurelitoMessage(currentSection);
+    }
+}
+
+// Detectar mudança de seção com Intersection Observer
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const sectionId = entry.target.id;
+            if (sectionId && sectionId !== currentSection) {
+                currentSection = sectionId;
+                updateAurelitoMessage(sectionId);
+            }
+        }
+    });
+}, { threshold: 0.3 });
+
+// Observar todas as seções
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section[id]');
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+    
+    // Mensagem inicial após 2 segundos
+    setTimeout(() => {
+        updateAurelitoMessage('home');
+    }, 2000);
+    
+    // Mudar mensagem periodicamente (a cada 15 segundos)
+    setInterval(() => {
+        if (!isAurelitoMinimized) {
+            updateAurelitoMessage(currentSection);
+        }
+    }, 15000);
+});
+
+// Clique no Aurelito para mudar expressão
+document.addEventListener('DOMContentLoaded', () => {
+    const aurelitoChar = document.getElementById('aurelito-character');
+    if (aurelitoChar) {
+        aurelitoChar.addEventListener('click', () => {
+            const imageElement = document.getElementById('aurelito-image');
+            const expressions = Object.values(aurelitoImages);
+            const randomExpression = expressions[Math.floor(Math.random() * expressions.length)];
+            imageElement.src = randomExpression;
+        });
+    }
+});
+
+// ==========================================
 // STATS COUNTER ANIMATION
 // ==========================================
 function animateCounter(element, target, duration = 2000) {

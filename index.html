@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stellar Stories: Space Weather Adventures 🌟</title>
+    <title>Stellar Stories Adventures 🌟</title>
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +13,19 @@
     <!-- Partículas de fundo animadas -->
     <canvas id="stars-canvas"></canvas>
     
+    <!-- Personagem Guia Aurelito -->
+    <div id="aurelito-guide" class="aurelito-container">
+        <div class="speech-bubble" id="aurelito-speech">
+            <p id="aurelito-text">Olá! Eu sou o Aurelito! 🌟 Vou te guiar nessa aventura espacial!</p>
+        </div>
+        <div class="aurelito-character" id="aurelito-character">
+            <img src="./Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito" id="aurelito-image">
+        </div>
+        <button class="aurelito-toggle" id="aurelito-toggle" onclick="toggleAurelito()">
+            <span id="toggle-icon">💬</span>
+        </button>
+    </div>
+
     <!-- Navegação -->
     <nav class="navbar">
         <div class="nav-container">
@@ -302,7 +315,6 @@
                 <div class="footer-section">
                     <h4>NASA Space Apps 2025</h4>
                     <p>Desafio: Stellar Stories</p>
-                    <p>🚀 Feito com ❤️ para educação</p>
                 </div>
             </div>
             <div class="footer-bottom">
