@@ -37,9 +37,9 @@
             </div>
             <ul class="nav-links">
                 <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="#space-weather"><i class="fa-solid fa-cloud-sun"></i> Clima Espacial</a></li>
                 <li><a href="#stories"><i class="fa-solid fa-book"></i> Histórias</a></li>
                 <li><a href="#about"><i class="fa-solid fa-circle-info"></i> Sobre</a></li>
-                <li><a href="#space-weather"><i class="fa-solid fa-cloud-sun"></i> Clima Espacial</a></li>
             </ul>
         </div>
     </nav>
@@ -47,6 +47,8 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
+            <!-- Representação do Sol e sua radiação -->
+            <div class="solar-flare"></div>
             <h1 class="hero-title">
                 <span class="gradient-text">Cosmic Tales</span>
             </h1>
@@ -64,35 +66,99 @@
                     <i class="fa-solid fa-satellite-dish"></i> Ver Clima Espacial
                 </button>
             </div>
+            
+            <!-- Estatísticas Compactas -->
+            <div class="stats-compact">
+                <div class="stat-item">
+                    <div class="stat-icon-small">☄️</div>
+                    <div class="stat-info">
+                        <div class="stat-number-small" id="sun-distance" data-target="149597870">0</div>
+                        <div class="stat-label-small">Milhões de km até o Sol</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon-small">⚡</div>
+                    <div class="stat-info">
+                        <div class="stat-number-small" data-target="499">0</div>
+                        <div class="stat-label-small">Segundos (ou 8 minutos) para luz chegar</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon-small">🌍</div>
+                    <div class="stat-info">
+                        <div class="stat-number-small" id="world-population" data-target="8120293392">0</div>
+                        <div class="stat-label-small">Pessoas no mundo</div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
-
-    <!-- Seção de Estatísticas -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">☄️</div>
-                    <div class="stat-number" data-target="150">0</div>
-                    <div class="stat-label">Milhões de km até o Sol</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">⚡</div>
-                    <div class="stat-number" data-target="8">0</div>
-                    <div class="stat-label">Minutos para luz solar chegar</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">🌍</div>
-                    <div class="stat-number" data-target="7">0</div>
-                    <div class="stat-label">Bilhões de pessoas impactadas</div>
-                </div>
+        
+        <!-- Planeta Terra animado com Lua -->
+        <div class="earth-container">
+            <div class="earth">
+                <div class="atmosphere"></div>
+                <div class="continent africa"></div>
+                <div class="continent europe"></div>
+                <div class="continent asia"></div>
+                <div class="continent australia"></div>
+                <div class="moon"></div>
             </div>
         </div>
     </section>
 
-    <!-- Seção de Clima Espacial Atual -->
-    <section id="space-weather" class="weather-section">
+    <!-- Seção de Clima Espacial -->
+    <section id="space-weather" class="about-section">
         <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">O que é Clima Espacial?</h2>
+                    <p>
+                        O clima espacial refere-se às condições variáveis no espaço entre o Sol e a Terra, 
+                        incluindo fenômenos como:
+                    </p>
+                    <ul class="features-list">
+                        <li>
+                            <span class="feature-icon">☄️</span>
+                            <div>
+                                <strong>Erupções Solares</strong>
+                                <p>Explosões intensas de radiação do Sol</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">🌊</span>
+                            <div>
+                                <strong>Ejeções de Massa Coronal (CME)</strong>
+                                <p>Grandes nuvens de plasma ejetadas do Sol</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">💨</span>
+                            <div>
+                                <strong>Vento Solar</strong>
+                                <p>Fluxo constante de partículas solares</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">⚡</span>
+                            <div>
+                                <strong>Tempestades Geomagnéticas</strong>
+                                <p>Distúrbios no campo magnético terrestre</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="about-visual">
+                    <div class="sun-earth-diagram">
+                        <div class="diagram-sun">☀️</div>
+                        <div class="solar-wind-line"></div>
+                        <div class="diagram-earth">🌍</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dados em Tempo Real -->
+        <div class="container" style="margin-top: 4rem;">
             <h2 class="section-title">Clima Espacial Agora</h2>
             <p class="section-subtitle">Dados em tempo real da NASA e NOAA</p>
             
@@ -238,77 +304,31 @@
         </div>
     </section>
 
-    <!-- Seção Sobre -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 class="section-title">O que é Clima Espacial?</h2>
-                    <p>
-                        O clima espacial refere-se às condições variáveis no espaço entre o Sol e a Terra, 
-                        incluindo fenômenos como:
-                    </p>
-                    <ul class="features-list">
-                        <li>
-                            <span class="feature-icon">☄️</span>
-                            <div>
-                                <strong>Erupções Solares</strong>
-                                <p>Explosões intensas de radiação do Sol</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="feature-icon">🌊</span>
-                            <div>
-                                <strong>Ejeções de Massa Coronal (CME)</strong>
-                                <p>Grandes nuvens de plasma ejetadas do Sol</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="feature-icon">💨</span>
-                            <div>
-                                <strong>Vento Solar</strong>
-                                <p>Fluxo constante de partículas solares</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="feature-icon">⚡</span>
-                            <div>
-                                <strong>Tempestades Geomagnéticas</strong>
-                                <p>Distúrbios no campo magnético terrestre</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="about-visual">
-                    <div class="sun-earth-diagram">
-                        <div class="diagram-sun">☀️</div>
-                        <div class="solar-wind-line"></div>
-                        <div class="diagram-earth">🌍</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
-    <footer class="footer">
+    <footer id="about" class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Cosmic Tales</h3>
-                    <p>Educando sobre clima espacial através de histórias interativas</p>
+                    <h3>Sobre o Projeto</h3>
+                    <p>
+                        Cosmic Tales é um projeto educacional interativo criado para o NASA Space Apps Challenge 2025.
+                        Nossa missão é tornar o clima espacial acessível e compreensível para pessoas de todas as idades,
+                        utilizando histórias interativas e dados em tempo real da NASA e NOAA.
+                    </p>
+                    <br />
+                    <p>Desafio: <a href="https://www.spaceappschallenge.org/2025/challenges/stellar-stories-space-weather-through-the-eyes-of-earthlings" target="_blank">Stellar Stories: Space Weather Through the Eyes of Earthlings</a></p>
                 </div>
                 <div class="footer-section">
                     <h4>Links Úteis</h4>
                     <ul>
+                        <li><a href="https://github.com/Vinii225/StellarStories_NasaSpaceApps/tree/main" target="_blank"><i class="fa-brands fa-github"></i> GitHub do Projeto</a></li>
                         <li><a href="https://www.nasa.gov/mission_pages/sunearth/spaceweather/" target="_blank">NASA Space Weather</a></li>
                         <li><a href="https://www.swpc.noaa.gov/" target="_blank">NOAA SWPC</a></li>
                         <li><a href="https://sdo.gsfc.nasa.gov/" target="_blank">Solar Dynamics Observatory</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>NASA Space Apps 2025</h4>
-                    <p>Desafio: Cosmic Tales</p>
+                    <img src="./Images/EventLogo/44.png" alt="NASA Space Apps Challenge" class="space-apps-logo-large">
                 </div>
             </div>
             <div class="footer-bottom">
