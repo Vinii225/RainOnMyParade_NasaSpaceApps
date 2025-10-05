@@ -404,11 +404,31 @@ function scrollToWeather() {
 // STORY NAVIGATION
 // ==========================================
 function openStory(storyType) {
+
+     function openStory(storyType) {
+    
+    // VERIFIQUE SE O VALOR É EXATAMENTE O QUE VEM DO HTML!
+    // Se o HTML passa 'tempestade-solar.html', o IF deve usar 'tempestade-solar.html'
+    if (storyType === 'tempestade-solar.html') { 
+        // CAMINHO CORRETO (sem '../')
+        window.location.href = './pages/TempestadeSolar/tempestade-solar.html'; 
+        return; // <--- O 'return' é essencial para parar a função aqui!
+    }
+    
+    // ... restante dos seus blocos 'if'
+    
+    // O CÓDIGO SÓ CHEGA A PARTIR DAQUI SE NENHUM 'if' COM 'return' FOI ENCONTRADO
+    const stories = { /* ... */ }; 
+    const story = stories[storyType]; 
     // Redirecionar para página de redes elétricas
     if (storyType === 'power') {
-        window.location.href = './pages/redes-eletricas/redes-eletricas.html';
+        // CAMINHO CORRIGIDO: comece em 'pages'
+        window.location.href = './pages/RedesEletricas/redes-eletricas.html';
         return;
     }
+    
+    // ... restante do código
+}
     
     const stories = {
         flare: {
