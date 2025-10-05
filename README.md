@@ -7,8 +7,6 @@
 **[English](#english) | [Português](#português)**
 
 [![NASA Space Apps](https://img.shields.io/badge/NASA-Space%20Apps%202024-blue)](https://www.spaceappschallenge.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Live Demo](https://img.shields.io/badge/Demo-Live-success)](https://vinii225.github.io/StellarStories_NasaSpaceApps/)
 
 </div>
 
