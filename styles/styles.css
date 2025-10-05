@@ -249,7 +249,7 @@ html {
 .sun-icon {
     font-size: 2rem;
     animation: rotate 20s linear infinite;
-    line-height: 1;
+    line-height: 0;
     vertical-align: middle;
     transform: translateY(-2px);
 }
