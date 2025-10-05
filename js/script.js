@@ -400,6 +400,10 @@ function scrollToWeather() {
     document.getElementById('space-weather').scrollIntoView({ behavior: 'smooth' });
 }
 
+function scrollToGame() {
+    document.getElementById('game').scrollIntoView({ behavior: 'smooth' });
+}
+
 // ==========================================
 // STORY NAVIGATION
 // ==========================================
