@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O GPS e a Colheita de Seu José - Cosmic Tales</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Estilos compartilhados -->
+    <link rel="stylesheet" href="../../styles/story-common.css">
+    
+    <!-- Estilos específicos desta história -->
+    <style>
+        /* Hologram GPS - específico desta história */
+        .hologram-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            margin: 50px auto;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .hologram-container.appear {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hologram {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #6366f1 100%);
+            position: relative;
+            box-shadow: 
+                0 0 60px rgba(6, 182, 212, 0.7),
+                inset 0 0 60px rgba(99, 102, 241, 0.4);
+            animation: hologramPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes hologramPulse {
+            0%, 100% {
+                box-shadow: 
+                    0 0 60px rgba(6, 182, 212, 0.7),
+                    inset 0 0 60px rgba(99, 102, 241, 0.4);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 
+                    0 0 100px rgba(6, 182, 212, 0.9),
+                    inset 0 0 100px rgba(99, 102, 241, 0.6);
+                transform: scale(1.05);
+            }
+        }
+
+        .hologram::before {
+            content: '🛰️';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5rem;
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .sunspots {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: spotMove 10s ease-in-out infinite;
+        }
+
+        .sunspot-1 { 
+            width: 15px; 
+            height: 15px; 
+            top: 20%; 
+            left: 25%; 
+            animation-delay: 0s; 
+        }
+        .sunspot-2 { 
+            width: 20px; 
+            height: 20px; 
+            top: 70%; 
+            right: 20%; 
+            animation-delay: 3s; 
+        }
+        .sunspot-3 { 
+            width: 12px; 
+            height: 12px; 
+            bottom: 25%; 
+            left: 50%; 
+            animation-delay: 6s; 
+        }
+
+        @keyframes spotMove {
+            0%, 100% { 
+                opacity: 0.5; 
+                transform: scale(1); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.5); 
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Canvas de estrelas -->
+    <canvas id="stars-canvas"></canvas>
+    
+    <!-- Barra de progresso -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+    
+    <!-- Navegação -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="sun-icon">☀️</span>
+                <span class="logo-text">Cosmic Tales</span>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../../index.html" onclick="closeMobileMenu()"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="../../index.html#about" onclick="closeMobileMenu()"><i class="fa-solid fa-circle-info"></i> Sobre</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+                        <i class="fa-solid fa-sun"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 1: O GPS na Mesa -->
+    <!-- ======================================== -->
+    <section class="chapter chapter-1" id="chapter-1">
+        <div class="chapter-content">
+            <h1 class="chapter-title">🌾 O GPS na Mesa: A Colheita de Seu José</h1>
+            <p class="chapter-subtitle">Como o Clima Espacial Afeta a Agricultura</p>
+            
+            <p class="story-text">
+                No vasto e cintilante Sistema Solar, o <strong>Senhor Sol</strong> está sempre ativo, 
+                soprando seu Vento Solar e soltando espirros como o Aurelito! ✨
+            </p>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Eu sou um espirro de luz! E meu destino afeta o pãozinho na mesa, mas como? 🤔
+                </p>
+            </div>
+            
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Luna_A_Voz_Do_Cosmos.png" alt="Luna">
+                    </div>
+                    <span class="character-name">Luna (Voz do Cosmos)</span>
+                </div>
+                <p class="dialogue-text">
+                    Na Terra, agricultores como <strong>Seu José</strong>, nosso idoso e dedicado 
+                    fazendeiro, usam um ajudante mágico: o <strong>GPS</strong>! 🛰️
+                </p>
+            </div>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">✉️ Carteiros Espaciais</h4>
+                <p class="info-box-text">
+                    O GPS usa 'carteiros espaciais' (Satélites de GPS) que enviam mensagens rápidas 
+                    sobre a localização exata!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 2: O Mega Espirro Confuso -->
+    <!-- ======================================== -->
+    <section class="chapter chapter-2" id="chapter-2">
+        <div class="chapter-content">
+            <h1 class="chapter-title">💥 O Mega Espirro Confuso</h1>
+            <p class="chapter-subtitle">Uma onda forte de energia!</p>
+            
+            <p class="story-text">
+                Um dia, o Senhor Sol estava MUITO agitado e soltou <strong>vários Aurelitos</strong>! 
+                Uma onda forte de energia! ☄️
+            </p>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Nossa, que onda gigante! Ela era tão forte que, mesmo com o Escudo Magnético, 
+                    ela fez algo de ruim! 😰
+                </p>
+            </div>
+            
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Luna_A_Voz_Do_Cosmos.png" alt="Luna">
+                    </div>
+                    <span class="character-name">Luna</span>
+                </div>
+                <p class="dialogue-text">
+                    O escudo protegeu, mas a onda mexeu com a <strong>atmosfera lá no alto</strong>! 
+                    Pense no ar lá em cima como uma peneira que balançou! 🌪️
+                </p>
+            </div>
+            
+            <!-- Holograma GPS -->
+            <div class="hologram-container">
+                <div class="hologram">
+                    <div class="sunspots sunspot-1"></div>
+                    <div class="sunspots sunspot-2"></div>
+                    <div class="sunspots sunspot-3"></div>
+                </div>
+            </div>
+            
+            <p class="story-text">
+                O ar treme e balança, e as mensagens dos Satélites de GPS começam a ficar confusas! 🤯
+            </p>
+        </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 3: As Linhas Tortas do Trator -->
+    <!-- ======================================== -->
+    <section class="chapter chapter-3" id="chapter-3">
+        <div class="chapter-content">
+            <h1 class="chapter-title">📡 As Linhas Tortas do Trator</h1>
+            <p class="chapter-subtitle">Erros de localização</p>
+            
+            <p class="story-text">
+                O 'espirro' forte do Sol causa pequenos 'erros' nas mensagens de localização! ❌
+            </p>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Então, se a peneira treme, a mensagem do satélite chega com um pequeno erro 
+                    no campo! 📍
+                </p>
+            </div>
+            
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Luna_A_Voz_Do_Cosmos.png" alt="Luna">
+                    </div>
+                    <span class="character-name">Luna</span>
+                </div>
+                <p class="dialogue-text">
+                    Sim! É como se o GPS do <strong>trator de Seu José</strong> estivesse com sono! 
+                    As linhas de plantio que deviam ser retinhas ficaram um pouco tortas! 〰️
+                </p>
+            </div>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Isso é um problema! <strong>Seu José</strong> pode desperdiçar sementes ou 
+                    usar água no lugar errado! 💧
+                </p>
+            </div>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">😰 Trabalho Difícil</h4>
+                <p class="info-box-text">
+                    O trabalho do fazendeiro idoso fica mais difícil e a colheita, em risco!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 4: O Desperdício e o Alimento -->
+    <!-- ======================================== -->
+    <section class="chapter chapter-4" id="chapter-4">
+        <div class="chapter-content">
+            <h1 class="chapter-title">💰 O Desperdício e o Alimento</h1>
+            <p class="chapter-subtitle">Menos comida na mesa</p>
+            
+            <p class="story-text">
+                Erros de GPS levam a desperdício e menos comida na mesa! 😥
+            </p>
+            
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Luna_A_Voz_Do_Cosmos.png" alt="Luna">
+                    </div>
+                    <span class="character-name">Luna</span>
+                </div>
+                <p class="dialogue-text">
+                    Sem precisão, o fazendeiro idoso pode <strong>desperdiçar</strong> sementes, 
+                    fertilizantes e água, aumentando os custos e o trabalho. 💸
+                </p>
+            </div>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-left-png.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    E, o pior, pode <strong>não colher</strong> todos os alimentos, deixando parte 
+                    do nosso pãozinho para trás! O clima espacial afeta a todos nós! 🍞
+                </p>
+            </div>
+            
+            <p class="story-text">
+                Mas o problema não dura para sempre. O Senhor Sol se acalma e o ar volta ao normal. 🧘
+            </p>
+            
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Luna_A_Voz_Do_Cosmos.png" alt="Luna">
+                    </div>
+                    <span class="character-name">Luna</span>
+                </div>
+                <p class="dialogue-text">
+                    O GPS volta a ser <strong>claro e preciso</strong>. Mas a chave é 
+                    <strong>observar</strong> o Senhor Sol para que Seu José possa se preparar! ✅
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 5: A Força da Ciência -->
+    <!-- ======================================== -->
+    <section class="chapter chapter-5" id="chapter-5">
+        <div class="chapter-content">
+            <h1 class="chapter-title">🧠 A Força da Ciência</h1>
+            <p class="chapter-subtitle">Prevenir é o segredo!</p>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">✅ MISSÃO CUMPRIDA</h4>
+                <p class="info-box-text">
+                    Prevenir é o segredo para ajudar Seu José!
+                </p>
+            </div>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Os cientistas aprenderam a observar os meus espirros para <strong>prever</strong> 
+                    quando o GPS vai falhar nos campos! 🔭
+                </p>
+            </div>
+            
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Luna_A_Voz_Do_Cosmos.png" alt="Luna">
+                    </div>
+                    <span class="character-name">Luna</span>
+                </div>
+                <p class="dialogue-text">
+                    Com essa previsão, agricultores como <strong>Seu José</strong> podem se preparar 
+                    e garantir que os campos continuem produzindo para todos! 
+                    É a <strong>Força da Ciência</strong>! 💡
+                </p>
+            </div>
+            
+            <p class="story-text">
+                O clima espacial afeta até mesmo o pãozinho na nossa mesa. Agora, vamos ver se você 
+                aprendeu! <strong>Quiz Cósmico</strong> à frente! 🧠
+            </p>
+        </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- SEÇÃO DO QUIZ -->
+    <!-- ======================================== -->
+    <section class="quiz-section" id="quiz">
+        <div class="quiz-container">
+            <h1 class="quiz-title">🧠 Quiz Cósmico: GPS e Colheita</h1>
+            <p class="quiz-subtitle">Vamos ver o que você aprendeu sobre o GPS e a agricultura!</p>
+            
+            <!-- Questão 1 -->
+            <div class="quiz-question-wrapper">
+                <p class="quiz-question">
+                    1. Para que Seu José, o agricultor, usava o GPS em seus campos, segundo a história?
+                </p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">
+                        A) Para falar com Aurelito no espaço
+                    </button>
+                    <button class="quiz-option" data-correct="true">
+                        B) Para plantar sementes e colher alimentos com precisão
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        C) Para ouvir música no trator
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        D) Para desviar o Vento Solar
+                    </button>
+                </div>
+                <div class="quiz-feedback"></div>
+                <div class="quiz-explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> <strong>O GPS</strong> é essencial na agricultura moderna para garantir o plantio e a colheita precisos!
+                </div>
+            </div>
+            
+            <!-- Questão 2 -->
+            <div class="quiz-question-wrapper">
+                <p class="quiz-question">
+                    2. As mensagens dos satélites de GPS ficam confusas por causa da perturbação em qual parte da Terra?
+                </p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">
+                        A) No Escudo Magnético (Magnetosfera)
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        B) Na rede elétrica das cidades
+                    </button>
+                    <button class="quiz-option" data-correct="true">
+                        C) Na parte de cima da nossa atmosfera (o ar lá no alto)
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        D) No metal do trator
+                    </button>
+                </div>
+                <div class="quiz-feedback"></div>
+                <div class="quiz-explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> A energia do Sol perturba o ar no alto <strong>da atmosfera</strong>, fazendo com que as mensagens dos satélites cheguem com erros.
+                </div>
+            </div>
+            
+            <!-- Questão 3 -->
+            <div class="quiz-question-wrapper">
+                <p class="quiz-question">
+                    3. Qual é o principal risco para Seu José quando o GPS fica confuso por causa da tempestade solar?
+                </p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">
+                        A) O trator para de funcionar e não liga mais
+                    </button>
+                    <button class="quiz-option" data-correct="true">
+                        B) Desperdício de sementes, água e fertilizantes, ou não colheita total
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        C) O Senhor Sol fica com raiva e manda mais Aurelitos
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        D) As mensagens dos satélites viram Auroras Boreais
+                    </button>
+                </div>
+                <div class="quiz-feedback"></div>
+                <div class="quiz-explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> O erro de localização leva ao uso incorreto de recursos, causando <strong>desperdício</strong> e risco de <strong>perda</strong> de alimentos.
+                </div>
+            </div>
+            
+            <!-- Questão 4 -->
+            <div class="quiz-question-wrapper">
+                <p class="quiz-question">
+                    4. A principal solução para que Seu José possa se preparar é:
+                </p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">
+                        A) Mudar Seu José para o Polo Norte
+                    </button>
+                    <button class="quiz-option" data-correct="true">
+                        B) Observar o Sol para prever as tempestades e se preparar
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        C) Desligar todos os tratores do mundo
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        D) Pintar todos os satélites de GPS de verde
+                    </button>
+                </div>
+                <div class="quiz-feedback"></div>
+                <div class="quiz-explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> <strong>A previsão</strong> é a chave! Cientistas observam o Sol para dar alertas aos fazendeiros e engenheiros, que assim podem se preparar.
+                </div>
+            </div>
+            
+            <!-- Resultado -->
+            <div id="quiz-result"></div>
+        </div>
+    </section>
+
+    <!-- Navegação entre capítulos -->
+    <div class="chapter-nav">
+        <div class="chapter-dots">
+            <div class="chapter-dot active" data-chapter="1" onclick="goToChapter(1)"></div>
+            <div class="chapter-dot" data-chapter="2" onclick="goToChapter(2)"></div>
+            <div class="chapter-dot" data-chapter="3" onclick="goToChapter(3)"></div>
+            <div class="chapter-dot" data-chapter="4" onclick="goToChapter(4)"></div>
+            <div class="chapter-dot" data-chapter="5" onclick="goToChapter(5)"></div>
+        </div>
+        <button class="nav-button nav-button-quiz" onclick="goToQuiz()">
+            <i class="fas fa-question-circle"></i> Quiz
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer id="about" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sobre o Projeto</h3>
+                    <p>
+                        Cosmic Tales é um projeto educacional interativo criado para o NASA Space Apps Challenge 2025.
+                        Nossa missão é tornar o clima espacial acessível e compreensível para pessoas de todas as idades,
+                        utilizando histórias interativas e dados em tempo real da NASA e NOAA.
+                    </p>
+                    <br />
+                    <p>Desafio: <a href="https://www.spaceappschallenge.org/2025/challenges/stellar-stories-space-weather-through-the-eyes-of-earthlings" target="_blank">Stellar Stories: Space Weather Through the Eyes of Earthlings</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="https://github.com/Vinii225/StellarStories_NasaSpaceApps/tree/main" target="_blank"><i class="fa-brands fa-github"></i> GitHub do Projeto</a></li>
+                        <li><a href="https://www.nasa.gov/mission_pages/sunearth/spaceweather/" target="_blank">NASA Space Weather</a></li>
+                        <li><a href="https://www.swpc.noaa.gov/" target="_blank">NOAA SWPC</a></li>
+                        <li><a href="https://sdo.gsfc.nasa.gov/" target="_blank">Solar Dynamics Observatory</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <img id="space-apps-logo" src="../../Images/EventLogo/44.png" alt="NASA Space Apps Challenge" class="space-apps-logo-large">
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Cosmic Tales - NASA Space Apps Challenge</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript compartilhado -->
+    <script src="../../js/story-common.js"></script>
+    
+    <!-- JavaScript específico desta página -->
+    <script>
+        // Smooth scroll para capítulos com animação
+        function goToChapter(chapterNum) {
+            const chapter = document.querySelector(`.chapter-${chapterNum}`);
+            if (chapter) {
+                chapter.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                updateActiveChapterDot(chapterNum - 1);
+            }
+        }
+        
+        function updateActiveChapterDot(index) {
+            const dots = document.querySelectorAll('.chapter-dot');
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+        
+        // Observer para atualizar dots automaticamente
+        const chapterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const chapterClass = Array.from(entry.target.classList).find(c => c.startsWith('chapter-'));
+                    if (chapterClass) {
+                        const chapterNum = parseInt(chapterClass.split('-')[1]);
+                        updateActiveChapterDot(chapterNum - 1);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        document.querySelectorAll('.chapter').forEach(chapter => {
+            chapterObserver.observe(chapter);
+        });
+        
+        // Esconder navegação ao rolar para baixo
+        let lastScrollTop = 0;
+        const chapterNav = document.querySelector('.chapter-nav');
+        
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 200) {
+                // Rolando para baixo
+                chapterNav.classList.add('hidden');
+            } else {
+                // Rolando para cima
+                chapterNav.classList.remove('hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+        
+        // Animar o holograma quando aparecer
+        const hologramObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        const hologramContainer = document.querySelector('.hologram-container');
+        if (hologramContainer) {
+            hologramObserver.observe(hologramContainer);
+        }
+    </script>
+</body>
+</html>

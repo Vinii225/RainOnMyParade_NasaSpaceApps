@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Dia em que o Sol Balançou a Luz do Mundo - Cosmic Tales</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Estilos compartilhados -->
+    <link rel="stylesheet" href="../../styles/story-common.css">
+    
+    <!-- Estilos específicos desta história (se necessário) -->
+    <style>
+        /* Apenas estilos únicos desta história */
+        
+        /* Hologram do Sol - específico desta história */
+        .hologram-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            margin: 50px auto;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .hologram-container.appear {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hologram {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--gradient-solar);
+            position: relative;
+            box-shadow: 
+                0 0 60px rgba(251, 191, 36, 0.7),
+                inset 0 0 60px rgba(239, 68, 68, 0.4);
+            animation: hologramPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes hologramPulse {
+            0%, 100% {
+                box-shadow: 
+                    0 0 60px rgba(251, 191, 36, 0.7),
+                    inset 0 0 60px rgba(239, 68, 68, 0.4);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 
+                    0 0 100px rgba(251, 191, 36, 0.9),
+                    inset 0 0 100px rgba(239, 68, 68, 0.6);
+                transform: scale(1.05);
+            }
+        }
+
+        .hologram::before {
+            content: '🌍';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5rem;
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .sunspots {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            animation: spotMove 10s ease-in-out infinite;
+        }
+
+        .sunspot-1 { 
+            width: 25px; 
+            height: 25px; 
+            top: 25%; 
+            left: 20%; 
+            animation-delay: 0s; 
+        }
+        .sunspot-2 { 
+            width: 18px; 
+            height: 18px; 
+            top: 65%; 
+            right: 25%; 
+            animation-delay: 3s; 
+        }
+        .sunspot-3 { 
+            width: 22px; 
+            height: 22px; 
+            bottom: 30%; 
+            left: 45%; 
+            animation-delay: 6s; 
+        }
+
+        @keyframes spotMove {
+            0%, 100% { 
+                opacity: 0.7; 
+                transform: scale(1); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.3); 
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Canvas de estrelas -->
+    <canvas id="stars-canvas"></canvas>
+    
+    <!-- Barra de progresso -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+    
+    <!-- Navegação -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="sun-icon">☀️</span>
+                <span class="logo-text">Cosmic Tales</span>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../../index.html" onclick="closeMobileMenu()"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="../../index.html#about" onclick="closeMobileMenu()"><i class="fa-solid fa-circle-info"></i> Sobre</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+                        <i class="fa-solid fa-sun"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 1: O Alerta -->
+    <!-- ======================================== -->
+    <section class="chapter chapter-1" id="chapter-1">
+        <div class="chapter-content">
+            <h1 class="chapter-title">⚡ O Dia em que o Sol Balançou a Luz do Mundo</h1>
+            <p class="chapter-subtitle">Quando o clima espacial afeta nossa eletricidade</p>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">🚨 ALERTA DE FLUTUAÇÃO ELÉTRICA!</h4>
+                <p class="info-box-text">
+                    Status Atual: Instabilidade Elétrica!
+                </p>
+            </div>
+            
+            <!-- Diálogo Léo -->
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Léo">
+                    </div>
+                    <span class="character-name">Léo (8 anos)</span>
+                </div>
+                <p class="dialogue-text">
+                    Ah, não! Perdemos a fase final! A luz deu uma piscada forte e o placar 
+                    congelou! Que bug é esse? 🎮
+                </p>
+            </div>
+            
+            <!-- Diálogo Bia -->
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Luna_A_Voz_Do_Cosmos.png" alt="Bia">
+                    </div>
+                    <span class="character-name">Bia (9 anos)</span>
+                </div>
+                <p class="dialogue-text">
+                    Deve ser problema na fiação! Esse som de BZZZZT veio da tomada! ⚡
+                </p>
+            </div>
+            
+            <p class="story-text">
+                De repente, uma luz dourada e cheia de poeira estelar brilha na sala... ✨
+            </p>
+        </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 2: Aparição do Aurelito -->
+    <!-- ======================================== -->
+    <section class="chapter chapter-2" id="chapter-2">
+        <div class="chapter-content">
+            <h1 class="chapter-title">🌟 Aparição do Aurelito</h1>
+            <p class="chapter-subtitle">Guia Espacial - Especialidade: Clima Espacial</p>
+            
+            <!-- Diálogo do Aurelito -->
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Calma, exploradores! O culpado não está na tomada. O nosso chefão, 
+                    o Sol, está fazendo uma faxina no céu! 🌞
+                </p>
+            </div>
+            
+            <!-- Holograma do Sol -->
+            <div class="hologram-container">
+                <div class="hologram">
+                    <div class="sunspots sunspot-1"></div>
+                    <div class="sunspots sunspot-2"></div>
+                    <div class="sunspots sunspot-3"></div>
+                </div>
+            </div>
+            
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-right.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Precisamos entender o Clima Espacial! Vejam este holograma - nossa Terra 
+                    e o Sol rebelde cheio de manchas!
+                </p>
+            </div>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">⚡ TREINAMENTO CÓSMICO</h4>
+                <p class="info-box-text">
+                    A Energia Perigosa do Sol!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 3: A Erupção Solar -->
+    <!-- ======================================== -->
+    <section class="chapter chapter-3" id="chapter-3">
+        <div class="chapter-content">
+            <h1 class="chapter-title">🌋 A Erupção Solar: O Espirro do Sol</h1>
+            <p class="chapter-subtitle">Quando o Sol solta sua energia</p>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    O Sol é um motorzão, e às vezes ele tem um espirro muito forte, 
+                    que a NASA chama de Ejeção de Massa Coronal! 🌪️
+                </p>
+            </div>
+            
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-left-png.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    É uma bola de partículas superelétricas voando rapidinho pelo espaço 
+                    em direção à Terra! ⚡🎯
+                </p>
+            </div>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">🛡️ O ESCUDO DA TERRA</h4>
+                <p class="info-box-text">
+                    <strong>Campo Magnético:</strong> Nossa Terra tem um escudo invisível, 
+                    o Campo Magnético. Ele nos protege, mas essa bola elétrica do Sol 
+                    consegue fazê-lo balançar! 🌍💫
+                </p>
+            </div>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Quando o escudo balança, ele empurra a eletricidade, criando correntes 
+                    elétricas extras nas linhas de transmissão! ⚡📊
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 4: O Apagão de 1989 -->
+    <!-- ======================================== -->
+    <section class="chapter chapter-4" id="chapter-4">
+        <div class="chapter-content">
+            <h1 class="chapter-title">🎢 O Grande Apagão de Quebec</h1>
+            <p class="chapter-subtitle">Caso Real: 1989</p>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    A rede elétrica fica sobrecarregada, os equipamentos de proteção, 
+                    como os transformadores, disparam para não queimar! 🔌⚡
+                </p>
+            </div>
+            
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    É aí que a luz pisca ou, pior, apaga! Isso não é só teoria! 
+                    Em 1989, o Sol soltou um espirro tão forte... 💥
+                </p>
+            </div>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">⚠️ DIFICULDADE: EXTREMA</h4>
+                <p class="info-box-text">
+                    <strong>O Apagão de Quebec:</strong> No Canadá, na cidade de Quebec, 
+                    a eletricidade falhou completamente! Foi um Apagão que durou nove horas! 
+                    🔋🇨🇦
+                </p>
+            </div>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-right.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Isso prova que o Clima Espacial é real e tem superpoderes! 
+                    Tempestades solares muito fortes afetam as redes elétricas longas! ⚙️⚡
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 5: Os Vigias do Sol -->
+    <!-- ======================================== -->
+    <section class="chapter chapter-5" id="chapter-5">
+        <div class="chapter-content">
+            <h1 class="chapter-title">🛰️ Vigias do Sol: Segurança Máxima</h1>
+            <p class="chapter-subtitle">Como nos protegemos hoje</p>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">✅ MISSÃO CUMPRIDA</h4>
+                <p class="info-box-text">
+                    Compreensão do Fenômeno!
+                </p>
+            </div>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Mas a humanidade tem heróis muito espertos! Os cientistas, com a ajuda 
+                    de satélites, são nossos Vigias Solares! 🛰️👨‍🔬
+                </p>
+            </div>
+            
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-right.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Eles observam o Sol o dia todo para prever esses espirros! 
+                    É A Força da Ciência! 🔭🌞
+                </p>
+            </div>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-left-png.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    O Plano de Ataque: Com o alerta em mãos, os engenheiros podem tomar 
+                    medidas de proteção antes que a tempestade chegue! ⚙️🛡️
+                </p>
+            </div>
+            
+            <p class="story-text">
+                A luz volta a brilhar forte na sala! <strong>VITÓRIA CÓSMICA!</strong> ✨💡
+            </p>
+            
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Vocês viram? O Sol é poderoso, mas o conhecimento é mais ainda! 
+                    Agora podem jogar tranquilos! 🎮🎆
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- SEÇÃO DO QUIZ -->
+    <!-- ======================================== -->
+    <section class="quiz-section" id="quiz">
+        <div class="quiz-container">
+            <h1 class="quiz-title">🎯 Quiz: Teste Seus Conhecimentos!</h1>
+            <p class="quiz-subtitle">Vamos ver o que você aprendeu sobre as redes elétricas e o clima espacial!</p>
+            
+            <!-- Questão 1 -->
+            <div class="quiz-question-wrapper">
+                <p class="quiz-question">
+                    1. Qual o nome do fenômeno que Aurelito explicou ser o "espirro" do Sol?
+                </p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">
+                        A) Vento Solar Suave
+                    </button>
+                    <button class="quiz-option" data-correct="true">
+                        B) Ejeção de Massa Coronal
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        C) Apagão no Quebec
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        D) Pisca-Pisca Misterioso
+                    </button>
+                </div>
+                <div class="quiz-feedback"></div>
+                <div class="quiz-explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> <strong>A Ejeção de Massa Coronal</strong> é o "espirro" do Sol - uma explosão de partículas superelétricas que viajam pelo espaço em direção à Terra!
+                </div>
+            </div>
+            
+            <!-- Questão 2 -->
+            <div class="quiz-question-wrapper">
+                <p class="quiz-question">
+                    2. Qual a proteção natural da Terra que nos defende das partículas elétricas do Sol?
+                </p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">
+                        A) O Escudo de Ozônio
+                    </button>
+                    <button class="quiz-option" data-correct="true">
+                        B) O Campo Magnético
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        C) A Torre de Transmissão
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        D) A Fiação da Casa
+                    </button>
+                </div>
+                <div class="quiz-feedback"></div>
+                <div class="quiz-explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> <strong>O Campo Magnético</strong> da Terra é nosso escudo invisível que nos protege, mas pode balançar quando atingido por tempestades solares!
+                </div>
+            </div>
+            
+            <!-- Questão 3 -->
+            <div class="quiz-question-wrapper">
+                <p class="quiz-question">
+                    3. O que acontece nas linhas de energia elétrica quando o campo magnético da Terra é balançado?
+                </p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">
+                        A) O videogame ganha uma vida extra
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        B) O Sol envia um sinal de Wi-Fi mais rápido
+                    </button>
+                    <button class="quiz-option" data-correct="true">
+                        C) Cria-se uma corrente elétrica extra que sobrecarrega os equipamentos
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        D) A luz muda de cor para roxo
+                    </button>
+                </div>
+                <div class="quiz-feedback"></div>
+                <div class="quiz-explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> Quando o campo magnético balança, ele "empurra" a eletricidade, criando correntes elétricas extras que sobrecarregam transformadores e fazem a luz piscar ou apagar!
+                </div>
+            </div>
+            
+            <!-- Questão 4 -->
+            <div class="quiz-question-wrapper">
+                <p class="quiz-question">
+                    4. O que os cientistas da NASA fazem para proteger a rede elétrica das tempestades solares?
+                </p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">
+                        A) Eles enviam Aurelito para tampar o Sol
+                    </button>
+                    <button class="quiz-option" data-correct="true">
+                        B) Eles usam satélites para monitorar o Sol e dar alertas com antecedência
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        C) Eles desligam todas as luzes do mundo
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        D) Eles mandam um bilhete para o Sol pedindo para ele parar
+                    </button>
+                </div>
+                <div class="quiz-feedback"></div>
+                <div class="quiz-explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> Os cientistas são nossos "Vigias Solares"! Eles usam satélites para observar o Sol 24h e avisar os engenheiros para protegerem os equipamentos antes das tempestades chegarem!
+                </div>
+            </div>
+            
+            <!-- Resultado -->
+            <div id="quiz-result"></div>
+        </div>
+    </section>
+
+    <!-- Navegação entre capítulos -->
+    <div class="chapter-nav">
+        <div class="chapter-dots">
+            <div class="chapter-dot active" data-chapter="1" onclick="goToChapter(1)"></div>
+            <div class="chapter-dot" data-chapter="2" onclick="goToChapter(2)"></div>
+            <div class="chapter-dot" data-chapter="3" onclick="goToChapter(3)"></div>
+            <div class="chapter-dot" data-chapter="4" onclick="goToChapter(4)"></div>
+            <div class="chapter-dot" data-chapter="5" onclick="goToChapter(5)"></div>
+        </div>
+        <button class="nav-button nav-button-quiz" onclick="goToQuiz()">
+            <i class="fas fa-question-circle"></i> Quiz
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer id="about" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sobre o Projeto</h3>
+                    <p>
+                        Cosmic Tales é um projeto educacional interativo criado para o NASA Space Apps Challenge 2025.
+                        Nossa missão é tornar o clima espacial acessível e compreensível para pessoas de todas as idades,
+                        utilizando histórias interativas e dados em tempo real da NASA e NOAA.
+                    </p>
+                    <br />
+                    <p>Desafio: <a href="https://www.spaceappschallenge.org/2025/challenges/stellar-stories-space-weather-through-the-eyes-of-earthlings" target="_blank">Stellar Stories: Space Weather Through the Eyes of Earthlings</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="https://github.com/Vinii225/StellarStories_NasaSpaceApps/tree/main" target="_blank"><i class="fa-brands fa-github"></i> GitHub do Projeto</a></li>
+                        <li><a href="https://www.nasa.gov/mission_pages/sunearth/spaceweather/" target="_blank">NASA Space Weather</a></li>
+                        <li><a href="https://www.swpc.noaa.gov/" target="_blank">NOAA SWPC</a></li>
+                        <li><a href="https://sdo.gsfc.nasa.gov/" target="_blank">Solar Dynamics Observatory</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <img id="space-apps-logo" src="../../Images/EventLogo/44.png" alt="NASA Space Apps Challenge" class="space-apps-logo-large">
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Cosmic Tales - NASA Space Apps Challenge</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript compartilhado -->
+    <script src="../../js/story-common.js"></script>
+    
+    <!-- JavaScript específico desta página -->
+    <script>
+        // Smooth scroll para capítulos com animação
+        function goToChapter(chapterNum) {
+            const chapter = document.querySelector(`.chapter-${chapterNum}`);
+            if (chapter) {
+                chapter.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                updateActiveChapterDot(chapterNum - 1);
+            }
+        }
+        
+        function updateActiveChapterDot(index) {
+            const dots = document.querySelectorAll('.chapter-dot');
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+        
+        // Observer para atualizar dots automaticamente
+        const chapterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const chapterClass = Array.from(entry.target.classList).find(c => c.startsWith('chapter-'));
+                    if (chapterClass) {
+                        const chapterNum = parseInt(chapterClass.split('-')[1]);
+                        updateActiveChapterDot(chapterNum - 1);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        document.querySelectorAll('.chapter').forEach(chapter => {
+            chapterObserver.observe(chapter);
+        });
+        
+        // Esconder navegação ao rolar para baixo
+        let lastScrollTop = 0;
+        const chapterNav = document.querySelector('.chapter-nav');
+        
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 200) {
+                // Rolando para baixo
+                chapterNav.classList.add('hidden');
+            } else {
+                // Rolando para cima
+                chapterNav.classList.remove('hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+        
+        // Animar o holograma quando aparecer
+        const hologramObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        const hologramContainer = document.querySelector('.hologram-container');
+        if (hologramContainer) {
+            hologramObserver.observe(hologramContainer);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Jornada Cósmica de Aurelito - Cosmic Tales</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Estilos compartilhados -->
+    <link rel="stylesheet" href="../../styles/story-common.css">
+    
+    <!-- Estilos específicos desta história -->
+    <style>
+        /* Hologram do Sol - específico desta história */
+        .hologram-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            margin: 50px auto;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .hologram-container.appear {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hologram {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--gradient-solar);
+            position: relative;
+            box-shadow: 
+                0 0 60px rgba(251, 191, 36, 0.7),
+                inset 0 0 60px rgba(239, 68, 68, 0.4);
+            animation: hologramPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes hologramPulse {
+            0%, 100% {
+                box-shadow: 
+                    0 0 60px rgba(251, 191, 36, 0.7),
+                    inset 0 0 60px rgba(239, 68, 68, 0.4);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 
+                    0 0 100px rgba(251, 191, 36, 0.9),
+                    inset 0 0 100px rgba(239, 68, 68, 0.6);
+                transform: scale(1.05);
+            }
+        }
+
+        .hologram::before {
+            content: '🌍';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5rem;
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .sunspots {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            animation: spotMove 10s ease-in-out infinite;
+        }
+
+        .sunspot-1 { 
+            width: 25px; 
+            height: 25px; 
+            top: 25%; 
+            left: 20%; 
+            animation-delay: 0s; 
+        }
+        .sunspot-2 { 
+            width: 18px; 
+            height: 18px; 
+            top: 65%; 
+            right: 25%; 
+            animation-delay: 3s; 
+        }
+        .sunspot-3 { 
+            width: 22px; 
+            height: 22px; 
+            bottom: 30%; 
+            left: 45%; 
+            animation-delay: 6s; 
+        }
+
+        @keyframes spotMove {
+            0%, 100% { 
+                opacity: 0.7; 
+                transform: scale(1); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.3); 
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Canvas de estrelas -->
+    <canvas id="stars-canvas"></canvas>
+    
+    <!-- Barra de progresso -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+    
+    <!-- Navegação -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="sun-icon">☀️</span>
+                <span class="logo-text">Cosmic Tales</span>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../../index.html" onclick="closeMobileMenu()"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="../../index.html#about" onclick="closeMobileMenu()"><i class="fa-solid fa-circle-info"></i> Sobre</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+                        <i class="fa-solid fa-sun"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 1: O Grande Espirro Solar -->
+    <!-- ======================================== -->
+    <section class="chapter chapter-1" id="chapter-1">
+        <div class="chapter-content">
+            <h1 class="chapter-title">💥 O Grande Espirro Solar</h1>
+            <p class="chapter-subtitle">O Nascimento de Aurelito</p>
+            
+            <p class="story-text">
+                O Senhor Sol estava muito animado e soltou um "grande espirro" de luz! ✨
+            </p>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Puf! Eu nasci! Eu sou uma nuvem de partículas de energia super carregadas! 
+                    Que viagem! 🚀
+                </p>
+            </div>
+            
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol">
+                    </div>
+                    <span class="character-name">Senhor Sol</span>
+                </div>
+                <p class="dialogue-text">
+                    Seu destino é épico, Aurelito! O Planeta Azul, a Terra, a 
+                    <strong>150 milhões de quilômetros</strong> de distância! 🌎
+                </p>
+            </div>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">🎯 Missão</h4>
+                <p class="info-box-text">
+                    Conhecer o lindo Planeta Azul!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 2: A Longa Viagem no Vento Solar -->
+    <!-- ======================================== -->
+    <section class="chapter chapter-2" id="chapter-2">
+        <div class="chapter-content">
+            <h1 class="chapter-title">💨 A Longa Viagem no Vento Solar</h1>
+            <p class="chapter-subtitle">150 milhões de quilômetros!</p>
+            
+            <p class="story-text">
+                Aurelito viaja mais rápido que qualquer foguete! 🔭
+            </p>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    O espaço é escuro, mas estou voando muito rápido! O que me empurra? 🤔
+                </p>
+            </div>
+            
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol">
+                    </div>
+                    <span class="character-name">Senhor Sol</span>
+                </div>
+                <p class="dialogue-text">
+                    É o <strong>Vento Solar</strong>, Aurelito! Aquele sopro constante do Sol 
+                    que te leva cada vez mais rápido em direção à Terra! 🌬️
+                </p>
+            </div>
+            
+            <!-- Holograma do Sol -->
+            <div class="hologram-container">
+                <div class="hologram">
+                    <div class="sunspots sunspot-1"></div>
+                    <div class="sunspots sunspot-2"></div>
+                    <div class="sunspots sunspot-3"></div>
+                </div>
+            </div>
+            
+            <p class="story-text">
+                O planeta Terra surge no horizonte como uma joia preciosa. 💎
+            </p>
+        </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 3: O Encontro com o Escudo Mágico -->
+    <!-- ======================================== -->
+    <section class="chapter chapter-3" id="chapter-3">
+        <div class="chapter-content">
+            <h1 class="chapter-title">🛡️ O Encontro com o Escudo Mágico</h1>
+            <p class="chapter-subtitle">A Terra tem uma defesa especial!</p>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">🚨 Defesa Especial</h4>
+                <p class="info-box-text">
+                    A Terra tem uma defesa especial contra partículas carregadas!
+                </p>
+            </div>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Ei! Uma força invisível está me desviando! Estou sendo puxado para os lados! 
+                    Onde você vai?! 😵‍💫
+                </p>
+            </div>
+            
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol">
+                    </div>
+                    <span class="character-name">Senhor Sol</span>
+                </div>
+                <p class="dialogue-text">
+                    Essa é a proteção da Terra, Aurelito! O <strong>Escudo Magnético</strong>! 
+                    Ele desvia a maioria das partículas de alta energia como você! ✋
+                </p>
+            </div>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Eu não vou desistir! Minhas bolinhas de energia vão dar um 'oi' para a Terra! 💪
+                </p>
+            </div>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">🤫 Segredo</h4>
+                <p class="info-box-text">
+                    Existe uma "porta" de entrada lá no topo do planeta!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 4: A Surpresa no Polo - Aurora Boreal -->
+    <!-- ======================================== -->
+    <section class="chapter chapter-4" id="chapter-4">
+        <div class="chapter-content">
+            <h1 class="chapter-title">🌈 A Surpresa no Polo: Aurora Boreal</h1>
+            <p class="chapter-subtitle">O segredo do Escudo Magnético</p>
+            
+            <p class="story-text">
+                Aurelito descobre o segredo do Escudo Magnético... Os Polos! 🌍
+            </p>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-left-png.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Plim! Consegui! Algumas das minhas bolinhas de energia entraram pela porta 
+                    no Polo Norte! 🥳
+                </p>
+            </div>
+            
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol">
+                    </div>
+                    <span class="character-name">Senhor Sol</span>
+                </div>
+                <p class="dialogue-text">
+                    Quando suas bolinhas de energia batem no ar da Terra, o ar fica tão animado 
+                    que começa a BRILHAR! 💚💖💙
+                </p>
+            </div>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Que lindo! Deixei um presente maravilhoso de luz e cor para o planeta! 🎨
+                </p>
+            </div>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">🎆 Espetáculo de Luzes</h4>
+                <p class="info-box-text">
+                    O espetáculo de luzes é chamado de <strong>Aurora Boreal</strong>!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 5: O Presente Inesquecível -->
+    <!-- ======================================== -->
+    <section class="chapter chapter-5" id="chapter-5">
+        <div class="chapter-content">
+            <h1 class="chapter-title">🎓 O Presente Inesquecível</h1>
+            <p class="chapter-subtitle">Missão Cumprida!</p>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">✅ MISSÃO CUMPRIDA</h4>
+                <p class="info-box-text">
+                    Aurora Boreal Criada!
+                </p>
+            </div>
+            
+            <div class="dialogue left">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
+                </div>
+                <p class="dialogue-text">
+                    Então a Terra me desviou para se proteger, mas me deu um cantinho para 
+                    criar um show de luzes! 🤩
+                </p>
+            </div>
+            
+            <div class="dialogue right">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Senhor_Sol.png" alt="Senhor Sol">
+                    </div>
+                    <span class="character-name">Senhor Sol</span>
+                </div>
+                <p class="dialogue-text">
+                    Exatamente! O super <strong>Escudo Magnético</strong> nos protege e transforma 
+                    a sua visita energética em um espetáculo inesquecível para todos. 
+                    Fim da jornada! 👏
+                </p>
+            </div>
+            
+            <p class="story-text">
+                Agora, descubra se você dominou a jornada de Aurelito! <strong>Quiz Cósmico</strong> 
+                à frente! 🧠
+            </p>
+        </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- SEÇÃO DO QUIZ -->
+    <!-- ======================================== -->
+    <section class="quiz-section" id="quiz">
+        <div class="quiz-container">
+            <h1 class="quiz-title">🧠 Quiz Cósmico: A Jornada de Aurelito</h1>
+            <p class="quiz-subtitle">Vamos ver o que você aprendeu sobre a aventura de Aurelito!</p>
+            
+            <!-- Questão 1 -->
+            <div class="quiz-question-wrapper">
+                <p class="quiz-question">
+                    1. O que Aurelito representava na história, ao nascer do "grande espirro" do Senhor Sol?
+                </p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">
+                        A) Um meteorito de gelo
+                    </button>
+                    <button class="quiz-option" data-correct="true">
+                        B) Uma erupção solar (nuvem de partículas de energia)
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        C) O Vento Solar em si
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        D) Um novo planeta em miniatura
+                    </button>
+                </div>
+                <div class="quiz-feedback"></div>
+                <div class="quiz-explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> Aurelito é a representação de <strong>uma erupção solar</strong> (ou Ejeção de Massa Coronal), feita de partículas super carregadas.
+                </div>
+            </div>
+            
+            <!-- Questão 2 -->
+            <div class="quiz-question-wrapper">
+                <p class="quiz-question">
+                    2. O que empurrava Aurelito em sua longa viagem de 150 milhões de quilômetros até a Terra?
+                </p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">
+                        A) A atração gravitacional da Terra
+                    </button>
+                    <button class="quiz-option" data-correct="true">
+                        B) O Vento Solar
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        C) As turbinas de um foguete espacial
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        D) Asteroides
+                    </button>
+                </div>
+                <div class="quiz-feedback"></div>
+                <div class="quiz-explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> <strong>O Vento Solar</strong> é o fluxo constante de partículas do Sol que empurra as erupções solares pelo espaço.
+                </div>
+            </div>
+            
+            <!-- Questão 3 -->
+            <div class="quiz-question-wrapper">
+                <p class="quiz-question">
+                    3. Qual a defesa invisível da Terra que agiu como uma "mão gigante" para desviar a maioria das partículas de Aurelito?
+                </p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">
+                        A) A atmosfera (ar)
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        B) A camada de Ozônio
+                    </button>
+                    <button class="quiz-option" data-correct="true">
+                        C) O Escudo Magnético (Campo Magnético)
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        D) A gravidade
+                    </button>
+                </div>
+                <div class="quiz-feedback"></div>
+                <div class="quiz-explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> <strong>O Escudo Magnético</strong> (ou Magnetosfera) desvia a maior parte das partículas carregadas, protegendo o planeta.
+                </div>
+            </div>
+            
+            <!-- Questão 4 -->
+            <div class="quiz-question-wrapper">
+                <p class="quiz-question">
+                    4. Qual é o nome do espetáculo de luzes criado quando as partículas de Aurelito conseguiram entrar pelas "portas" no Polo Norte?
+                </p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="true">
+                        A) Aurora Boreal
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        B) Eclipse Solar
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        C) Chuva de Meteoros
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        D) Refração de Luz
+                    </button>
+                </div>
+                <div class="quiz-feedback"></div>
+                <div class="quiz-explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> O show de luzes coloridas é conhecido como <strong>Aurora Boreal</strong> (ou Aurora Austral no Polo Sul).
+                </div>
+            </div>
+            
+            <!-- Resultado -->
+            <div id="quiz-result"></div>
+        </div>
+    </section>
+
+    <!-- Navegação entre capítulos -->
+    <div class="chapter-nav">
+        <div class="chapter-dots">
+            <div class="chapter-dot active" data-chapter="1" onclick="goToChapter(1)"></div>
+            <div class="chapter-dot" data-chapter="2" onclick="goToChapter(2)"></div>
+            <div class="chapter-dot" data-chapter="3" onclick="goToChapter(3)"></div>
+            <div class="chapter-dot" data-chapter="4" onclick="goToChapter(4)"></div>
+            <div class="chapter-dot" data-chapter="5" onclick="goToChapter(5)"></div>
+        </div>
+        <button class="nav-button nav-button-quiz" onclick="goToQuiz()">
+            <i class="fas fa-question-circle"></i> Quiz
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer id="about" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sobre o Projeto</h3>
+                    <p>
+                        Cosmic Tales é um projeto educacional interativo criado para o NASA Space Apps Challenge 2025.
+                        Nossa missão é tornar o clima espacial acessível e compreensível para pessoas de todas as idades,
+                        utilizando histórias interativas e dados em tempo real da NASA e NOAA.
+                    </p>
+                    <br />
+                    <p>Desafio: <a href="https://www.spaceappschallenge.org/2025/challenges/stellar-stories-space-weather-through-the-eyes-of-earthlings" target="_blank">Stellar Stories: Space Weather Through the Eyes of Earthlings</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="https://github.com/Vinii225/StellarStories_NasaSpaceApps/tree/main" target="_blank"><i class="fa-brands fa-github"></i> GitHub do Projeto</a></li>
+                        <li><a href="https://www.nasa.gov/mission_pages/sunearth/spaceweather/" target="_blank">NASA Space Weather</a></li>
+                        <li><a href="https://www.swpc.noaa.gov/" target="_blank">NOAA SWPC</a></li>
+                        <li><a href="https://sdo.gsfc.nasa.gov/" target="_blank">Solar Dynamics Observatory</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <img id="space-apps-logo" src="../../Images/EventLogo/44.png" alt="NASA Space Apps Challenge" class="space-apps-logo-large">
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Cosmic Tales - NASA Space Apps Challenge</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript compartilhado -->
+    <script src="../../js/story-common.js"></script>
+    
+    <!-- JavaScript específico desta página -->
+    <script>
+        // Smooth scroll para capítulos com animação
+        function goToChapter(chapterNum) {
+            const chapter = document.querySelector(`.chapter-${chapterNum}`);
+            if (chapter) {
+                chapter.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                updateActiveChapterDot(chapterNum - 1);
+            }
+        }
+        
+        function updateActiveChapterDot(index) {
+            const dots = document.querySelectorAll('.chapter-dot');
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+        
+        // Observer para atualizar dots automaticamente
+        const chapterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const chapterClass = Array.from(entry.target.classList).find(c => c.startsWith('chapter-'));
+                    if (chapterClass) {
+                        const chapterNum = parseInt(chapterClass.split('-')[1]);
+                        updateActiveChapterDot(chapterNum - 1);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        document.querySelectorAll('.chapter').forEach(chapter => {
+            chapterObserver.observe(chapter);
+        });
+        
+        // Esconder navegação ao rolar para baixo
+        let lastScrollTop = 0;
+        const chapterNav = document.querySelector('.chapter-nav');
+        
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 200) {
+                // Rolando para baixo
+                chapterNav.classList.add('hidden');
+            } else {
+                // Rolando para cima
+                chapterNav.classList.remove('hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+        
+        // Animar o holograma quando aparecer
+        const hologramObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        const hologramContainer = document.querySelector('.hologram-container');
+        if (hologramContainer) {
+            hologramObserver.observe(hologramContainer);
+        }
+    </script>
+</body>
+</html>
