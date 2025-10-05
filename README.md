@@ -1,114 +1,301 @@
-# 🌟 Cosmic Tales: Space Weather Through the Eyes of Earthlings — NASA Space Apps 🚀
+# 🌟 Cosmic Tales: Space Weather Through the Eyes of Earthlings
 
-Bem-vindo ao repositório do **Cosmic Tales**, projeto desenvolvido para o [NASA Space Apps Challenge 2025](https://www.spaceappschallenge.org/2025/challenges/stellar-stories-space-weather-through-the-eyes-of-earthlings/).
-
-Este é um projeto **educacional interativo e ilustrado** que explica o que é o clima espacial (space weather) e como ele impacta diferentes pessoas na Terra - de astronautas a agricultores, de pilotos a operadores de redes elétricas.
+<div align="center">
 
 ![Cosmic Tales Banner](./Images/EventLogo/44.png)
 
-## 📖 Sobre o Projeto
+**[English](#english) | [Português](#português)**
 
-Embora o Sol esteja a 150 milhões de quilômetros da Terra, sua atividade pode impactar significativamente nossas vidas diárias. O "clima espacial" refere-se às variações que ocorrem no ambiente espacial entre o Sol e a Terra, incluindo:
+[![NASA Space Apps](https://img.shields.io/badge/NASA-Space%20Apps%202024-blue)](https://www.spaceappschallenge.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Demo-Live-success)](https://vinii225.github.io/StellarStories_NasaSpaceApps/)
 
-- **Erupções Solares (Solar Flares)** ☄️ - Explosões intensas de radiação do Sol
+</div>
+
+---
+
+<a name="english"></a>
+## 🇺🇸 English Version
+
+### 📖 About the Project
+
+**Cosmic Tales** is an **interactive educational platform** developed for the [NASA Space Apps Challenge 2024](https://www.spaceappschallenge.org/2024/challenges/stellar-stories-space-weather-through-the-eyes-of-earthlings/), designed to explain space weather and its impacts on Earth in an engaging and accessible way.
+
+Although the Sun is 150 million kilometers away from Earth, its activity significantly impacts our daily lives. "Space weather" refers to variations in the space environment between the Sun and Earth, including:
+
+- **Solar Flares** ☄️ - Intense bursts of radiation from the Sun
+- **Coronal Mass Ejections (CME)** 🌊 - Large plasma clouds ejected from the Sun  
+- **Solar Wind** 💨 - Constant stream of solar particles
+- **Geomagnetic Storms** ⚡ - Disturbances in Earth's magnetic field
+
+### ✨ Key Features
+
+#### 🏠 Home Page
+- Attractive introduction with animated visuals
+- Real-time solar system statistics
+- Smooth navigation to all sections
+- Responsive design for all devices
+
+#### ☁️ Space Weather Section
+- **Real-time data** from NASA DONKI and NOAA SWPC APIs
+- Current solar activity information
+- Latest detected solar flares
+- Geomagnetic storm risk assessment
+- Aurora borealis forecasts
+
+#### 📚 Interactive Stories
+Explore 4 unique narratives showing different perspectives on space weather:
+
+1. **Solar Flare Journey** ☄️ - Follow a solar flare's trip to Earth
+2. **GPS Farmer José** 🌾 - Discover how space weather affects modern agriculture
+3. **Electric Grid Guardians** ⚡ - Protect power grids during solar storms
+4. **Aurelito's Journey** 🚀 - Educational adventure about space weather
+
+#### 🎮 Space Challenge Game
+- **Interactive canvas-based game**
+- Navigate a spaceship through space
+- Collect star coins while avoiding solar radiation
+- Real-time coin and distance tracking
+- High score system with localStorage
+- Responsive controls (click/tap to fly)
+- Light and dark theme support
+
+#### 🤖 Aurelito - Interactive Guide
+Meet **Aurelito**, your personal guide who:
+- Offers contextual tips in each section
+- Changes expressions based on content
+- Can be minimized/maximized as needed
+- Makes navigation more fun and educational
+
+#### 🌓 Light/Dark Theme
+- Toggle between light and dark modes
+- Smooth transitions
+- Optimized for both themes across all sections
+- User preference saved in localStorage
+
+### 🛠️ Technologies Used
+
+- **HTML5** - Semantic and accessible structure
+- **CSS3** - Animations, gradients, and responsive design
+- **JavaScript (Vanilla)** - Interactivity and API integration
+- **Canvas API** - Game rendering and physics
+- **Font Awesome 6.4.2** - Elegant icons
+- **Google Fonts** - Modern typography (Poppins and Space Mono)
+- **NASA DONKI API** - Real-time space weather data
+- **NOAA SWPC** - Geomagnetic storm information
+- **LocalStorage** - User preferences and high scores
+
+### 🚀 How to Run
+
+#### Prerequisites
+- Modern web browser (Chrome, Firefox, Edge, Safari)
+- Internet connection (for APIs and external fonts)
+
+#### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Vinii225/StellarStories_NasaSpaceApps.git
+
+# Navigate to project folder
+cd StellarStories_NasaSpaceApps
+
+# Open index.html in your browser
+# Windows: start index.html
+# macOS: open index.html  
+# Linux: xdg-open index.html
+```
+
+Or simply drag `index.html` to your browser.
+
+### 📁 Project Structure
+
+```
+StellarStories/
+├── index.html              # Main page
+├── README.md              # Documentation
+├── Images/
+│   ├── EventLogo/         # Event logos
+│   └── GuideCharacter/    # Aurelito images
+├── js/
+│   ├── script.js          # Main JavaScript logic
+│   └── game.js            # Space game logic (484 lines)
+├── pages/                 # Story pages
+│   ├── JornadaDeAurelito/
+│   ├── RedesEletricas/
+│   ├── TempestadeSolar/
+│   ├── VentoSolar/
+│   └── GpsDoAgricultorJose/
+└── styles/
+    ├── styles.css         # Main styles
+    ├── game.css           # Game-specific styles (437 lines)
+    └── story-common.css   # Shared story styles
+```
+
+### 🎨 Design Highlights
+
+- **Accessibility** - High contrast colors and readable text
+- **Responsiveness** - Works on desktop, tablet, and mobile
+- **Smooth Animations** - Attractive transitions and visual effects
+- **Space Theme** - Cosmos-inspired color palette
+- **Interactivity** - Clickable and user-responsive elements
+- **Performance** - Optimized rendering and efficient code
+
+### 🌐 APIs Used
+
+#### NASA DONKI (Database Of Notifications, Knowledge, Information)
+- Solar flare data
+- CME (Coronal Mass Ejections) information
+- Geomagnetic storm alerts
+
+#### NOAA Space Weather Prediction Center
+- Solar activity forecasts
+- Geomagnetic indices
+- Space weather alerts
+
+### 🎯 Educational Goals
+
+- Educate children and youth about space phenomena accessibly
+- Illustrate space weather impacts on different communities
+- Visualize scientific data creatively
+- Tell interactive stories from various perspectives
+- Engage the public with an immersive digital experience
+
+### 🤝 How to Contribute
+
+Contributions are welcome! To contribute:
+
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/NewFeature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to branch (`git push origin feature/NewFeature`)
+5. Open a Pull Request
+
+### 👥 Team
+
+- João Felipe Andrade dos Santos
+- Maria Laura Guedes dos Santos
+- Luis Eduardo Gomes Soares
+- Luana Gabriella Pereira Macedo
+- Thiago Victor da Silva Macedo
+- Vinícius Ares Monteiro de Lima
+
+### 📄 License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
+### 🔗 Useful Links
+
+- [NASA Space Apps Challenge](https://www.spaceappschallenge.org/)
+- [Stellar Stories Challenge](https://www.spaceappschallenge.org/2024/challenges/stellar-stories-space-weather-through-the-eyes-of-earthlings)
+- [NASA Space Weather](https://www.nasa.gov/mission_pages/sunearth/spaceweather/)
+- [NOAA SWPC](https://www.swpc.noaa.gov/)
+- [Solar Dynamics Observatory](https://sdo.gsfc.nasa.gov/)
+
+### 🌟 Acknowledgments
+
+- NASA for providing open APIs and data
+- NOAA Space Weather Prediction Center
+- NASA Space Apps community
+- All educators and scientists making space knowledge accessible
+
+---
+
+<a name="português"></a>
+## 🇧🇷 Versão em Português
+
+### 📖 Sobre o Projeto
+
+**Cosmic Tales** é uma **plataforma educacional interativa** desenvolvida para o [NASA Space Apps Challenge 2024](https://www.spaceappschallenge.org/2024/challenges/stellar-stories-space-weather-through-the-eyes-of-earthlings/), projetada para explicar o clima espacial e seus impactos na Terra de forma envolvente e acessível.
+
+Embora o Sol esteja a 150 milhões de quilômetros da Terra, sua atividade impacta significativamente nossas vidas diárias. O "clima espacial" refere-se às variações no ambiente espacial entre o Sol e a Terra, incluindo:
+
+- **Erupções Solares** ☄️ - Explosões intensas de radiação do Sol
 - **Ejeções de Massa Coronal (CME)** 🌊 - Grandes nuvens de plasma ejetadas do Sol
-- **Vento Solar** 💨 - Fluxo constante de partículas solares
+- **Vento Solar** 💨 - Fluxo constante de partículas solares  
 - **Tempestades Geomagnéticas** ⚡ - Distúrbios no campo magnético terrestre
 
-### Impactos do Clima Espacial
+### ✨ Funcionalidades Principais
 
-Esses fenômenos podem causar belas auroras, mas também impactos desafiadores como:
-- 📡 Interrupção de sinais GPS e navegação
-- 📻 Perda de comunicações de rádio
-- ⚡ Problemas em redes elétricas e transformadores
-- �️ Danos em satélites e equipamentos espaciais
-- ✈️ Aumento de radiação em voos de alta altitude
-- 💰 Impactos econômicos significativos
+#### 🏠 Página Principal
+- Introdução atrativa com visuais animados
+- Estatísticas do sistema solar em tempo real
+- Navegação suave para todas as seções
+- Design responsivo para todos os dispositivos
 
-## 🎯 Objetivos
-
-O Cosmic Tales tem como missão:
-- **Educar** crianças e jovens sobre fenômenos espaciais de forma acessível
-- **Ilustrar** os impactos do clima espacial em diferentes comunidades
-- **Visualizar** dados científicos em tempo real de forma criativa
-- **Contar** histórias interativas de diferentes perspectivas
-- **Engajar** o público com uma experiência digital imersiva
-
-## ✨ Funcionalidades
-
-### 🏠 Página Principal (Home)
-- Introdução ao tema com visualizações atraentes
-- Representação animada da Terra e do Sol
-- Estatísticas em tempo real sobre o sistema solar
-- Navegação intuitiva para todas as seções
-
-### �️ Clima Espacial
-- **Dados em tempo real** da NASA DONKI e NOAA SWPC
+#### ☁️ Seção de Clima Espacial
+- **Dados em tempo real** das APIs NASA DONKI e NOAA SWPC
 - Informações sobre atividade solar atual
-- Última erupção solar detectada
-- Risco de tempestades geomagnéticas
-- Previsão de auroras boreais
+- Últimas erupções solares detectadas
+- Avaliação de risco de tempestades geomagnéticas
+- Previsões de auroras boreais
 
-### 📚 Histórias Interativas
-Explore 6 histórias únicas que mostram diferentes perspectivas sobre o clima espacial:
+#### 📚 Histórias Interativas
+Explore 4 narrativas únicas mostrando diferentes perspectivas sobre o clima espacial:
 
-1. **A Jornada de Flarinha** ☄️ - Acompanhe uma erupção solar em sua viagem até a Terra
-2. **Luna: Astronauta Corajosa** 👨‍🚀 - Viva um dia na Estação Espacial durante tempestade solar
-3. **GPS do Agricultor José** 🌾 - Descubra como o clima espacial afeta a agricultura moderna
-4. **Piloto nas Nuvens** ✈️ - Voe através de zonas de radiação aumentada
-5. **Caçador de Auroras** 📸 - Persiga as auroras boreais mais espetaculares
-6. **Guardiões da Rede Elétrica** ⚡ - Proteja a rede elétrica durante uma tempestade solar
+1. **Jornada da Erupção Solar** ☄️ - Acompanhe uma erupção solar em sua viagem até a Terra
+2. **GPS do Agricultor José** 🌾 - Descubra como o clima espacial afeta a agricultura moderna
+3. **Guardiões da Rede Elétrica** ⚡ - Proteja redes elétricas durante tempestades solares
+4. **Jornada de Aurelito** 🚀 - Aventura educativa sobre clima espacial
 
-### 🤖 Aurelito - Guia Interativo
+#### 🎮 Jogo Desafio Espacial
+- **Jogo interativo baseado em canvas**
+- Navegue uma nave espacial pelo espaço
+- Colete moedas estelares evitando radiação solar
+- Rastreamento em tempo real de moedas e distância
+- Sistema de recordes com localStorage
+- Controles responsivos (clique/toque para voar)
+- Suporte para temas claro e escuro
+
+#### 🤖 Aurelito - Guia Interativo
 Conheça o **Aurelito**, seu guia pessoal que:
 - Oferece dicas contextuais em cada seção
 - Muda de expressão baseado no conteúdo
 - Pode ser minimizado/maximizado conforme necessidade
 - Torna a navegação mais divertida e educativa
 
-## 🛠️ Tecnologias Utilizadas
+#### 🌓 Tema Claro/Escuro
+- Alterne entre modos claro e escuro
+- Transições suaves
+- Otimizado para ambos os temas em todas as seções
+- Preferência do usuário salva no localStorage
+
+### 🛠️ Tecnologias Utilizadas
 
 - **HTML5** - Estrutura semântica e acessível
 - **CSS3** - Animações, gradientes e design responsivo
 - **JavaScript (Vanilla)** - Interatividade e integração com APIs
-- **Font Awesome** - Ícones elegantes
+- **Canvas API** - Renderização e física do jogo
+- **Font Awesome 6.4.2** - Ícones elegantes
 - **Google Fonts** - Tipografia moderna (Poppins e Space Mono)
 - **NASA DONKI API** - Dados de clima espacial em tempo real
 - **NOAA SWPC** - Informações sobre tempestades geomagnéticas
+- **LocalStorage** - Preferências do usuário e recordes
 
-## 🚀 Como Executar o Projeto
+### 🚀 Como Executar
 
-### Pré-requisitos
+#### Pré-requisitos
 - Navegador web moderno (Chrome, Firefox, Edge, Safari)
 - Conexão com internet (para APIs e fontes externas)
 
-### Instalação
+#### Instalação
 
-1. Clone o repositório:
 ```bash
+# Clone o repositório
 git clone https://github.com/Vinii225/StellarStories_NasaSpaceApps.git
-```
 
-2. Navegue até a pasta do projeto:
-```bash
+# Navegue até a pasta do projeto
 cd StellarStories_NasaSpaceApps
+
+# Abra index.html no seu navegador
+# Windows: start index.html
+# macOS: open index.html
+# Linux: xdg-open index.html
 ```
 
-3. Abra o arquivo `index.html` em seu navegador:
-```bash
-# No Windows
-start index.html
+Ou simplesmente arraste `index.html` para seu navegador.
 
-# No macOS
-open index.html
-
-# No Linux
-xdg-open index.html
-```
-
-Ou simplesmente arraste o arquivo `index.html` para seu navegador.
-
-## 📁 Estrutura do Projeto
+### 📁 Estrutura do Projeto
 
 ```
 StellarStories/
@@ -116,43 +303,52 @@ StellarStories/
 ├── README.md              # Documentação
 ├── Images/
 │   ├── EventLogo/         # Logos do evento
-│   │   ├── 11.png
-│   │   ├── 22.png
-│   │   ├── 33.png
-│   │   └── 44.png
 │   └── GuideCharacter/    # Imagens do Aurelito
-│       ├── Aurelito-2HandsExplanation.png
-│       ├── Aurelito-DoubtFace.png
-│       └── Aurelito-right.png
 ├── js/
-│   └── script.js          # Lógica JavaScript
-├── pages/                 # Páginas das histórias (em desenvolvimento)
+│   ├── script.js          # Lógica JavaScript principal
+│   └── game.js            # Lógica do jogo espacial (484 linhas)
+├── pages/                 # Páginas das histórias
+│   ├── JornadaDeAurelito/
+│   ├── RedesEletricas/
+│   ├── TempestadeSolar/
+│   ├── VentoSolar/
+│   └── GpsDoAgricultorJose/
 └── styles/
-    └── styles.css         # Estilos e animações
+    ├── styles.css         # Estilos principais
+    ├── game.css           # Estilos específicos do jogo (437 linhas)
+    └── story-common.css   # Estilos compartilhados das histórias
 ```
 
-## 🎨 Design e UX
+### 🎨 Destaques do Design
 
-O projeto foi desenvolvido com foco em:
-- **Acessibilidade** - Cores contrastantes e texto legível
+- **Acessibilidade** - Cores de alto contraste e texto legível
 - **Responsividade** - Funciona em desktop, tablet e mobile
-- **Animações suaves** - Transições e efeitos visuais atraentes
-- **Tema espacial** - Paleta de cores inspirada no cosmos
+- **Animações Suaves** - Transições e efeitos visuais atraentes
+- **Tema Espacial** - Paleta de cores inspirada no cosmos
 - **Interatividade** - Elementos clicáveis e responsivos ao usuário
+- **Performance** - Renderização otimizada e código eficiente
 
-## 🌐 APIs Utilizadas
+### 🌐 APIs Utilizadas
 
-### NASA DONKI (Database Of Notifications, Knowledge, Information)
-- Fornece dados sobre erupções solares
-- Informações sobre CMEs (Coronal Mass Ejections)
+#### NASA DONKI (Database Of Notifications, Knowledge, Information)
+- Dados sobre erupções solares
+- Informações sobre CMEs (Ejeções de Massa Coronal)
 - Alertas de tempestades geomagnéticas
 
-### NOAA Space Weather Prediction Center
+#### NOAA Space Weather Prediction Center
 - Previsões de atividade solar
 - Índices geomagnéticos
 - Alertas de clima espacial
 
-## 🤝 Como Contribuir
+### 🎯 Objetivos Educacionais
+
+- Educar crianças e jovens sobre fenômenos espaciais de forma acessível
+- Ilustrar os impactos do clima espacial em diferentes comunidades
+- Visualizar dados científicos de forma criativa
+- Contar histórias interativas de várias perspectivas
+- Engajar o público com uma experiência digital imersiva
+
+### 🤝 Como Contribuir
 
 Contribuições são bem-vindas! Para contribuir:
 
@@ -162,33 +358,28 @@ Contribuições são bem-vindas! Para contribuir:
 4. Push para a branch (`git push origin feature/NovaFuncionalidade`)
 5. Abra um Pull Request
 
-## 📝 Próximos Passos
+### 👥 Equipe
 
-- [ ] Implementar as páginas individuais das histórias
-- [ ] Adicionar mais dados em tempo real
-- [ ] Criar sistema de notificações para eventos solares
-- [ ] Implementar modo escuro/claro
-- [ ] Adicionar mais idiomas (internacionalização)
-- [ ] Criar quiz interativo sobre clima espacial
-- [ ] Adicionar galeria de imagens do Sol (NASA SDO)
+- João Felipe Andrade dos Santos
+- Maria Laura Guedes dos Santos
+- Luis Eduardo Gomes Soares
+- Luana Gabriella Pereira Macedo
+- Thiago Victor da Silva Macedo
+- Vinícius Ares Monteiro de Lima
 
-## 👥 Equipe
+### 📄 Licença
 
-Projeto desenvolvido para o NASA Space Apps Challenge 2025
+Este projeto está sob a licença MIT. Veja [LICENSE](LICENSE) para mais detalhes.
 
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-## 🔗 Links Úteis
+### 🔗 Links Úteis
 
 - [NASA Space Apps Challenge](https://www.spaceappschallenge.org/)
-- [Desafio Stellar Stories](https://www.spaceappschallenge.org/2025/challenges/stellar-stories-space-weather-through-the-eyes-of-earthlings)
+- [Desafio Stellar Stories](https://www.spaceappschallenge.org/2024/challenges/stellar-stories-space-weather-through-the-eyes-of-earthlings)
 - [NASA Space Weather](https://www.nasa.gov/mission_pages/sunearth/spaceweather/)
 - [NOAA SWPC](https://www.swpc.noaa.gov/)
 - [Solar Dynamics Observatory](https://sdo.gsfc.nasa.gov/)
 
-## 🌟 Agradecimentos
+### 🌟 Agradecimentos
 
 - NASA por fornecer APIs e dados abertos
 - NOAA Space Weather Prediction Center
@@ -197,6 +388,12 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ---
 
-**Desenvolvido com 💙 e ☕ para o NASA Space Apps Challenge 2025**
+<div align="center">
 
-*"Explorando o cosmos, uma história de cada vez"* 🚀✨
+**Desenvolvido com 💙 para o NASA Space Apps Challenge 2024**
+
+*"Explorando o cosmos, com uma história de cada vez"* 🚀✨
+
+**[⬆ Voltar ao topo](#-cosmic-tales-space-weather-through-the-eyes-of-earthlings)**
+
+</div>
