@@ -3,275 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O Dia em que o Sol Balançou a Luz do Mundo 🌞⚡</title>
+    <title>O Dia em que o Sol Balançou a Luz do Mundo - Cosmic Tales</title>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- CSS externo da página principal -->
-    <link rel="stylesheet" href="../../styles/styles.css">
+    
+    <!-- Estilos compartilhados -->
+    <link rel="stylesheet" href="../../styles/story-common.css">
+    
+    <!-- Estilos específicos desta história (se necessário) -->
     <style>
-        /* ==========================================
-           VARIABLES & RESET
-           ========================================== */
-        :root {
-            --primary-color: #6366f1;
-            --secondary-color: #8b5cf6;
-            --accent-color: #ec4899;
-            --solar-yellow: #fbbf24;
-            --solar-orange: #f97316;
-            --solar-red: #ef4444;
-            --bg-dark: #0f172a;
-            --bg-darker: #020617;
-            --text-light: #f1f5f9;
-            --text-gray: #94a3b8;
-            --card-bg: rgba(30, 41, 59, 0.8);
-            --gradient-solar: linear-gradient(135deg, #fbbf24 0%, #f97316 50%, #ef4444 100%);
-            --gradient-space: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-mystical: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --border-color: rgba(99, 102, 241, 0.3);
-            --shadow-color: rgba(0, 0, 0, 0.3);
-        }
-
-        /* Light Theme */
-        body.light-theme {
-            --bg-dark: #f1f5f9;
-            --bg-darker: #ffffff;
-            --text-light: #1e293b;
-            --text-gray: #475569;
-            --card-bg: rgba(255, 255, 255, 0.9);
-            --border-color: rgba(99, 102, 241, 0.2);
-            --shadow-color: rgba(0, 0, 0, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg-darker);
-            color: var(--text-light);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* ==========================================
-           PROGRESS BAR
-           ========================================== */
-        .progress-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: var(--gradient-solar);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        /* ==========================================
-           CANVAS BACKGROUND (STARS & PARTICLES)
-           ========================================== */
-        #stars-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: var(--bg-darker);
-        }
-
-        /* ==========================================
-           CHAPTER BACKGROUNDS
-           ========================================== */
-        .chapter {
-            min-height: 100vh;
-            padding: 80px 20px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .chapter-1 { 
-            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 87, 34, 0.15) 100%); 
-        }
-        .chapter-2 { 
-            background: linear-gradient(135deg, rgba(33, 150, 243, 0.15) 0%, rgba(103, 58, 183, 0.15) 100%); 
-        }
-        .chapter-3 { 
-            background: linear-gradient(135deg, rgba(244, 67, 54, 0.15) 0%, rgba(156, 39, 176, 0.15) 100%); 
-        }
-        .chapter-4 { 
-            background: linear-gradient(135deg, rgba(76, 175, 80, 0.15) 0%, rgba(0, 150, 136, 0.15) 100%); 
-        }
-        .chapter-5 { 
-            background: linear-gradient(135deg, rgba(63, 81, 181, 0.15) 0%, rgba(3, 169, 244, 0.15) 100%); 
-        }
-
-        /* ==========================================
-           DIALOGUE SYSTEM
-           ========================================== */
-        .dialogue-container {
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .dialogue {
-            display: flex;
-            align-items: flex-end;
-            margin: 40px 0;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .dialogue.appear {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .dialogue.left {
-            justify-content: flex-start;
-        }
-
-        .dialogue.right {
-            justify-content: flex-end;
-        }
-
-        .dialogue.center {
-            justify-content: center;
-        }
-
-        .character-avatar {
-            width: 120px;
-            height: 120px;
-            margin: 0 20px;
-            flex-shrink: 0;
-        }
-
-        .character-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-        }
-
-        .speech-bubble {
-            max-width: 70%;
-            padding: 25px 30px;
-            border-radius: 25px;
-            position: relative;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-        }
-
-        .dialogue.left .speech-bubble {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(139, 92, 246, 0.9));
-            margin-left: 0;
-        }
-
-        .dialogue.right .speech-bubble {
-            background: linear-gradient(135deg, rgba(236, 72, 153, 0.9), rgba(139, 92, 246, 0.9));
-            margin-right: 0;
-        }
-
-        .dialogue.center .speech-bubble {
-            background: var(--gradient-solar);
-            text-align: center;
-            margin: 0 auto;
-        }
-
-        .speech-bubble::before {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            bottom: -10px;
-        }
-
-        .dialogue.left .speech-bubble::before {
-            left: 30px;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-top: 15px solid rgba(99, 102, 241, 0.9);
-        }
-
-        .dialogue.right .speech-bubble::before {
-            right: 30px;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-top: 15px solid rgba(236, 72, 153, 0.9);
-        }
-
-        .speech-text {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: white;
-            margin: 0;
-        }
-
-        .speech-text strong {
-            color: #fbbf24;
-            text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
-        }
-
-        .speech-text em {
-            color: #a3e635;
-            font-style: normal;
-            text-shadow: 0 0 10px rgba(163, 230, 53, 0.5);
-        }
-
-        /* ==========================================
-           CHAPTER TITLES
-           ========================================== */
-        .chapter-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 60px;
-            background: var(--gradient-solar);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            opacity: 0;
-            transform: translateY(-30px);
-            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
-        }
-
-        .chapter-title.appear {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ==========================================
-           HOLOGRAM EFFECT
-           ========================================== */
+        /* Apenas estilos únicos desta história */
+        
+        /* Hologram do Sol - específico desta história */
         .hologram-container {
             position: relative;
             width: 350px;
@@ -368,408 +117,17 @@
                 transform: scale(1.3); 
             }
         }
-
-        /* ==========================================
-           QUIZ SYSTEM
-           ========================================== */
-        .quiz-container {
-            max-width: 900px;
-            margin: 80px auto;
-            padding: 50px;
-            background: var(--card-bg);
-            border-radius: 25px;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .quiz-container.appear {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .quiz-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .quiz-title {
-            font-size: 3rem;
-            background: var(--gradient-solar);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
-        }
-
-        .quiz-score {
-            font-size: 1.3rem;
-            color: var(--text-gray);
-        }
-
-        .question {
-            margin-bottom: 50px;
-            display: none;
-        }
-
-        .question.active {
-            display: block;
-            animation: questionAppear 0.5s ease forwards;
-        }
-
-        @keyframes questionAppear {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .question-text {
-            font-size: 1.4rem;
-            margin-bottom: 30px;
-            color: var(--text-light);
-            font-weight: 600;
-        }
-
-        .options {
-            display: grid;
-            gap: 20px;
-        }
-
-        .option {
-            padding: 20px 25px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid transparent;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            font-size: 1.1rem;
-            position: relative;
-        }
-
-        .option:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(15px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .option.selected {
-            border-color: var(--primary-color);
-            background: rgba(99, 102, 241, 0.2);
-        }
-
-        .option.correct {
-            border-color: #22c55e;
-            background: rgba(34, 197, 94, 0.2);
-        }
-
-        .option.incorrect {
-            border-color: #ef4444;
-            background: rgba(239, 68, 68, 0.2);
-        }
-
-        .explanation {
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            border-left: 4px solid var(--solar-orange);
-        }
-
-        .quiz-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .btn {
-            padding: 15px 35px;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: var(--gradient-solar);
-            color: white;
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-light);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* ==========================================
-           CONFETTI ANIMATION
-           ========================================== */
-        .confetti {
-            position: fixed;
-            width: 12px;
-            height: 12px;
-            background: var(--solar-yellow);
-            animation: confettiFall 4s linear infinite;
-            z-index: 1000;
-        }
-
-        @keyframes confettiFall {
-            0% {
-                transform: translateY(-100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        /* ==========================================
-           NAVIGATION
-           ========================================== */
-        /* ==========================================
-           RESPONSIVE DESIGN
-           ========================================== */
-        @media (max-width: 768px) {
-            .chapter {
-                padding: 60px 15px;
-            }
-
-            .chapter-title {
-                font-size: 2.5rem;
-                margin-bottom: 40px;
-            }
-
-            .dialogue {
-                flex-direction: column;
-                align-items: center;
-                margin: 30px 0;
-            }
-
-            .dialogue.left, .dialogue.right {
-                flex-direction: column;
-            }
-
-            .character-avatar {
-                margin: 0 0 20px 0;
-                width: 100px;
-                height: 100px;
-            }
-
-            .speech-bubble {
-                max-width: 90%;
-                margin: 0;
-                padding: 20px 25px;
-            }
-
-            .speech-bubble::before {
-                display: none;
-            }
-
-            .speech-text {
-                font-size: 1.1rem;
-            }
-
-            .hologram-container {
-                width: 280px;
-                height: 280px;
-                margin: 40px auto;
-            }
-
-            .hologram::before {
-                font-size: 4rem;
-            }
-
-            .quiz-container {
-                margin: 60px 15px;
-                padding: 35px 25px;
-            }
-
-            .quiz-title {
-                font-size: 2.2rem;
-            }
-
-            .question-text {
-                font-size: 1.2rem;
-            }
-
-            .quiz-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 250px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .chapter {
-                padding: 50px 10px;
-            }
-
-            .chapter-title {
-                font-size: 2rem;
-            }
-
-            .speech-text {
-                font-size: 1rem;
-            }
-
-            .hologram-container {
-                width: 220px;
-                height: 220px;
-            }
-
-            .hologram::before {
-                font-size: 3.5rem;
-            }
-
-            .quiz-title {
-                font-size: 1.8rem;
-            }
-
-            .question-text {
-                font-size: 1.1rem;
-            }
-
-            .option {
-                padding: 15px 20px;
-                font-size: 1rem;
-            }
-        }
-
-        /* ==========================================
-           PAGE-SPECIFIC: Desktop Hamburger Menu
-           ========================================== */
-        
-        /* Nav Right Container */
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        /* Show hamburger menu on desktop (override main styles) */
-        .mobile-menu-toggle {
-            display: flex !important;
-            align-items: center;
-            justify-content: center;
-            background: none;
-            border: none;
-            color: var(--text-light);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            z-index: 1001;
-            order: 2;
-        }
-
-        .mobile-menu-toggle:hover {
-            background: rgba(99, 102, 241, 0.2);
-            transform: scale(1.1);
-        }
-
-        /* Theme Toggle Desktop Styling */
-        .theme-toggle-desktop {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(99, 102, 241, 0.2);
-            border: 2px solid var(--primary-color);
-            color: var(--text-light);
-            padding: 0.6rem;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-            width: 45px;
-            height: 45px;
-            order: 1;
-        }
-
-        @media (hover: hover) {
-            .theme-toggle-desktop:hover {
-                background: var(--primary-color);
-                transform: rotate(180deg);
-                box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-            }
-        }
-
-        /* Nav Links Positioning */
-        .nav-links {
-            position: fixed;
-            right: -300px;
-            top: 0;
-            height: 100vh;
-            width: 280px;
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            padding: 80px 20px 20px;
-            gap: 0;
-            transition: right 0.3s ease;
-            z-index: 1000;
-            border-left: 2px solid var(--border-color);
-            box-shadow: -5px 0 20px var(--shadow-color);
-        }
-
-        .nav-links.active {
-            right: 0;
-        }
-
-        .nav-links li {
-            list-style: none;
-        }
-
-        .nav-links a {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            color: var(--text-light);
-            text-decoration: none;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover {
-            background: rgba(99, 102, 241, 0.2);
-            transform: translateX(-5px);
-        }
-
-        .nav-links a i {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-        }
     </style>
 </head>
 <body>
+    <!-- Canvas de estrelas -->
+    <canvas id="stars-canvas"></canvas>
+    
+    <!-- Barra de progresso -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+    
     <!-- Navegação -->
     <nav class="navbar">
         <div class="nav-container">
@@ -777,85 +135,94 @@
                 <span class="sun-icon">☀️</span>
                 <span class="logo-text">Cosmic Tales</span>
             </div>
-            <div class="nav-right">
-                <button id="theme-toggle" class="theme-toggle theme-toggle-desktop" onclick="toggleTheme()" aria-label="Alternar tema">
-                    <i class="fa-solid fa-moon"></i>
-                </button>
-                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                <ul class="nav-links">
-                    <li><a href="#chapter-1" onclick="closeMobileMenu()"><i class="fa-solid fa-star"></i> Início</a></li>
-                    <li><a href="#chapter-2" onclick="closeMobileMenu()"><i class="fa-solid fa-cube"></i> Holograma</a></li>
-                    <li><a href="#chapter-3" onclick="closeMobileMenu()"><i class="fa-solid fa-circle"></i> Manchas</a></li>
-                    <li><a href="#chapter-4" onclick="closeMobileMenu()"><i class="fa-solid fa-bolt"></i> Tempestades</a></li>
-                    <li><a href="#chapter-5" onclick="closeMobileMenu()"><i class="fa-solid fa-graduation-cap"></i> Conclusão</a></li>
-                    <li><a href="#quiz-section" onclick="closeMobileMenu()"><i class="fa-solid fa-brain"></i> Quiz</a></li>
-                    <li><a href="../../index.html" onclick="closeMobileMenu()"><i class="fa-solid fa-house"></i> Voltar</a></li>
-                </ul>
-            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../../index.html" onclick="closeMobileMenu()"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="../../index.html#space-weather" onclick="closeMobileMenu()"><i class="fa-solid fa-cloud-sun"></i> Clima Espacial</a></li>
+                <li><a href="../../index.html#stories" onclick="closeMobileMenu()"><i class="fa-solid fa-book"></i> Histórias</a></li>
+                <li><a href="../../index.html#about" onclick="closeMobileMenu()"><i class="fa-solid fa-circle-info"></i> Sobre</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+                        <i class="fa-solid fa-sun"></i>
+                    </button>
+                </li>
+            </ul>
         </div>
     </nav>
 
-    <!-- Progress Bar -->
-    <div class="progress-container">
-        <div class="progress-bar" id="progressBar"></div>
-    </div>
-
-    <!-- Stars Background -->
-    <canvas id="stars-canvas"></canvas>
-
-    <!-- Chapter 1: Introduction -->
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 1: O Alerta -->
+    <!-- ======================================== -->
     <section class="chapter chapter-1" id="chapter-1">
-        <div class="dialogue-container">
+        <div class="chapter-content">
             <h1 class="chapter-title">⚡ O Dia em que o Sol Balançou a Luz do Mundo</h1>
+            <p class="chapter-subtitle">Quando o clima espacial afeta nossa eletricidade</p>
             
-            <div class="dialogue center">
-                <div class="speech-bubble">
-                    <p class="speech-text">"ALERTA DE FLUTUAÇÃO ELÉTRICA!" 🚨 Status Atual: Instabilidade Elétrica!</p>
-                </div>
+            <div class="info-box">
+                <h4 class="info-box-title">🚨 ALERTA DE FLUTUAÇÃO ELÉTRICA!</h4>
+                <p class="info-box-text">
+                    Status Atual: Instabilidade Elétrica!
+                </p>
             </div>
-
+            
+            <!-- Diálogo Léo -->
             <div class="dialogue left">
-                <div class="speech-bubble">
-                    <p class="speech-text">- Léo (8 anos): "Ah, não! Perdemos a fase final! A luz deu uma piscada forte e o placar congelou! Que bug é esse?" 🎮</p>
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Léo">
+                    </div>
+                    <span class="character-name">Léo (8 anos)</span>
                 </div>
+                <p class="dialogue-text">
+                    Ah, não! Perdemos a fase final! A luz deu uma piscada forte e o placar 
+                    congelou! Que bug é esse? 🎮
+                </p>
             </div>
-
+            
+            <!-- Diálogo Bia -->
             <div class="dialogue right">
-                <div class="speech-bubble">
-                    <p class="speech-text">- Bia (9 anos): "Deve ser problema na fiação! Esse som de BZZZZT veio da tomada!" ⚡</p>
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Luna_A_Voz_Do_Cosmos.png" alt="Bia">
+                    </div>
+                    <span class="character-name">Bia (9 anos)</span>
                 </div>
+                <p class="dialogue-text">
+                    Deve ser problema na fiação! Esse som de BZZZZT veio da tomada! ⚡
+                </p>
             </div>
-
-            <div class="dialogue center">
-                <div class="speech-bubble">
-                    <p class="speech-text">De repente, uma luz dourada e cheia de poeira estelar brilha na sala... ✨</p>
-                </div>
-            </div>
+            
+            <p class="story-text">
+                De repente, uma luz dourada e cheia de poeira estelar brilha na sala... ✨
+            </p>
         </div>
     </section>
 
-    <!-- Chapter 2: Hologram Activation -->
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 2: Aparição do Aurelito -->
+    <!-- ======================================== -->
     <section class="chapter chapter-2" id="chapter-2">
-        <div class="dialogue-container">
-            <h2 class="chapter-title">🌟 Aparição do: AURELITO</h2>
+        <div class="chapter-content">
+            <h1 class="chapter-title">🌟 Aparição do Aurelito</h1>
+            <p class="chapter-subtitle">Guia Espacial - Especialidade: Clima Espacial</p>
             
-            <div class="dialogue center">
-                <div class="speech-bubble">
-                    <p class="speech-text">"Classe:" Guia Espacial ⭐ "Especialidade:" Clima Espacial</p>
-                </div>
-            </div>
-
+            <!-- Diálogo do Aurelito -->
             <div class="dialogue left">
-                <div class="character-avatar">
-                    <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito aparecendo">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
                 </div>
-                <div class="speech-bubble">
-                    <p class="speech-text">- Aurelito: "Calma, exploradores! O culpado não está na tomada. O nosso chefão, o Sol, está fazendo uma faxina no céu!" 🌞</p>
-                </div>
+                <p class="dialogue-text">
+                    Calma, exploradores! O culpado não está na tomada. O nosso chefão, 
+                    o Sol, está fazendo uma faxina no céu! 🌞
+                </p>
             </div>
-
+            
+            <!-- Holograma do Sol -->
             <div class="hologram-container">
                 <div class="hologram">
                     <div class="sunspots sunspot-1"></div>
@@ -863,641 +230,344 @@
                     <div class="sunspots sunspot-3"></div>
                 </div>
             </div>
-
+            
             <div class="dialogue right">
-                <div class="speech-bubble">
-                    <p class="speech-text">"Precisamos entender o Clima Espacial! Vejam este holograma - nossa Terra e o Sol rebelde cheio de manchas!"</p>
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-right.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
                 </div>
-                <div class="character-avatar">
-                    <img src="../../Images/GuideCharacter/Aurelito-right.png" alt="Aurelito explicando">
-                </div>
+                <p class="dialogue-text">
+                    Precisamos entender o Clima Espacial! Vejam este holograma - nossa Terra 
+                    e o Sol rebelde cheio de manchas!
+                </p>
             </div>
-
-            <div class="dialogue center">
-                <div class="speech-bubble">
-                    <p class="speech-text">TREINAMENTO CÓSMICO: A Energia Perigosa �</p>
-                </div>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">⚡ TREINAMENTO CÓSMICO</h4>
+                <p class="info-box-text">
+                    A Energia Perigosa do Sol!
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Chapter 3: Understanding Sunspots -->
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 3: A Erupção Solar -->
+    <!-- ======================================== -->
     <section class="chapter chapter-3" id="chapter-3">
-        <div class="dialogue-container">
-            <h2 class="chapter-title">� A Erupção Solar: O Espirro do Sol</h2>
+        <div class="chapter-content">
+            <h1 class="chapter-title">🌋 A Erupção Solar: O Espirro do Sol</h1>
+            <p class="chapter-subtitle">Quando o Sol solta sua energia</p>
             
             <div class="dialogue left">
-                <div class="character-avatar">
-                    <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito ensinando">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
                 </div>
-                <div class="speech-bubble">
-                    <p class="speech-text">"O Sol é um motorzão, e às vezes ele tem um espirro muito forte, que a NASA chama de Ejeção de Massa Coronal!" �️</p>
-                </div>
+                <p class="dialogue-text">
+                    O Sol é um motorzão, e às vezes ele tem um espirro muito forte, 
+                    que a NASA chama de Ejeção de Massa Coronal! 🌪️
+                </p>
             </div>
-
+            
             <div class="dialogue right">
-                <div class="speech-bubble">
-                    <p class="speech-text">"É uma bola de partículas superelétricas voando rapidinho pelo espaço em direção à Terra!" ⚡🎯</p>
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-left-png.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
                 </div>
-                <div class="character-avatar">
-                    <img src="../../Images/GuideCharacter/Aurelito-left-png.png" alt="Aurelito explicativo">
-                </div>
+                <p class="dialogue-text">
+                    É uma bola de partículas superelétricas voando rapidinho pelo espaço 
+                    em direção à Terra! ⚡🎯
+                </p>
             </div>
-
-            <div class="dialogue center">
-                <div class="speech-bubble">
-                    <p class="speech-text">"O ESCUDO DA TERRA:" Campo Magnético 🛡️</p>
-                </div>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">🛡️ O ESCUDO DA TERRA</h4>
+                <p class="info-box-text">
+                    <strong>Campo Magnético:</strong> Nossa Terra tem um escudo invisível, 
+                    o Campo Magnético. Ele nos protege, mas essa bola elétrica do Sol 
+                    consegue fazê-lo balançar! 🌍💫
+                </p>
             </div>
-
+            
             <div class="dialogue left">
-                <div class="character-avatar">
-                    <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito demonstrando">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
                 </div>
-                <div class="speech-bubble">
-                    <p class="speech-text">"Nossa Terra tem um escudo invisível, o Campo Magnético. Ele nos protege, mas essa bola elétrica do Sol consegue fazê-lo balançar!" 🌍💫</p>
-                </div>
-            </div>
-
-            <div class="dialogue right">
-                <div class="speech-bubble">
-                    <p class="speech-text">"Quando o escudo balança, ele empurra a eletricidade, criando correntes elétricas extras nas linhas de transmissão!" ⚡📊</p>
-                </div>
-                <div class="character-avatar">
-                    <img src="../../Images/GuideCharacter/Aurelito-right.png" alt="Aurelito alertando">
-                </div>
+                <p class="dialogue-text">
+                    Quando o escudo balança, ele empurra a eletricidade, criando correntes 
+                    elétricas extras nas linhas de transmissão! ⚡📊
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Chapter 4: Solar Weather Impact -->
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 4: O Apagão de 1989 -->
+    <!-- ======================================== -->
     <section class="chapter chapter-4" id="chapter-4">
-        <div class="dialogue-container">
-            <h2 class="chapter-title">🎢 NÍVEL DE DIFICULDADE: 1989</h2>
+        <div class="chapter-content">
+            <h1 class="chapter-title">🎢 O Grande Apagão de Quebec</h1>
+            <p class="chapter-subtitle">Caso Real: 1989</p>
             
-            <div class="dialogue center">
-                <div class="speech-bubble">
-                    <p class="speech-text">"CASO REAL:" O Apagão de Quebec (1989) 🏁</p>
-                </div>
-            </div>
-
             <div class="dialogue left">
-                <div class="character-avatar">
-                    <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito sério">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
                 </div>
-                <div class="speech-bubble">
-                    <p class="speech-text">"A rede elétrica fica sobrecarregada, os equipamentos de proteção, como os transformadores, disparam para não queimar!" 🔌⚡</p>
-                </div>
+                <p class="dialogue-text">
+                    A rede elétrica fica sobrecarregada, os equipamentos de proteção, 
+                    como os transformadores, disparam para não queimar! 🔌⚡
+                </p>
             </div>
-
+            
             <div class="dialogue right">
-                <div class="speech-bubble">
-                    <p class="speech-text">"É aí que a luz pisca ou, pior, apaga! Isso não é só teoria! Em 1989, o Sol soltou um espirro tão forte..." 💥</p>
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
                 </div>
-                <div class="character-avatar">
-                    <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito contando">
-                </div>
+                <p class="dialogue-text">
+                    É aí que a luz pisca ou, pior, apaga! Isso não é só teoria! 
+                    Em 1989, o Sol soltou um espirro tão forte... 💥
+                </p>
             </div>
-
-            <div class="dialogue center">
-                <div class="speech-bubble">
-                    <p class="speech-text">DIFICULDADE: EXTREMA �</p>
-                </div>
+            
+            <div class="info-box">
+                <h4 class="info-box-title">⚠️ DIFICULDADE: EXTREMA</h4>
+                <p class="info-box-text">
+                    <strong>O Apagão de Quebec:</strong> No Canadá, na cidade de Quebec, 
+                    a eletricidade falhou completamente! Foi um Apagão que durou nove horas! 
+                    🔋🇨🇦
+                </p>
             </div>
-
+            
             <div class="dialogue left">
-                <div class="character-avatar">
-                    <img src="../../Images/GuideCharacter/Aurelito-left-png.png" alt="Aurelito impressionado">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-right.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
                 </div>
-                <div class="speech-bubble">
-                    <p class="speech-text">"                    <p class="speech-text">                <div class="speech-bubble">
-                    <p class="speech-text">"...que no Canadá, na cidade de Quebec, a eletricidade falhou completamente! Foi um Apagão que durou nove horas!" 🔋🇨🇦</p>
-                </div></p>" �🇨🇦</p>
-                </div>
-            </div>
-
-            <div class="dialogue right">
-                <div class="speech-bubble">
-                    <p class="speech-text">"Isso prova que o Clima Espacial é real e tem superpoderes! Tempestades solares muito fortes afetam as redes elétricas longas!" ⚙️⚡</p>
-                </div>
-                <div class="character-avatar">
-                    <img src="../../Images/GuideCharacter/Aurelito-right.png" alt="Aurelito sério">
-                </div>
+                <p class="dialogue-text">
+                    Isso prova que o Clima Espacial é real e tem superpoderes! 
+                    Tempestades solares muito fortes afetam as redes elétricas longas! ⚙️⚡
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Chapter 5: Conclusion -->
+    <!-- ======================================== -->
+    <!-- CAPÍTULO 5: Os Vigias do Sol -->
+    <!-- ======================================== -->
     <section class="chapter chapter-5" id="chapter-5">
-        <div class="dialogue-container">
-            <h2 class="chapter-title">🛰️ Vigias do Sol: Segurança Máxima</h2>
+        <div class="chapter-content">
+            <h1 class="chapter-title">🛰️ Vigias do Sol: Segurança Máxima</h1>
+            <p class="chapter-subtitle">Como nos protegemos hoje</p>
             
-            <div class="dialogue center">
-                <div class="speech-bubble">
-                    <p class="speech-text">"MISSÃO CUMPRIDA:" Compreensão do Fenômeno ✅</p>
-                </div>
+            <div class="info-box">
+                <h4 class="info-box-title">✅ MISSÃO CUMPRIDA</h4>
+                <p class="info-box-text">
+                    Compreensão do Fenômeno!
+                </p>
             </div>
-
+            
             <div class="dialogue left">
-                <div class="character-avatar">
-                    <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito sorrindo">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-2HandsExplanation.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
                 </div>
-                <div class="speech-bubble">
-                    <p class="speech-text">"Mas a humanidade tem heróis muito espertos! Os cientistas, com a ajuda de satélites, são nossos Vigias Solares!" 🛰️👨‍🔬</p>
-                </div>
+                <p class="dialogue-text">
+                    Mas a humanidade tem heróis muito espertos! Os cientistas, com a ajuda 
+                    de satélites, são nossos Vigias Solares! 🛰️👨‍🔬
+                </p>
             </div>
-
+            
             <div class="dialogue right">
-                <div class="speech-bubble">
-                    <p class="speech-text">"Eles observam o Sol o dia todo para prever esses espirros! É A Força da Ciência!" 🔭🌞</p>
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-right.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
                 </div>
-                <div class="character-avatar">
-                    <img src="../../Images/GuideCharacter/Aurelito-right.png" alt="Aurelito orgulhoso">
-                </div>
+                <p class="dialogue-text">
+                    Eles observam o Sol o dia todo para prever esses espirros! 
+                    É A Força da Ciência! 🔭🌞
+                </p>
             </div>
-
+            
             <div class="dialogue left">
-                <div class="character-avatar">
-                    <img src="../../Images/GuideCharacter/Aurelito-left-png.png" alt="Aurelito estratégico">
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-left-png.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
                 </div>
-                <div class="speech-bubble">
-                    <p class="speech-text">"O Plano de Ataque: Com o alerta em mãos, os engenheiros podem tomar medidas de proteção antes que a tempestade chegue!" ⚙️🛡️</p>
-                </div>
+                <p class="dialogue-text">
+                    O Plano de Ataque: Com o alerta em mãos, os engenheiros podem tomar 
+                    medidas de proteção antes que a tempestade chegue! ⚙️🛡️
+                </p>
             </div>
-
-            <div class="dialogue center">
-                <div class="speech-bubble">
-                    <p class="speech-text">A luz volta a brilhar forte na sala! "VITÓRIA CÓSMICA!" ✨💡</p>
-                </div>
-            </div>
-
+            
+            <p class="story-text">
+                A luz volta a brilhar forte na sala! <strong>VITÓRIA CÓSMICA!</strong> ✨💡
+            </p>
+            
             <div class="dialogue right">
-                <div class="speech-bubble">
-                    <p class="speech-text">"Vocês viram? O Sol é poderoso, mas o conhecimento é mais ainda! Agora podem jogar tranquilos!" 🎮🎆</p>
+                <div class="dialogue-header">
+                    <div class="character-icon">
+                        <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito">
+                    </div>
+                    <span class="character-name">Aurelito</span>
                 </div>
-                <div class="character-avatar">
-                    <img src="../../Images/GuideCharacter/Aurelito-DoubtFace.png" alt="Aurelito sábio">
-                </div>
+                <p class="dialogue-text">
+                    Vocês viram? O Sol é poderoso, mas o conhecimento é mais ainda! 
+                    Agora podem jogar tranquilos! 🎮🎆
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Quiz Section -->
-    <section class="chapter" id="quiz-section">
+    <!-- ======================================== -->
+    <!-- SEÇÃO DO QUIZ -->
+    <!-- ======================================== -->
+    <section class="quiz-section" id="quiz">
         <div class="quiz-container">
-            <div class="quiz-header">
-                <h2 class="quiz-title">🧠 Quiz Cósmico: Teste seus Conhecimentos!</h2>
-                <p class="quiz-score">Nível de Guia Espacial: <span id="score">0</span>/4 ⭐</p>
-            </div>
-
-            <!-- Question 1 -->
-            <div class="question active" id="question-1">
-                <h3 class="question-text">1. Qual o nome do fenômeno que Aurelito explicou ser o "espirro" do Sol?</h3>
-                <div class="options">
-                    <div class="option" data-answer="false">A) Vento Solar Suave</div>
-                    <div class="option" data-answer="true">B) Ejeção de Massa Coronal</div>
-                    <div class="option" data-answer="false">C) Apagão no Quebec</div>
-                    <div class="option" data-answer="false">D) Pisca-Pisca Misterioso</div>
+            <h1 class="quiz-title">🎯 Quiz: Teste Seus Conhecimentos!</h1>
+            <p class="quiz-subtitle">Vamos ver o que você aprendeu sobre as redes elétricas e o clima espacial!</p>
+            
+            <!-- Questão 1 -->
+            <div class="quiz-question-wrapper">
+                <p class="quiz-question">
+                    1. Qual o nome do fenômeno que Aurelito explicou ser o "espirro" do Sol?
+                </p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">
+                        A) Vento Solar Suave
+                    </button>
+                    <button class="quiz-option" data-correct="true">
+                        B) Ejeção de Massa Coronal
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        C) Apagão no Quebec
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        D) Pisca-Pisca Misterioso
+                    </button>
                 </div>
-                <div class="explanation" style="display: none;">
-                    <strong>🎯 Resposta correta:</strong> A Ejeção de Massa Coronal é o "espirro" do Sol - uma explosão de partículas superelétricas que viajam pelo espaço em direção à Terra!
-                </div>
-            </div>
-
-            <!-- Question 2 -->
-            <div class="question" id="question-2">
-                <h3 class="question-text">2. Qual a proteção natural da Terra que nos defende das partículas elétricas do Sol, mas que pode balançar em uma tempestade solar?</h3>
-                <div class="options">
-                    <div class="option" data-answer="false">A) O Escudo de Ozônio</div>
-                    <div class="option" data-answer="true">B) O Campo Magnético</div>
-                    <div class="option" data-answer="false">C) A Torre de Transmissão</div>
-                    <div class="option" data-answer="false">D) A Fiação da Casa</div>
-                </div>
-                <div class="explanation" style="display: none;">
-                    <strong>🎯 Resposta correta:</strong> O Campo Magnético da Terra é nosso escudo invisível que nos protege, mas pode balançar quando atingido por tempestades solares!
+                <div class="quiz-feedback"></div>
+                <div class="quiz-explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> <strong>A Ejeção de Massa Coronal</strong> é o "espirro" do Sol - uma explosão de partículas superelétricas que viajam pelo espaço em direção à Terra!
                 </div>
             </div>
-
-            <!-- Question 3 -->
-            <div class="question" id="question-3">
-                <h3 class="question-text">3. O que acontece nas linhas de energia elétrica quando o campo magnético da Terra é balançado por uma forte tempestade solar?</h3>
-                <div class="options">
-                    <div class="option" data-answer="false">A) O videogame ganha uma vida extra</div>
-                    <div class="option" data-answer="false">B) O Sol envia um sinal de Wi-Fi mais rápido</div>
-                    <div class="option" data-answer="true">C) Cria-se uma corrente elétrica extra que sobrecarrega os equipamentos</div>
-                    <div class="option" data-answer="false">D) A luz muda de cor para roxo</div>
+            
+            <!-- Questão 2 -->
+            <div class="quiz-question-wrapper">
+                <p class="quiz-question">
+                    2. Qual a proteção natural da Terra que nos defende das partículas elétricas do Sol?
+                </p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">
+                        A) O Escudo de Ozônio
+                    </button>
+                    <button class="quiz-option" data-correct="true">
+                        B) O Campo Magnético
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        C) A Torre de Transmissão
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        D) A Fiação da Casa
+                    </button>
                 </div>
-                <div class="explanation" style="display: none;">
+                <div class="quiz-feedback"></div>
+                <div class="quiz-explanation" style="display: none;">
+                    <strong>🎯 Resposta correta:</strong> <strong>O Campo Magnético</strong> da Terra é nosso escudo invisível que nos protege, mas pode balançar quando atingido por tempestades solares!
+                </div>
+            </div>
+            
+            <!-- Questão 3 -->
+            <div class="quiz-question-wrapper">
+                <p class="quiz-question">
+                    3. O que acontece nas linhas de energia elétrica quando o campo magnético da Terra é balançado?
+                </p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">
+                        A) O videogame ganha uma vida extra
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        B) O Sol envia um sinal de Wi-Fi mais rápido
+                    </button>
+                    <button class="quiz-option" data-correct="true">
+                        C) Cria-se uma corrente elétrica extra que sobrecarrega os equipamentos
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        D) A luz muda de cor para roxo
+                    </button>
+                </div>
+                <div class="quiz-feedback"></div>
+                <div class="quiz-explanation" style="display: none;">
                     <strong>🎯 Resposta correta:</strong> Quando o campo magnético balança, ele "empurra" a eletricidade, criando correntes elétricas extras que sobrecarregam transformadores e fazem a luz piscar ou apagar!
                 </div>
             </div>
-
-            <!-- Question 4 -->
-            <div class="question" id="question-4">
-                <h3 class="question-text">4. O que os cientistas da NASA fazem para proteger a rede elétrica da Terra das tempestades solares?</h3>
-                <div class="options">
-                    <div class="option" data-answer="false">A) Eles enviam Aurelito para tampar o Sol</div>
-                    <div class="option" data-answer="true">B) Eles usam satélites para monitorar o Sol e dar alertas com antecedência</div>
-                    <div class="option" data-answer="false">C) Eles desligam todas as luzes do mundo</div>
-                    <div class="option" data-answer="false">D) Eles mandam um bilhete para o Sol pedindo para ele parar</div>
+            
+            <!-- Questão 4 -->
+            <div class="quiz-question-wrapper">
+                <p class="quiz-question">
+                    4. O que os cientistas da NASA fazem para proteger a rede elétrica das tempestades solares?
+                </p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">
+                        A) Eles enviam Aurelito para tampar o Sol
+                    </button>
+                    <button class="quiz-option" data-correct="true">
+                        B) Eles usam satélites para monitorar o Sol e dar alertas com antecedência
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        C) Eles desligam todas as luzes do mundo
+                    </button>
+                    <button class="quiz-option" data-correct="false">
+                        D) Eles mandam um bilhete para o Sol pedindo para ele parar
+                    </button>
                 </div>
-                <div class="explanation" style="display: none;">
+                <div class="quiz-feedback"></div>
+                <div class="quiz-explanation" style="display: none;">
                     <strong>🎯 Resposta correta:</strong> Os cientistas são nossos "Vigias Solares"! Eles usam satélites para observar o Sol 24h e avisar os engenheiros para protegerem os equipamentos antes das tempestades chegarem!
                 </div>
             </div>
-
-            <!-- Removed Question 5 to match the 4 questions from the story -->
-
-            <div class="quiz-buttons">
-                <button class="btn btn-secondary" id="skipQuiz">Pular Quiz 🚀</button>
-                <button class="btn btn-primary" id="nextQuestion" disabled>Próxima Pergunta ➡️</button>
-                <button class="btn btn-primary" id="finishQuiz" style="display: none;">Finalizar Aventura 🏆</button>
-            </div>
+            
+            <!-- Resultado -->
+            <div id="quiz-result"></div>
         </div>
     </section>
 
-    <script>
-        // ==========================================
-        // STARS ANIMATION SYSTEM
-        // ==========================================
-        const canvas = document.getElementById('stars-canvas');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const stars = [];
-        const meteors = [];
-        const numStars = 300;
-
-        // Create beautiful stars
-        for (let i = 0; i < numStars; i++) {
-            stars.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 2.5,
-                velocity: Math.random() * 0.8,
-                opacity: Math.random(),
-                twinkleSpeed: Math.random() * 0.03 + 0.01
-            });
-        }
-
-        // Create occasional meteors
-        function createMeteor() {
-            meteors.push({
-                x: Math.random() * canvas.width,
-                y: -10,
-                speed: Math.random() * 3 + 2,
-                length: Math.random() * 80 + 20,
-                opacity: 1
-            });
-        }
-
-        // Create meteors occasionally
-        setInterval(createMeteor, 3000);
-
-        // Animate celestial objects
-        function animateStars() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Verificar tema atual
-            const isLightTheme = document.body.classList.contains('light-theme');
-            const starColor = isLightTheme ? '100, 100, 150' : '255, 255, 255';
-            
-            // Draw and animate stars
-            stars.forEach(star => {
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${starColor}, ${star.opacity})`;
-                ctx.fill();
-                
-                // Enhanced twinkle effect
-                star.opacity += (Math.random() - 0.5) * star.twinkleSpeed;
-                star.opacity = Math.max(0.1, Math.min(1, star.opacity));
-            });
-
-            // Draw and animate meteors
-            meteors.forEach((meteor, index) => {
-                ctx.beginPath();
-                ctx.moveTo(meteor.x, meteor.y);
-                ctx.lineTo(meteor.x - meteor.length, meteor.y - meteor.length);
-                ctx.strokeStyle = `rgba(255, 215, 0, ${meteor.opacity})`;
-                ctx.lineWidth = 2;
-                ctx.stroke();
-
-                meteor.y += meteor.speed;
-                meteor.x += meteor.speed * 0.5;
-                meteor.opacity -= 0.01;
-
-                if (meteor.opacity <= 0 || meteor.y > canvas.height) {
-                    meteors.splice(index, 1);
-                }
-            });
-            
-            requestAnimationFrame(animateStars);
-        }
-
-        animateStars();
-
-        // Resize canvas responsively
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // ==========================================
-        // THEME TOGGLE - Sobrescreve a função do script.js
-        // ==========================================
-        function toggleTheme() {
-            const body = document.body;
-            const themeIcon = document.querySelector('#theme-toggle i');
-            const logo = document.getElementById('space-apps-logo');
-            
-            body.classList.toggle('light-theme');
-            
-            // Atualizar ícone e logo com caminho correto para subpasta
-            if (body.classList.contains('light-theme')) {
-                themeIcon.className = 'fa-solid fa-moon';
-                if (logo) logo.src = '../../Images/EventLogo/11.png';
-                localStorage.setItem('theme', 'light');
-            } else {
-                themeIcon.className = 'fa-solid fa-sun';
-                if (logo) logo.src = '../../Images/EventLogo/44.png';
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-
-        // ==========================================
-        // MOBILE MENU TOGGLE
-        // ==========================================
-        function toggleMobileMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            const menuIcon = document.querySelector('.mobile-menu-toggle i');
-            
-            navLinks.classList.toggle('active');
-            
-            // Trocar ícone entre hambúrguer e X
-            if (navLinks.classList.contains('active')) {
-                menuIcon.className = 'fa-solid fa-xmark';
-            } else {
-                menuIcon.className = 'fa-solid fa-bars';
-            }
-        }
-
-        function closeMobileMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            const menuIcon = document.querySelector('.mobile-menu-toggle i');
-            
-            navLinks.classList.remove('active');
-            menuIcon.className = 'fa-solid fa-bars';
-        }
-
-        // Carregar tema salvo ao iniciar
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            const themeIcon = document.querySelector('#theme-toggle i');
-            const logo = document.getElementById('space-apps-logo');
-            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            if (!savedTheme) {
-                if (!prefersDark) {
-                    document.body.classList.add('light-theme');
-                    if (themeIcon) themeIcon.className = 'fa-solid fa-moon';
-                    if (logo) logo.src = '../../Images/EventLogo/11.png';
-                } else {
-                    if (themeIcon) themeIcon.className = 'fa-solid fa-sun';
-                    if (logo) logo.src = '../../Images/EventLogo/44.png';
-                }
-            } else {
-                if (savedTheme === 'light') {
-                    document.body.classList.add('light-theme');
-                    if (themeIcon) themeIcon.className = 'fa-solid fa-moon';
-                    if (logo) logo.src = '../../Images/EventLogo/11.png';
-                } else {
-                    if (themeIcon) themeIcon.className = 'fa-solid fa-sun';
-                    if (logo) logo.src = '../../Images/EventLogo/44.png';
-                }
-            }
-        });
-
-        // ==========================================
-        // SCROLL-TRIGGERED ANIMATIONS SYSTEM
-        // ==========================================
-        const observerOptions = {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const elements = entry.target.querySelectorAll('.dialogue, .chapter-title, .hologram-container, .quiz-container');
-                    elements.forEach((element, index) => {
-                        setTimeout(() => {
-                            element.classList.add('appear');
-                        }, index * 350); // 350ms delay between elements as specified
-                    });
-                }
-            });
-        }, observerOptions);
-
-        // Observe all chapters for animations
-        document.querySelectorAll('.chapter').forEach(chapter => {
-            observer.observe(chapter);
-        });
-
-        // ==========================================
-        // PROGRESS BAR SYSTEM
-        // ==========================================
-        function updateProgressBar() {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            document.getElementById('progressBar').style.width = scrollPercent + '%';
-        }
-
-        window.addEventListener('scroll', updateProgressBar);
-
-        // ==========================================
-        // NAVIGATION SYSTEM
-        // ==========================================
-        // INTERACTIVE QUIZ SYSTEM
-        // ==========================================
-        let currentQuestion = 1;
-        let score = 0;
-        let selectedAnswers = {};
-
-        const questions = document.querySelectorAll('.question');
-        const nextBtn = document.getElementById('nextQuestion');
-        const finishBtn = document.getElementById('finishQuiz');
-        const skipBtn = document.getElementById('skipQuiz');
-        const scoreElement = document.getElementById('score');
-
-        // Add click handlers to all quiz options
-        document.querySelectorAll('.option').forEach(option => {
-            option.addEventListener('click', function() {
-                const questionElement = this.closest('.question');
-                const questionId = questionElement.id;
-                
-                // Remove previous selection highlights
-                questionElement.querySelectorAll('.option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                
-                // Mark current selection
-                this.classList.add('selected');
-                selectedAnswers[questionId] = this.dataset.answer === 'true';
-                
-                // Enable next button
-                nextBtn.disabled = false;
-            });
-        });
-
-        // Next question button handler
-        nextBtn.addEventListener('click', () => {
-            // Show correct answer with visual feedback
-            const currentQuestionElement = document.getElementById(`question-${currentQuestion}`);
-            const options = currentQuestionElement.querySelectorAll('.option');
-            const explanation = currentQuestionElement.querySelector('.explanation');
-            
-            options.forEach(option => {
-                if (option.dataset.answer === 'true') {
-                    option.classList.add('correct');
-                } else if (option.classList.contains('selected')) {
-                    option.classList.add('incorrect');
-                }
-                option.style.pointerEvents = 'none';
-            });
-            
-            explanation.style.display = 'block';
-            
-            // Update score with animation
-            if (selectedAnswers[`question-${currentQuestion}`]) {
-                score++;
-                scoreElement.textContent = score;
-                // Add a little celebration animation
-                scoreElement.style.transform = 'scale(1.2)';
-                setTimeout(() => {
-                    scoreElement.style.transform = 'scale(1)';
-                }, 300);
-            }
-            
-            setTimeout(() => {
-                currentQuestion++;
-                
-                if (currentQuestion <= 4) {
-                    // Show next question
-                    questions.forEach(q => q.classList.remove('active'));
-                    document.getElementById(`question-${currentQuestion}`).classList.add('active');
-                    nextBtn.disabled = true;
-                } else {
-                    // Show finish button
-                    nextBtn.style.display = 'none';
-                    finishBtn.style.display = 'inline-block';
-                }
-            }, 2500);
-        });
-
-        // Finish quiz button handler
-        finishBtn.addEventListener('click', () => {
-            if (score === 4) {
-                createSpectacularConfetti();
-                setTimeout(() => {
-                    alert('🎉🌟 PERFEITO! INCRÍVEL! 🌟🎉\n\nVocê acertou todas as 4 perguntas!\nAurelito está super orgulhoso de você!\nVocê é um verdadeiro especialista em clima espacial! 🚀✨');
-                }, 500);
-            } else if (score >= 2) {
-                createConfetti();
-                setTimeout(() => {
-                    alert(`🌟 PARABÉNS! 🌟\n\nVocê acertou ${score} de 4 perguntas!\nUm excelente resultado!\nContinue explorando o universo com Aurelito! 🚀`);
-                }, 500);
-            } else {
-                setTimeout(() => {
-                    alert(`🌟 BOM TRABALHO! 🌟\n\nVocê acertou ${score} de 4 perguntas!\nCada pergunta é uma nova descoberta!\nQue tal tentar novamente? Aurelito acredita em você! 🚀💪`);
-                }, 500);
-            }
-        });
-
-        // Skip quiz button handler
-        skipBtn.addEventListener('click', () => {
-            if (confirm('🤔 Tem certeza que deseja pular o quiz?\n\nVocê pode aprender muito sobre o clima espacial com essas perguntas divertidas!')) {
-                alert('🚀 Tudo bem! Você pode voltar ao quiz quando quiser.\n\nContinue explorando as aventuras cósmicas do Aurelito! ✨');
-            }
-        });
-
-        // ==========================================
-        // CONFETTI ANIMATION SYSTEM
-        // ==========================================
-        function createConfetti() {
-            const colors = ['#fbbf24', '#f97316', '#ef4444', '#8b5cf6', '#06d6a0', '#ec4899'];
-            
-            for (let i = 0; i < 80; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = Math.random() * 100 + '%';
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animationDelay = Math.random() * 2 + 's';
-                    confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
-                    document.body.appendChild(confetti);
-                    
-                    setTimeout(() => {
-                        confetti.remove();
-                    }, 4000);
-                }, i * 40);
-            }
-        }
-
-        function createSpectacularConfetti() {
-            const colors = ['#fbbf24', '#f97316', '#ef4444', '#8b5cf6', '#06d6a0', '#ec4899', '#22c55e', '#3b82f6'];
-            
-            for (let i = 0; i < 150; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = Math.random() * 100 + '%';
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animationDelay = Math.random() * 3 + 's';
-                    confetti.style.animationDuration = (Math.random() * 3 + 4) + 's';
-                    confetti.style.width = (Math.random() * 8 + 8) + 'px';
-                    confetti.style.height = (Math.random() * 8 + 8) + 'px';
-                    document.body.appendChild(confetti);
-                    
-                    setTimeout(() => {
-                        confetti.remove();
-                    }, 6000);
-                }, i * 25);
-            }
-        }
-
-        // ==========================================
-        // AUTO-START ANIMATIONS
-        // ==========================================
-        document.addEventListener('DOMContentLoaded', () => {
-            // Start first chapter animations after a brief delay
-            setTimeout(() => {
-                const firstChapter = document.getElementById('chapter-1');
-                const elements = firstChapter.querySelectorAll('.dialogue, .chapter-title');
-                elements.forEach((element, index) => {
-                    setTimeout(() => {
-                        element.classList.add('appear');
-                    }, index * 350); // Sequential animation with 350ms delay
-                });
-            }, 800);
-        });
-
-        // ==========================================
-        // KEYBOARD NAVIGATION
-        // ==========================================
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowDown' || e.key === ' ') {
-                e.preventDefault();
-                window.scrollBy(0, window.innerHeight * 0.8);
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                window.scrollBy(0, -window.innerHeight * 0.8);
-            }
-        });
-    </script>
+    <!-- Navegação entre capítulos -->
+    <div class="chapter-nav">
+        <div class="chapter-dots">
+            <div class="chapter-dot active" data-chapter="1" onclick="goToChapter(1)"></div>
+            <div class="chapter-dot" data-chapter="2" onclick="goToChapter(2)"></div>
+            <div class="chapter-dot" data-chapter="3" onclick="goToChapter(3)"></div>
+            <div class="chapter-dot" data-chapter="4" onclick="goToChapter(4)"></div>
+            <div class="chapter-dot" data-chapter="5" onclick="goToChapter(5)"></div>
+        </div>
+        <button class="nav-button nav-button-quiz" onclick="goToQuiz()">
+            <i class="fas fa-question-circle"></i> Quiz
+        </button>
+    </div>
 
     <!-- Footer -->
     <footer id="about" class="footer">
@@ -1532,6 +602,79 @@
         </div>
     </footer>
 
+    <!-- JavaScript compartilhado -->
+    <script src="../../js/story-common.js"></script>
+    
+    <!-- JavaScript específico desta página -->
+    <script>
+        // Smooth scroll para capítulos com animação
+        function goToChapter(chapterNum) {
+            const chapter = document.querySelector(`.chapter-${chapterNum}`);
+            if (chapter) {
+                chapter.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                updateActiveChapterDot(chapterNum - 1);
+            }
+        }
+        
+        function updateActiveChapterDot(index) {
+            const dots = document.querySelectorAll('.chapter-dot');
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+        
+        // Observer para atualizar dots automaticamente
+        const chapterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const chapterClass = Array.from(entry.target.classList).find(c => c.startsWith('chapter-'));
+                    if (chapterClass) {
+                        const chapterNum = parseInt(chapterClass.split('-')[1]);
+                        updateActiveChapterDot(chapterNum - 1);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        document.querySelectorAll('.chapter').forEach(chapter => {
+            chapterObserver.observe(chapter);
+        });
+        
+        // Esconder navegação ao rolar para baixo
+        let lastScrollTop = 0;
+        const chapterNav = document.querySelector('.chapter-nav');
+        
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 200) {
+                // Rolando para baixo
+                chapterNav.classList.add('hidden');
+            } else {
+                // Rolando para cima
+                chapterNav.classList.remove('hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+        
+        // Animar o holograma quando aparecer
+        const hologramObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        const hologramContainer = document.querySelector('.hologram-container');
+        if (hologramContainer) {
+            hologramObserver.observe(hologramContainer);
+        }
+    </script>
 </body>
 </html>
-
