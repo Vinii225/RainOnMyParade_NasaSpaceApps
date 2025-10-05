@@ -21,6 +21,8 @@
 
 **Cosmic Tales** is an **interactive educational platform** developed for the [NASA Space Apps Challenge 2024](https://www.spaceappschallenge.org/2024/challenges/stellar-stories-space-weather-through-the-eyes-of-earthlings/), designed to explain space weather and its impacts on Earth in an engaging and accessible way.
 
+**NOTE:** If you are acessing this website from other country apart of Brazil, it will be automatically translated to your navigator language and maybe some images will not load.
+
 Although the Sun is 150 million kilometers away from Earth, its activity significantly impacts our daily lives. "Space weather" refers to variations in the space environment between the Sun and Earth, including:
 
 - **Solar Flares** ☄️ - Intense bursts of radiation from the Sun
