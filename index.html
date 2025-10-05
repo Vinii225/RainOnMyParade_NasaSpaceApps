@@ -6,6 +6,7 @@
     <title> Cosmic Tales</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌟</text></svg>">
     <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/game.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
@@ -43,6 +44,7 @@
                 <li><a href="#home" onclick="closeMobileMenu()"><i class="fa-solid fa-house"></i> Home</a></li>
                 <li><a href="#space-weather" onclick="closeMobileMenu()"><i class="fa-solid fa-cloud-sun"></i> Clima Espacial</a></li>
                 <li><a href="#stories" onclick="closeMobileMenu()"><i class="fa-solid fa-book"></i> Histórias</a></li>
+                <li><a href="#game" onclick="closeMobileMenu()"><i class="fa-solid fa-gamepad"></i> Jogo</a></li>
                 <li><a href="#about" onclick="closeMobileMenu()"><i class="fa-solid fa-circle-info"></i> Sobre</a></li>
                 <li>
                     <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
@@ -317,6 +319,42 @@
         </div>
     </section>
 
+    <!-- Seção do Jogo -->
+    <section id="game" class="game-section">
+        <div class="container">
+            <h2 class="section-title">🚀 Desafio Espacial</h2>
+            <p class="section-subtitle">Navegue pelo espaço, colete moedas e evite a radiação solar!</p>
+            
+            <div class="game-container">
+                <canvas id="gameCanvas"></canvas>
+                <div class="game-overlay" id="gameOverlay">
+                    <div class="game-start">
+                        <h3>🚀 Pronto para o Desafio?</h3>
+                        <p>Clique para fazer a nave subir</p>
+                        <p>Colete ⭐ estrelas e evite ☢️ a radiação!</p>
+                        <button class="btn btn-primary" onclick="startGame()">
+                            <i class="fa-solid fa-play"></i> Começar Jogo
+                        </button>
+                    </div>
+                </div>
+                <div class="game-ui">
+                    <div class="game-ui-left">
+                        <div class="stats-display">
+                            <div class="stat-item">
+                                <span class="stat-label">Moedas:</span>
+                                <span class="stat-value" id="coinsDisplay">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="high-score-display">
+                        <span class="score-label">Distância:</span>
+                        <span class="score-value" id="distanceDisplay">0m</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer id="about" class="footer">
         <div class="container">
@@ -351,5 +389,6 @@
     </footer>
 
     <script src="./js/script.js"></script>
+    <script src="./js/game.js"></script>
 </body>
 </html>
